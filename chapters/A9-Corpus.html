@@ -1914,11 +1914,11 @@ Liberal_democrat   0.9825760 0.9772731
 <span id="cb66-38"><a href="#cb66-38"></a></span>
 <span id="cb66-39"><a href="#cb66-39"></a><span class="co"># Pivot for plotting</span></span>
 <span id="cb66-40"><a href="#cb66-40"></a>freqs_long <span class="ot">&lt;-</span> freqs_df <span class="sc">%&gt;%</span></span>
-<span id="cb66-41"><a href="#cb66-41"></a>  <span class="fu">select</span>(<span class="sc">-</span>doc_id) <span class="sc">%&gt;%</span></span>
-<span id="cb66-42"><a href="#cb66-42"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="sc">-</span>year, <span class="at">names_to =</span> <span class="st">"keyword"</span>, <span class="at">values_to =</span> <span class="st">"frequency"</span>)</span>
+<span id="cb66-41"><a href="#cb66-41"></a>  <span class="fu">select</span>(<span class="sc">-</span>year) <span class="sc">%&gt;%</span></span>
+<span id="cb66-42"><a href="#cb66-42"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="sc">-</span>doc_id, <span class="at">names_to =</span> <span class="st">"keyword"</span>, <span class="at">values_to =</span> <span class="st">"frequency"</span>)</span>
 <span id="cb66-43"><a href="#cb66-43"></a></span>
 <span id="cb66-44"><a href="#cb66-44"></a><span class="co">#  Plot</span></span>
-<span id="cb66-45"><a href="#cb66-45"></a><span class="fu">ggplot</span>(freqs_long, <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">as.numeric</span>(year), <span class="at">y =</span> frequency, <span class="at">color =</span> keyword)) <span class="sc">+</span></span>
+<span id="cb66-45"><a href="#cb66-45"></a><span class="fu">ggplot</span>(freqs_long, <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">as.numeric</span>(doc_id), <span class="at">y =</span> frequency, <span class="at">color =</span> keyword)) <span class="sc">+</span></span>
 <span id="cb66-46"><a href="#cb66-46"></a>  <span class="fu">geom_line</span>(<span class="at">linewidth =</span> <span class="fl">1.2</span>) <span class="sc">+</span></span>
 <span id="cb66-47"><a href="#cb66-47"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
 <span id="cb66-48"><a href="#cb66-48"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Keyword Frequency Over Time in Ofsted Reports"</span>,</span>
@@ -1926,7 +1926,12 @@ Liberal_democrat   0.9825760 0.9772731
 <span id="cb66-50"><a href="#cb66-50"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
 <span id="cb66-51"><a href="#cb66-51"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"top"</span>) <span class="sc">+</span></span>
 <span id="cb66-52"><a href="#cb66-52"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>keyword, <span class="at">scales =</span> <span class="st">"free_y"</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
+</details><div class="cell-output-display">
+<div>
+<figure class="figure"><p><img src="A9-Corpus_files/figure-html/unnamed-chunk-41-1.png" class="img-fluid figure-img" style="width:95.0%"></p>
+</figure>
+</div>
+</div>
 </div>
 
 
