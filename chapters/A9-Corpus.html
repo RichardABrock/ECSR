@@ -328,12 +328,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#task-4-lexical-disperssion-plot" id="toc-task-4-lexical-disperssion-plot" class="nav-link" data-scroll-target="#task-4-lexical-disperssion-plot"><span class="header-section-number">4.2.4</span> Task 4 lexical disperssion plot</a></li>
   </ul>
 </li>
-  <li>
-<a href="#analysing-ofsted-reports" id="toc-analysing-ofsted-reports" class="nav-link" data-scroll-target="#analysing-ofsted-reports"><span class="header-section-number">4.3</span> Analysing ofsted reports</a>
-  <ul class="collapse">
-<li><a href="#task-1---tracking-policies-over-time" id="toc-task-1---tracking-policies-over-time" class="nav-link" data-scroll-target="#task-1---tracking-policies-over-time"><span class="header-section-number">4.3.1</span> Task 1 - Tracking policies over time</a></li>
   </ul>
 </li>
+  <li>
+<a href="#analysing-ofsted-reports" id="toc-analysing-ofsted-reports" class="nav-link" data-scroll-target="#analysing-ofsted-reports"><span class="header-section-number">5</span> Analysing ofsted reports</a>
+  <ul class="collapse">
+<li><a href="#task-1---tracking-policies-over-time" id="toc-task-1---tracking-policies-over-time" class="nav-link" data-scroll-target="#task-1---tracking-policies-over-time"><span class="header-section-number">5.1</span> Task 1 - Tracking policies over time</a></li>
   </ul>
 </li>
   </ul></nav>
@@ -1771,8 +1771,8 @@ Liberal_democrat   0.9825760 0.9772731
 </div>
 </div>
 </div>
-</section></section><section id="analysing-ofsted-reports" class="level2" data-number="4.3"><h2 data-number="4.3" class="anchored" data-anchor-id="analysing-ofsted-reports">
-<span class="header-section-number">4.3</span> Analysing ofsted reports</h2>
+</section></section></section><section id="analysing-ofsted-reports" class="level1" data-number="5"><h1 data-number="5">
+<span class="header-section-number">5</span> Analysing ofsted reports</h1>
 <p>We have created a large corpus of the text of Ofsted reports, by scrapping all Ofsted reports from the Ofsted website. You can download a subset of the corpus, for London schools, as a parquet file from <a href="https://emckclac-my.sharepoint.com/:u:/g/personal/k1926273_kcl_ac_uk/EZtdmlFzmOJEo2TnLiOjJrQBMBBqUpuVG1ZZmycum0dgpQ?e=VEV0mE">here</a>.</p>
 <p>To load the corpus into R, you can use the <code>read_parquet</code> function from the <code>arrow</code> package.</p>
 <div class="cell">
@@ -1780,7 +1780,7 @@ Liberal_democrat   0.9825760 0.9772731
 <span id="cb65-2"><a href="#cb65-2"></a><span class="co"># Read in the Ofsted reports corpus</span></span>
 <span id="cb65-3"><a href="#cb65-3"></a>london_ofsted_reports <span class="ot">&lt;-</span> <span class="fu">read_parquet</span>(<span class="st">"&lt;path to ofsted_reports.parquet&gt;"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>The corpus contains the text of all Ofsted reports from 2010 to 2023. The variables in the data frame are:</p>
+<p>The corpus contains the text of all Lonson Ofsted reports from 2010 to 2023. The variables in the data frame are:</p>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 28%">
@@ -1866,12 +1866,12 @@ Liberal_democrat   0.9825760 0.9772731
 </tbody>
 </table>
 <p>The corpus provides a rich source of text data for analysis. Using the approaches introduced above, you can attempt the tasks below.</p>
-<section id="task-1---tracking-policies-over-time" class="level3" data-number="4.3.1"><h3 data-number="4.3.1" class="anchored" data-anchor-id="task-1---tracking-policies-over-time">
-<span class="header-section-number">4.3.1</span> Task 1 - Tracking policies over time</h3>
+<section id="task-1---tracking-policies-over-time" class="level2" data-number="5.1"><h2 data-number="5.1" class="anchored" data-anchor-id="task-1---tracking-policies-over-time">
+<span class="header-section-number">5.1</span> Task 1 - Tracking policies over time</h2>
 <div class="question">
 <p>Using the London ofsted corpus, produce graphs of how the frequency of reference to the following policies /pedagogies have changed over time:</p>
 <p>• brain gym • learning styles • mastery</p>
-<p>Choose your keywords to plot</p>
+<p>Choose your group of keywords to plot. To create the plot, we have broken the task down into a n number of steps. First, use the <code>tokens()</code> function to tokenise the <code>london_ofsted_corpus</code>.</p>
 </div>
 <div class="cell">
 <details class="code-fold"><summary>Answer</summary><div class="sourceCode cell-code" id="cb66"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb66-1"><a href="#cb66-1"></a><span class="co"># create a corpus object from the ofsted reports</span></span>
@@ -1886,56 +1886,125 @@ Liberal_democrat   0.9825760 0.9772731
 <span id="cb66-10"><a href="#cb66-10"></a>                       <span class="at">remove_numbers =</span> <span class="cn">TRUE</span>,</span>
 <span id="cb66-11"><a href="#cb66-11"></a>                       <span class="at">remove_symbols =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span></span>
 <span id="cb66-12"><a href="#cb66-12"></a>   <span class="fu">tokens_tolower</span>() <span class="sc">%&gt;%</span> <span class="co"># convert to lower case</span></span>
-<span id="cb66-13"><a href="#cb66-13"></a>  <span class="fu">tokens_remove</span>(<span class="fu">stopwords</span>(<span class="st">"en"</span>))</span>
-<span id="cb66-14"><a href="#cb66-14"></a></span>
-<span id="cb66-15"><a href="#cb66-15"></a><span class="co"># Convert keywords to tokens for compound matching - this means the search is</span></span>
-<span id="cb66-16"><a href="#cb66-16"></a><span class="co"># for the whole phrase, not the individual words</span></span>
-<span id="cb66-17"><a href="#cb66-17"></a><span class="co"># Create a pattern where multi-word terms use the phrase operator</span></span>
-<span id="cb66-18"><a href="#cb66-18"></a>keywords_phrases <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">phrase</span>(<span class="st">"brain gym"</span>), <span class="fu">phrase</span>(<span class="st">"learning styles"</span>), <span class="st">"mastery"</span>)</span>
-<span id="cb66-19"><a href="#cb66-19"></a></span>
-<span id="cb66-20"><a href="#cb66-20"></a><span class="co"># Compound multi-word keywords into single tokens and search</span></span>
-<span id="cb66-21"><a href="#cb66-21"></a>tokens_compounded <span class="ot">&lt;-</span> <span class="fu">tokens_compound</span>(tokens_clean, <span class="at">pattern =</span> keywords_phrases)</span>
-<span id="cb66-22"><a href="#cb66-22"></a></span>
-<span id="cb66-23"><a href="#cb66-23"></a><span class="co"># Create dfm grouped by year</span></span>
-<span id="cb66-24"><a href="#cb66-24"></a>ofsted_dfm <span class="ot">&lt;-</span> <span class="fu">dfm</span>(tokens_compounded) <span class="sc">%&gt;%</span></span>
-<span id="cb66-25"><a href="#cb66-25"></a>  <span class="fu">dfm_group</span>(<span class="at">groups =</span> <span class="fu">docvars</span>(london_ofsted_corpus, <span class="st">"year"</span>))</span>
-<span id="cb66-26"><a href="#cb66-26"></a></span>
-<span id="cb66-27"><a href="#cb66-27"></a><span class="co">#After compounding, we need to select the compounded tokens</span></span>
-<span id="cb66-28"><a href="#cb66-28"></a><span class="co"># which now have underscores</span></span>
-<span id="cb66-29"><a href="#cb66-29"></a>keywords_compounded <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"brain_gym"</span>, <span class="st">"learning_styles"</span>, <span class="st">"mastery"</span>)</span>
-<span id="cb66-30"><a href="#cb66-30"></a></span>
-<span id="cb66-31"><a href="#cb66-31"></a><span class="co"># Select keyword phrases in dfm</span></span>
-<span id="cb66-32"><a href="#cb66-32"></a>dfm_keywords <span class="ot">&lt;-</span> <span class="fu">dfm_select</span>(ofsted_dfm, <span class="at">pattern =</span> keywords_compounded)</span>
-<span id="cb66-33"><a href="#cb66-33"></a></span>
-<span id="cb66-34"><a href="#cb66-34"></a><span class="co"># Convert to data frame</span></span>
-<span id="cb66-35"><a href="#cb66-35"></a>freqs_df <span class="ot">&lt;-</span> <span class="fu">convert</span>(dfm_keywords, <span class="at">to =</span> <span class="st">"data.frame"</span>)</span>
-<span id="cb66-36"><a href="#cb66-36"></a><span class="co"># convert rownmaes with years to columns</span></span>
-<span id="cb66-37"><a href="#cb66-37"></a>freqs_df<span class="sc">$</span>year <span class="ot">&lt;-</span> <span class="fu">rownames</span>(freqs_df)</span>
-<span id="cb66-38"><a href="#cb66-38"></a></span>
-<span id="cb66-39"><a href="#cb66-39"></a><span class="co"># Pivot for plotting</span></span>
-<span id="cb66-40"><a href="#cb66-40"></a>freqs_long <span class="ot">&lt;-</span> freqs_df <span class="sc">%&gt;%</span></span>
-<span id="cb66-41"><a href="#cb66-41"></a>  <span class="fu">select</span>(<span class="sc">-</span>year) <span class="sc">%&gt;%</span></span>
-<span id="cb66-42"><a href="#cb66-42"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="sc">-</span>doc_id, <span class="at">names_to =</span> <span class="st">"keyword"</span>, <span class="at">values_to =</span> <span class="st">"frequency"</span>)</span>
-<span id="cb66-43"><a href="#cb66-43"></a></span>
-<span id="cb66-44"><a href="#cb66-44"></a><span class="co">#  Plot</span></span>
-<span id="cb66-45"><a href="#cb66-45"></a><span class="fu">ggplot</span>(freqs_long, <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">as.numeric</span>(doc_id), <span class="at">y =</span> frequency, <span class="at">color =</span> keyword)) <span class="sc">+</span></span>
-<span id="cb66-46"><a href="#cb66-46"></a>  <span class="fu">geom_line</span>(<span class="at">linewidth =</span> <span class="fl">1.2</span>) <span class="sc">+</span></span>
-<span id="cb66-47"><a href="#cb66-47"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb66-48"><a href="#cb66-48"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Keyword Frequency Over Time in Ofsted Reports"</span>,</span>
-<span id="cb66-49"><a href="#cb66-49"></a>       <span class="at">x =</span> <span class="st">"Year"</span>, <span class="at">y =</span> <span class="st">"Frequency"</span>) <span class="sc">+</span></span>
-<span id="cb66-50"><a href="#cb66-50"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
-<span id="cb66-51"><a href="#cb66-51"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"top"</span>) <span class="sc">+</span></span>
-<span id="cb66-52"><a href="#cb66-52"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>keyword, <span class="at">scales =</span> <span class="st">"free_y"</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb66-13"><a href="#cb66-13"></a>  <span class="fu">tokens_remove</span>(<span class="fu">stopwords</span>(<span class="st">"en"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div class="question">
+<p>Next, to be able to search for two word phrases use the <code>phrase</code> and <code>tokens_compound</code> functions to search the cleaned tokens data for the policy names of interest</p>
+</div>
+<div class="cell">
+<details class="code-fold"><summary>Answer</summary><div class="sourceCode cell-code" id="cb67"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb67-1"><a href="#cb67-1"></a><span class="co"># Convert keywords to tokens for compound matching - this means the search is</span></span>
+<span id="cb67-2"><a href="#cb67-2"></a><span class="co"># for the whole phrase, not the individual words</span></span>
+<span id="cb67-3"><a href="#cb67-3"></a><span class="co"># Create a pattern where multi-word terms use the phrase operator</span></span>
+<span id="cb67-4"><a href="#cb67-4"></a>keywords_phrases <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">phrase</span>(<span class="st">"brain gym"</span>), <span class="fu">phrase</span>(<span class="st">"learning styles"</span>), <span class="st">"mastery"</span>)</span>
+<span id="cb67-5"><a href="#cb67-5"></a></span>
+<span id="cb67-6"><a href="#cb67-6"></a><span class="co"># Compound multi-word keywords into single tokens and search</span></span>
+<span id="cb67-7"><a href="#cb67-7"></a>tokens_compounded <span class="ot">&lt;-</span> <span class="fu">tokens_compound</span>(tokens_clean, <span class="at">pattern =</span> keywords_phrases)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div class="question">
+<p>Create a <code>dfm</code> with the frequencies of the keywords and convert to a data frame ready for plotting. Hints: • You will want to use <code>dfm_group(groups = docvars(london_ofsted_corpus, "year"))</code> to group the <code>dfm</code> by year to enable you to plot change over time • When searching for the keywords, note the compounded tokens will now have an underscore in them - for example, “learning_styles” • When you convert the <code>dfm</code> to a <code>data.frame</code> the years will become row names. To convert rownames to a column you can use <code>freqs_df$year &lt;- rownames(freqs_df)</code> • On converting to a dataframe, you will have a column for each keyterm. For plotting, <code>ggplot</code> prefers long format in which there is a single column/vector for counts with two columns identifying the year and keyword. To change the data frame to this format you can use the <code>pivot_longer</code> function. See below</p>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>When plotting data, long form data frames are preferred over wide forms. The difference is illustrated below. In a wide form data frame, each invidiual or school is a row and may have multiple columns of data:</p>
+<div class="cell">
+<details class="code-fold"><summary>Answer</summary><div class="sourceCode cell-code" id="cb68"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb68-1"><a href="#cb68-1"></a>wide_form <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">student =</span> <span class="fu">c</span>(<span class="st">"A"</span>, <span class="st">"B"</span>, <span class="st">"C"</span>, <span class="st">"D"</span>, <span class="st">"E"</span>, <span class="st">"F"</span>),</span>
+<span id="cb68-2"><a href="#cb68-2"></a>                        <span class="at">math =</span> <span class="fu">c</span>(<span class="dv">81</span>, <span class="dv">56</span>, <span class="dv">43</span>, <span class="dv">56</span>, <span class="dv">78</span>, <span class="dv">92</span>),</span>
+<span id="cb68-3"><a href="#cb68-3"></a>                        <span class="at">english =</span> <span class="fu">c</span>(<span class="dv">54</span>, <span class="dv">32</span>, <span class="dv">78</span>, <span class="dv">91</span>, <span class="dv">33</span>, <span class="dv">67</span>))</span>
+<span id="cb68-4"><a href="#cb68-4"></a></span>
+<span id="cb68-5"><a href="#cb68-5"></a>wide_form</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output cell-output-stdout">
+<pre><code>  student math english
+1       A   81      54
+2       B   56      32
+3       C   43      78
+4       D   56      91
+5       E   78      33
+6       F   92      67</code></pre>
+</div>
+</div>
+<p>In long form, there is a single column for numeric data and each individual or school has multiple entries:</p>
+<div class="cell">
+<details class="code-fold"><summary>Answer</summary><div class="sourceCode cell-code" id="cb70"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb70-1"><a href="#cb70-1"></a>long_form <span class="ot">&lt;-</span> <span class="fu">pivot_longer</span>(wide_form, <span class="at">cols =</span> <span class="fu">c</span>(math, english),</span>
+<span id="cb70-2"><a href="#cb70-2"></a>                          <span class="at">names_to =</span> <span class="st">"subject"</span>, <span class="at">values_to =</span> <span class="st">"scores"</span>)</span>
+<span id="cb70-3"><a href="#cb70-3"></a></span>
+<span id="cb70-4"><a href="#cb70-4"></a>long_form</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 12 × 3
+   student subject scores
+   &lt;chr&gt;   &lt;chr&gt;    &lt;dbl&gt;
+ 1 A       math        81
+ 2 A       english     54
+ 3 B       math        56
+ 4 B       english     32
+ 5 C       math        43
+ 6 C       english     78
+ 7 D       math        56
+ 8 D       english     91
+ 9 E       math        78
+10 E       english     33
+11 F       math        92
+12 F       english     67</code></pre>
+</div>
+</div>
+<p>To convert wide form to long form, you use the <code>pivot_longer</code> function. The function takes the arguments: a) <code>cols = c("col1","col2")</code> - the names of the columns to combine into a longer column; b) names_to = “” - the name of the new column labelling the values; and values_to = “” - the name of the new column containing the values. For example, in the case of converting the example dataframe above we use: <code>pivot_longer(wide_form, cols = c(math, english), names_to = "subject", values_to = "scores")</code>. We specify the two columns we want to stack (<code>c(math, english)</code>), the names of the column with the subject labels and the scores.</p>
+</div>
+</div>
+<div class="cell">
+<details class="code-fold"><summary>Answer</summary><div class="sourceCode cell-code" id="cb72"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb72-1"><a href="#cb72-1"></a><span class="co"># Create dfm grouped by year</span></span>
+<span id="cb72-2"><a href="#cb72-2"></a>ofsted_dfm <span class="ot">&lt;-</span> <span class="fu">dfm</span>(tokens_compounded) <span class="sc">%&gt;%</span></span>
+<span id="cb72-3"><a href="#cb72-3"></a>  <span class="fu">dfm_group</span>(<span class="at">groups =</span> <span class="fu">docvars</span>(london_ofsted_corpus, <span class="st">"year"</span>))</span>
+<span id="cb72-4"><a href="#cb72-4"></a></span>
+<span id="cb72-5"><a href="#cb72-5"></a><span class="co">#After compounding, we need to select the compounded tokens</span></span>
+<span id="cb72-6"><a href="#cb72-6"></a><span class="co"># which now have underscores</span></span>
+<span id="cb72-7"><a href="#cb72-7"></a>keywords_compounded <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"brain_gym"</span>, <span class="st">"learning_styles"</span>, <span class="st">"mastery"</span>)</span>
+<span id="cb72-8"><a href="#cb72-8"></a></span>
+<span id="cb72-9"><a href="#cb72-9"></a><span class="co"># Select keyword phrases in dfm</span></span>
+<span id="cb72-10"><a href="#cb72-10"></a>dfm_keywords <span class="ot">&lt;-</span> <span class="fu">dfm_select</span>(ofsted_dfm, <span class="at">pattern =</span> keywords_compounded)</span>
+<span id="cb72-11"><a href="#cb72-11"></a></span>
+<span id="cb72-12"><a href="#cb72-12"></a><span class="co"># Convert to data frame</span></span>
+<span id="cb72-13"><a href="#cb72-13"></a>freqs_df <span class="ot">&lt;-</span> <span class="fu">convert</span>(dfm_keywords, <span class="at">to =</span> <span class="st">"data.frame"</span>)</span>
+<span id="cb72-14"><a href="#cb72-14"></a><span class="co"># convert row names with years to columns</span></span>
+<span id="cb72-15"><a href="#cb72-15"></a>freqs_df<span class="sc">$</span>year <span class="ot">&lt;-</span> <span class="fu">rownames</span>(freqs_df)</span>
+<span id="cb72-16"><a href="#cb72-16"></a></span>
+<span id="cb72-17"><a href="#cb72-17"></a><span class="co"># Pivot for plotting</span></span>
+<span id="cb72-18"><a href="#cb72-18"></a>freqs_long <span class="ot">&lt;-</span> freqs_df <span class="sc">%&gt;%</span></span>
+<span id="cb72-19"><a href="#cb72-19"></a>  <span class="fu">select</span>(<span class="sc">-</span>year) <span class="sc">%&gt;%</span></span>
+<span id="cb72-20"><a href="#cb72-20"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="sc">-</span>doc_id, <span class="at">names_to =</span> <span class="st">"keyword"</span>, <span class="at">values_to =</span> <span class="st">"frequency"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div class="question">
+<p>Finally, plot your data as a line chart - you may want to facet the chart to give separate plots for each key word</p>
+</div>
+<div class="cell">
+<details class="code-fold"><summary>Answer</summary><div class="sourceCode cell-code" id="cb73"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb73-1"><a href="#cb73-1"></a><span class="co">#  Plot</span></span>
+<span id="cb73-2"><a href="#cb73-2"></a><span class="fu">ggplot</span>(freqs_long, <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">as.numeric</span>(doc_id), <span class="at">y =</span> frequency, <span class="at">color =</span> keyword)) <span class="sc">+</span></span>
+<span id="cb73-3"><a href="#cb73-3"></a>  <span class="fu">geom_line</span>(<span class="at">linewidth =</span> <span class="fl">1.2</span>) <span class="sc">+</span></span>
+<span id="cb73-4"><a href="#cb73-4"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb73-5"><a href="#cb73-5"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Keyword Frequency Over Time in London Ofsted Reports"</span>,</span>
+<span id="cb73-6"><a href="#cb73-6"></a>       <span class="at">x =</span> <span class="st">"Year"</span>, <span class="at">y =</span> <span class="st">"Frequency"</span>) <span class="sc">+</span></span>
+<span id="cb73-7"><a href="#cb73-7"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb73-8"><a href="#cb73-8"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"top"</span>) <span class="sc">+</span></span>
+<span id="cb73-9"><a href="#cb73-9"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>keyword, <span class="at">scales =</span> <span class="st">"free_y"</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div class="cell-output-display">
 <div>
-<figure class="figure"><p><img src="A9-Corpus_files/figure-html/unnamed-chunk-41-1.png" class="img-fluid figure-img" style="width:95.0%"></p>
+<figure class="figure"><p><img src="A9-Corpus_files/figure-html/unnamed-chunk-46-1.png" class="img-fluid figure-img" style="width:95.0%"></p>
 </figure>
 </div>
 </div>
 </div>
 
 
-</section></section></section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
+</section></section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
     const mode = bsSheetEl.getAttribute("data-mode");
