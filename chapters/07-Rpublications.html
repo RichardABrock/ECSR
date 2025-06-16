@@ -1,0 +1,4173 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.6.42">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<title>Publishing using R and quarto – ECSR</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-2f5df379a58b258e96c21c0638c20c03.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-868b9742d7bde9f1698ef1c41a43f714.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light"><script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script><link href="../site_libs/htmltools-fill-0.5.8.1/fill.css" rel="stylesheet">
+<script src="../site_libs/htmlwidgets-1.6.4/htmlwidgets.js"></script><script src="../site_libs/plotly-binding-4.10.4/plotly.js"></script><script src="../site_libs/typedarray-0.1/typedarray.min.js"></script><script src="../site_libs/jquery-3.5.1/jquery.min.js"></script><link href="../site_libs/crosstalk-1.2.1/css/crosstalk.min.css" rel="stylesheet">
+<script src="../site_libs/crosstalk-1.2.1/js/crosstalk.min.js"></script><link href="../site_libs/plotly-htmlwidgets-css-2.11.1/plotly-htmlwidgets.css" rel="stylesheet">
+<script src="../site_libs/plotly-main-2.11.1/plotly-latest.min.js"></script><link rel="stylesheet" href="../css/mastemr.css">
+</head>
+<body class="nav-sidebar docked nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top"><nav class="navbar navbar-expand-lg " data-bs-theme="dark"><div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="index.qmd" class="navbar-brand navbar-brand-logo">
+    <img src="../images/KCL_logo.png" alt="" class="navbar-logo"></a>
+    <a class="navbar-brand" href="index.qmd">
+    <span class="navbar-title">ECSR</span>
+    </a>
+  </div>
+        <div class="quarto-navbar-tools tools-end">
+</div>
+          <div id="quarto-search" class="" title="Search"></div>
+      </div> <!-- /container-fluid -->
+    </nav><nav class="quarto-secondary-nav"><div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/07-Rpublications.html">Publications</a></li><li class="breadcrumb-item"><a href="../chapters/07-Rpublications.html">Publishing using R and quarto</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto"><div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Home</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Introduction to R</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/01-1-Loading_R.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction to R</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/01-2-Intro_tidyverse.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Loading packages and exploring data</span></a>
+  </div>
+</li>
+      </ul>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Introduction to Stats</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/03-1-Descriptive.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Descriptive Statistics</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/03-2-ChisqPISA.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Hypothesis testing and Chi-square tests</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/03-3-T-testsPISA.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">T-tests</span></a>
+  </div>
+</li>
+      </ul>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/04-Intro_to_graphs.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Making graphs</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">Corpus analysis</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/A9-Corpus.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Corpus Analysis</span></a>
+  </div>
+</li>
+      </ul>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
+ <span class="menu-text">Publications</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/07-Rpublications.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Publishing using R and quarto</span></a>
+  </div>
+</li>
+      </ul>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
+ <span class="menu-text">Appendices</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/A1-PISA_analysis.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">PISA</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/A2-DfE_analysis.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">DfE England</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/A3-TIMSS_analysis.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">TIMSS, PIRLS and ICILS</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/A4-Other_datasets.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Other datasets</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/A5-Self_Study_Tasks.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Self Study Tasks</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/A6-selecting_statistical_tools.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Selecting statistical tools</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/A7-QandA.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Questions and Answers</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/A10-Leaflet.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Leaflet</span></a>
+  </div>
+</li>
+      </ul>
+</li>
+    </ul>
+</div>
+</nav><div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">On this page</h2>
+   
+  <ul>
+<li><a href="#why-quarto" id="toc-why-quarto" class="nav-link active" data-scroll-target="#why-quarto"><span class="header-section-number">1</span> Why <em>Quarto</em></a></li>
+  <li>
+<a href="#creating-your-first-quarto-file" id="toc-creating-your-first-quarto-file" class="nav-link" data-scroll-target="#creating-your-first-quarto-file"><span class="header-section-number">2</span> Creating your first quarto file</a>
+  <ul class="collapse">
+<li><a href="#the-structure-of-a-quarto-file" id="toc-the-structure-of-a-quarto-file" class="nav-link" data-scroll-target="#the-structure-of-a-quarto-file"><span class="header-section-number">2.1</span> The structure of a quarto file</a></li>
+  <li><a href="#visual-editor" id="toc-visual-editor" class="nav-link" data-scroll-target="#visual-editor"><span class="header-section-number">2.2</span> Visual editor</a></li>
+  </ul>
+</li>
+  <li>
+<a href="#markdown" id="toc-markdown" class="nav-link" data-scroll-target="#markdown"><span class="header-section-number">3</span> Markdown</a>
+  <ul class="collapse">
+<li><a href="#basic-formatting" id="toc-basic-formatting" class="nav-link" data-scroll-target="#basic-formatting"><span class="header-section-number">3.1</span> Basic formatting</a></li>
+  <li><a href="#lists" id="toc-lists" class="nav-link" data-scroll-target="#lists"><span class="header-section-number">3.2</span> Lists</a></li>
+  <li><a href="#inserting-images" id="toc-inserting-images" class="nav-link" data-scroll-target="#inserting-images"><span class="header-section-number">3.3</span> Inserting images</a></li>
+  <li><a href="#questions-intro-to-markdown" id="toc-questions-intro-to-markdown" class="nav-link" data-scroll-target="#questions-intro-to-markdown"><span class="header-section-number">3.4</span> Questions: intro to markdown</a></li>
+  <li><a href="#quotes-and-references" id="toc-quotes-and-references" class="nav-link" data-scroll-target="#quotes-and-references"><span class="header-section-number">3.5</span> Quotes and references</a></li>
+  <li><a href="#questions-referencing" id="toc-questions-referencing" class="nav-link" data-scroll-target="#questions-referencing"><span class="header-section-number">3.6</span> Questions: referencing</a></li>
+  </ul>
+</li>
+  <li>
+<a href="#using-code-in-your-pages" id="toc-using-code-in-your-pages" class="nav-link" data-scroll-target="#using-code-in-your-pages"><span class="header-section-number">4</span> Using code in your pages</a>
+  <ul class="collapse">
+<li><a href="#code-chunks" id="toc-code-chunks" class="nav-link" data-scroll-target="#code-chunks"><span class="header-section-number">4.1</span> Code chunks</a></li>
+  <li><a href="#including-graphs" id="toc-including-graphs" class="nav-link" data-scroll-target="#including-graphs"><span class="header-section-number">4.2</span> Including graphs</a></li>
+  <li><a href="#questions-code-chunks-and-graphs" id="toc-questions-code-chunks-and-graphs" class="nav-link" data-scroll-target="#questions-code-chunks-and-graphs"><span class="header-section-number">4.3</span> Questions: code chunks and graphs</a></li>
+  <li><a href="#loading-code-files-from-outside-the-.qmd-file" id="toc-loading-code-files-from-outside-the-.qmd-file" class="nav-link" data-scroll-target="#loading-code-files-from-outside-the-.qmd-file"><span class="header-section-number">4.4</span> Loading code files from outside the .qmd file</a></li>
+  </ul>
+</li>
+  <li>
+<a href="#adding-tables" id="toc-adding-tables" class="nav-link" data-scroll-target="#adding-tables"><span class="header-section-number">5</span> Adding tables</a>
+  <ul class="collapse">
+<li><a href="#gt-great-tables" id="toc-gt-great-tables" class="nav-link" data-scroll-target="#gt-great-tables"><span class="header-section-number">5.1</span> gt (great tables)</a></li>
+  <li><a href="#questions-gt" id="toc-questions-gt" class="nav-link" data-scroll-target="#questions-gt"><span class="header-section-number">5.2</span> Questions: gt</a></li>
+  </ul>
+</li>
+  <li><a href="#different-types-of-output" id="toc-different-types-of-output" class="nav-link" data-scroll-target="#different-types-of-output"><span class="header-section-number">6</span> Different types of output</a></li>
+  </ul></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/07-Rpublications.html">Publications</a></li><li class="breadcrumb-item"><a href="../chapters/07-Rpublications.html">Publishing using R and quarto</a></li></ol></nav><div class="quarto-title">
+<h1 class="title">Publishing using R and quarto</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header><section id="why-quarto" class="level1" data-number="1"><h1 data-number="1">
+<span class="header-section-number">1</span> Why <em>Quarto</em>
+</h1>
+<p>Quarto is a publishing framework that works with R and RStudio (and python and Julia) to allow you to produce pdfs, word docs, websites and power points for publication. Using quarto you can combine your data cleaning, data analysis, model building and graph creation, with your writing and bibliography, all in one place. This means</p>
+<ul>
+<li>you don’t need to keep copy and pasting, or exporting results and graphs from R to your write up</li>
+<li>if the underlying data sets or models change any changes automatically filter through to your write up</li>
+<li>it’s easy to include the code that you use so readers can see exactly what you have done</li>
+</ul>
+<p>Quarto also allows you to present your findings alongside your R code. This allows for better reproducibility of work and transparency in terms of methodology.</p>
+</section><section id="creating-your-first-quarto-file" class="level1" data-number="2"><h1 data-number="2">
+<span class="header-section-number">2</span> Creating your first quarto file</h1>
+<ol type="1">
+<li>create a new quarto document from the drop down</li>
+</ol>
+<p><img src="../sessions/images/creating_qmd.png" class="img-fluid"></p>
+<ol start="2" type="1">
+<li>fill in some basic details (you can edit these later), keep the default as HTML (a web page)</li>
+</ol>
+<p><img src="../sessions/images/qmd_options.png" class="img-fluid" width="393"></p>
+<ol start="3" type="1">
+<li>You will be presented by an empty .qmd file</li>
+<li>Save this file where you want to work on it</li>
+</ol>
+<section id="the-structure-of-a-quarto-file" class="level2" data-number="2.1"><h2 data-number="2.1" class="anchored" data-anchor-id="the-structure-of-a-quarto-file">
+<span class="header-section-number">2.1</span> The structure of a quarto file</h2>
+<p>A quarto file has three main components,</p>
+<ul>
+<li><p>the <a href="https://quarto.org/docs/authoring/front-matter.html">YAML</a> block at the top of the .qmd page allows you to specify metadata about the work, including authors, affiliations, type of output (e.g.&nbsp;HTML or pdf), the title, the date, license information, referencing style, location of the bibliography file etc. The YAML block needs to come at the top of the page and is delimited by the three dashes <code>---</code> at the beginning and three dashes <code>---</code> at the end of the YAML block</p></li>
+<li><p><a href="https://quarto.org/docs/computations/r.html">code blocks</a> - quarto files allow you to intermix code blocks with text, you can define how quarto handles these blocks, e.g. displaying/hiding the code, suppressing warnings, or stopping the code block executing. More on this below</p></li>
+<li><p><a href="https://quarto.org/docs/authoring/markdown-basics.html">markdown</a> - this is the text and image output of your work. Markdown offers . Whilst not as fully featured as a word processor Markdown allows you to create work with simple text formatting, tables, image manipulation, links and references. For more complex formatting you can inline HTML/CSS and latex code.</p></li>
+</ul>
+<p><img src="../sessions/images/qmd_source_view.png" class="img-fluid" width="548"></p>
+</section><section id="visual-editor" class="level2" data-number="2.2"><h2 data-number="2.2" class="anchored" data-anchor-id="visual-editor">
+<span class="header-section-number">2.2</span> Visual editor</h2>
+<p>RStudio comes with a built in what you see is what you get (WYSIWYG) visual editor for quarto files. You can toggle between the source/text view and the visual editor at the top left of the editor. Most things you can do in the source editor can be replicated in the Visual editor, though the markdown produced can sometimes be messy, especially when dealing with hand made tables.</p>
+<p><img src="../sessions/images/qmd_visual_editor.png" class="img-fluid" width="548"></p>
+</section></section><section id="markdown" class="level1" data-number="3"><h1 data-number="3">
+<span class="header-section-number">3</span> Markdown</h1>
+<section id="basic-formatting" class="level2" data-number="3.1"><h2 data-number="3.1" class="anchored" data-anchor-id="basic-formatting">
+<span class="header-section-number">3.1</span> Basic formatting</h2>
+<p>You can write a .qmd file much like you would write a plain text document, but it does also allow basic formatting using a language called <em>markdown</em>. Markdown lets you have text that is <strong><code>**bold**</code></strong>, <em><code>*italic*</code></em>and <u><code>&lt;u&gt;underlined&lt;/u&gt;</code></u>, it allows for linking actions, such as hyperlinks to <a href="https://en.wikipedia.org/wiki/Main_Page">webpages</a> through <code>[webpages](https://en.wikipedia.org/wiki/Main_Page)</code></p>
+<p><code>### This is sub header</code></p>
+<p><code>#### This is an even smaller header</code></p>
+<p>For something that might be less important, you can have multiple levels of subheading by adding more <code>#</code>s, for example <code>#####</code> would be a level 5 heading, the more <code>#</code>s you have the smaller the heading.</p>
+</section><section id="lists" class="level2" data-number="3.2"><h2 data-number="3.2" class="anchored" data-anchor-id="lists">
+<span class="header-section-number">3.2</span> Lists</h2>
+<p>If you need to create lists</p>
+<pre><code>-   this is a list
+-   of bullet pointed
+-   created by
+-   items, which can be
+    -   indented with four spaces
+    -   before the hyphen `-`</code></pre>
+<ul>
+<li>this is a list</li>
+<li>of bullet pointed</li>
+<li>created by</li>
+<li>items, which can be
+<ul>
+<li>indented with four spaces</li>
+<li>before the hyphen <code>-</code>
+</li>
+</ul>
+</li>
+</ul>
+<p>You can also have:</p>
+<pre><code>1.  numbered lists
+2.  by using numbers followed by
+3.  bullet points
+4.  You can embed [links](https://stackoverflow.com/questions/73066792/how-to-create-lettered-lists-using-quarto) in lists</code></pre>
+<ol type="1">
+<li>numbered lists</li>
+<li>by using numbers followed by</li>
+<li>bullet points</li>
+<li>You can embed <a href="https://stackoverflow.com/questions/73066792/how-to-create-lettered-lists-using-quarto">links</a> in lists</li>
+</ol></section><section id="inserting-images" class="level2" data-number="3.3"><h2 data-number="3.3" class="anchored" data-anchor-id="inserting-images">
+<span class="header-section-number">3.3</span> Inserting images</h2>
+<p>If you have images that you would like to include in your writing you can insert them by using <code>![image caption](images/brock.jpg)</code>:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="images/brock.jpg" class="img-fluid figure-img"></p>
+<figcaption>image caption</figcaption></figure>
+</div>
+<p>Make sure that your images are in the <code>images/</code> folder and that the address you use includes the image type, here it is <code>.jpg</code> in <code>images/brock.jpg</code>. Try to give your images sensible names or place the images for your chapter in a sub folder of the images folder, e.g. <code>images/chpt4/amy.jpg</code>.</p>
+<p>You can adjust the size and location of the image by using the curly brackets <code><a href="https://rdrr.io/r/base/Paren.html">{ }</a></code> and setting the <code>width</code>, <code>fig-align</code> etc:</p>
+<p><code>![image caption](images/brock.jpg){width="10%" fig-align="left"}</code></p>
+<div class="quarto-figure quarto-figure-left">
+<figure class="figure"><p><img src="images/brock.jpg" class="img-fluid figure-img" style="width:10.0%"></p>
+<figcaption>image caption</figcaption></figure>
+</div>
+<p>If you’re including images you are likely to want to reference them. Quarto allows you to use links to images within your text. First, you will need to give your image a label, this is done by adding <code>#fig-&lt;name&gt;</code> to the end of the image line. Note, you need a hyphen <code>-</code> following the word <code>fig</code>, you can’t use an underscore or anything else. For example:</p>
+<p><code>![image caption](images/brock.jpg){width="10%" fig-align="left" #fig-brock}</code></p>
+<div id="fig-brock" class="quarto-float quarto-figure quarto-figure-left anchored" data-fig-align="left">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-brock-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/brock.jpg" class="img-fluid quarto-figure quarto-figure-left figure-img" style="width:10.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-brock-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3.1: image caption
+</figcaption></figure>
+</div>
+<p>You can now reference the image in your text using the <code>@</code> symbol followed by the label, for example <code>@fig-brock</code>. This will automatically create a link to the image in the text and give the figure a number:</p>
+<p><code>You can see a picture of Richard in @fig-brock, where the image is aligned to the left and is 10% of the page width.</code></p>
+<p>You can see a picture of Richard in <a href="#fig-brock" class="quarto-xref">Figure&nbsp;3.1</a>, where the image is aligned to the left and is 10% of the page width.</p>
+<p>Find out more about using figures in the <a href="https://quarto.org/docs/authoring/figures.html">quarto documentation</a></p>
+</section><section id="questions-intro-to-markdown" class="level2" data-number="3.4"><h2 data-number="3.4" class="anchored" data-anchor-id="questions-intro-to-markdown">
+<span class="header-section-number">3.4</span> Questions: intro to markdown</h2>
+<div class="question">
+<p>Create a new <code>.qmd</code> file to output html. Include:</p>
+<ul>
+<li>YAML with a <code>title:</code> and <code>author:</code>
+</li>
+<li>a header</li>
+<li>a sub header</li>
+<li>a list</li>
+<li>italic, bold and underlined text</li>
+<li>create a folder of images in the same location as your .qmd file</li>
+<li>add an image</li>
+<li>render your file using the <img src="../sessions/images/render_button.png" class="img-fluid"> button</li>
+<li>adjust the width of the image and it’s alignment</li>
+<li>add a reference to the image in the text (remember the <code>#fig-</code> label and the <code>@</code> reference)</li>
+<li>experiment with the <code>Visual</code> editor</li>
+<li>Extension: add multiple rows of images by looking at the <a href="https://quarto.org/docs/authoring/figures.html">quarto documentation</a> and the <a href="https://quarto.org/docs/output-formats/html-lightbox-figures.html">lightbox class</a>
+</li>
+</ul>
+</div>
+</section><section id="quotes-and-references" class="level2" data-number="3.5"><h2 data-number="3.5" class="anchored" data-anchor-id="quotes-and-references">
+<span class="header-section-number">3.5</span> Quotes and references</h2>
+<p>If someone has said something interesting, you can block quote them by using the right arrow <code>&gt;</code> quote goes here.</p>
+<blockquote class="blockquote">
+<p>Dirt glitters as long as the sun shines. – Goethe</p>
+</blockquote>
+<p>If you want to find out more about how to format your writing in quarto take a look at one of the <a href="https://www.rstudio.com/wp-content/uploads/2015/03/rmarkdown-reference.pdf">helpsheet</a> or the help <a href="https://quarto.org/docs/authoring/markdown-basics.html">website</a></p>
+<p>When writing you might want to add academic references to your quarto document. This is very straight forward using `bibtex` - a structured way of recording references. You can find bibtex entries for most academic references through the Google scholar cite menu:</p>
+<p><img src="../images/bibtex_google_scholar.gif" class="img-fluid" width="497"></p>
+<p>You can also <a href="https://en.wikibooks.org/wiki/LaTeX/Bibliography_Management#BibTeX">hand-craft</a> your own references if you can’t find them online.</p>
+<p>You need to add this reference to a <code>.bib</code> file, you can do this by creating a new file in the same folder as your .qmd file and calling it <code>my_references.bib</code>. You then need to go to the YAML block at the top of your .qmd file and add the line <code># bibliography: my_references.bib</code>. This tells quarto where to look for your references file.</p>
+<pre><code>---
+title: "My Thesis"
+author: "Peter EJ Kemp"
+# bibliography: my_references.bib
+---</code></pre>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="../sessions/images/file_structure.png" class="img-fluid figure-img"></p>
+<figcaption>file structure of a simple quarto project</figcaption></figure>
+</div>
+<p>The name of the reference is at the top of each entry, in the example below <code>kuhn1970structure</code>:</p>
+<pre><code>@book{kuhn1970structure,
+  title={The structure of scientific revolutions},
+  author={Kuhn, Thomas S},
+  volume={111},
+  year={1970},
+  publisher={Chicago University of Chicago Press}
+}</code></pre>
+<p>To add a reference to your writing use <code>[@kuhn1970structure]</code> (remember the <code>@</code> symbol) to get <span class="citation" data-cites="kuhn1970structure">(<a href="#ref-kuhn1970structure" role="doc-biblioref">Kuhn 1970</a>)</span>. If you just require the year use <code>[-@kuhn1970structure]</code> - <span class="citation" data-cites="kuhn1970structure">(<a href="#ref-kuhn1970structure" role="doc-biblioref">1970</a>)</span>. If you want to include multiple references together, use the <code>;</code>, e.g. <code>[@kuhn1970structure; @stoet2018gender]</code> - <span class="citation" data-cites="kuhn1970structure stoet2018gender">(<a href="#ref-kuhn1970structure" role="doc-biblioref">Kuhn 1970</a>; <a href="#ref-stoet2018gender" role="doc-biblioref">Stoet and Geary 2018</a>)</span>.</p>
+<p>All your references will be included at the bottom of the page (go check them out once you have rendered your file) and you can quickly access reference information by hovering over the references inline in the text. Depending on the fields you provide and the format, e.g.&nbsp;<code>@book</code> and <code>@article</code>, the references will display differently.</p>
+</section><section id="questions-referencing" class="level2" data-number="3.6"><h2 data-number="3.6" class="anchored" data-anchor-id="questions-referencing">
+<span class="header-section-number">3.6</span> Questions: referencing</h2>
+<div class="question">
+<p>Update your .qmd file to include:</p>
+<ul>
+<li>a quotation</li>
+<li>a hyperlink</li>
+<li>create a <code>.bib</code> file and link it from your YAML</li>
+<li>find a bibtex entry on Google scholar and add it to your .bib file</li>
+<li>add a reference to your text</li>
+<li>add a second reference to your text</li>
+<li>add a reference to the text that only includes the year</li>
+<li>EXTENSION: <a href="https://en.wikibooks.org/wiki/LaTeX/Bibliography_Management#BibTeX">hand-craft</a> a bibtex entry and add it to your .bib file</li>
+</ul>
+</div>
+</section></section><section id="using-code-in-your-pages" class="level1" data-number="4"><h1 data-number="4">
+<span class="header-section-number">4</span> Using code in your pages</h1>
+<p>One of the joys of using quarto is that it allows you to write R code directly into your <code>.qmd</code> file so the code you are talking about, the results of the code and the write up are all in one place. This has a few benefits:</p>
+<ul>
+<li>you don’t need to keep copy and pasting code and results from R to your final write up platform</li>
+<li>if the underlying data sets change any changes automatically filter through to your write up</li>
+<li>it’s easy to include the code that you use so reviewers can see exactly what you have done</li>
+<li>others can copy and adapt your code for their own projects.</li>
+</ul>
+<section id="code-chunks" class="level2" data-number="4.1"><h2 data-number="4.1" class="anchored" data-anchor-id="code-chunks">
+<span class="header-section-number">4.1</span> Code chunks</h2>
+<p>To add a code chunk we need to place it between <code>```{r}</code> and <code>```</code> lines, the results will be automatically displayed below the code:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb5-1"><a href="#cb5-1"></a><span class="in">```{r}</span></span>
+<span id="cb5-2"><a href="#cb5-2"></a><span class="in">#| eval: true</span></span>
+<span id="cb5-3"><a href="#cb5-3"></a><span class="in">1 + 1</span></span>
+<span id="cb5-4"><a href="#cb5-4"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 2</code></pre>
+</div>
+</div>
+<p>Code blocks work much as code in a normal <code>.R</code> file, here we load the <a href="https://emckclac-my.sharepoint.com/:u:/g/personal/k1926273_kcl_ac_uk/EbFmgVVbQD9DlIIgOKHDhLcB8bA8lfQMDVSEkcjtByM2cQ?e=zYG4Is">PISA teacher data set</a>, filter it to only include data from Portugal, Korea, Germany and Georgia, and save the result in an object, i.e.&nbsp;the code doesn’t output anything. Note we load the libraries as we would in a normal <code>.R</code> file and set <code>warning: false</code> to stop the <code><a href="https://tidyverse.tidyverse.org">library(tidyverse)</a></code> warnings from displaying in our page.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb7-1"><a href="#cb7-1"></a><span class="in">```{r}</span></span>
+<span id="cb7-2"><a href="#cb7-2"></a><span class="in">#| eval: true</span></span>
+<span id="cb7-3"><a href="#cb7-3"></a><span class="in">#| warning: false</span></span>
+<span id="cb7-4"><a href="#cb7-4"></a><span class="in">library(glue)</span></span>
+<span id="cb7-5"><a href="#cb7-5"></a><span class="in">library(arrow)</span></span>
+<span id="cb7-6"><a href="#cb7-6"></a><span class="in">library(tidyverse)</span></span>
+<span id="cb7-7"><a href="#cb7-7"></a><span class="in">teacher_df &lt;- read_parquet(glue("{qerkcl_data}pisa/2022/PISA_teacher_2022.parquet"))</span></span>
+<span id="cb7-8"><a href="#cb7-8"></a><span class="in">teacher_df &lt;- teacher_df %&gt;% </span></span>
+<span id="cb7-9"><a href="#cb7-9"></a><span class="in">                filter(CNT %in% c("Portugal", "Korea", "Germany", "Georgia"))</span></span>
+<span id="cb7-10"><a href="#cb7-10"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Now that we have data loaded we can peek at the top few rows using <code>head(&lt;rows&gt;)</code>:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb8-1"><a href="#cb8-1"></a><span class="in">```{r}</span></span>
+<span id="cb8-2"><a href="#cb8-2"></a><span class="in">#| eval: true</span></span>
+<span id="cb8-3"><a href="#cb8-3"></a><span class="in">teacher_df %&gt;% </span></span>
+<span id="cb8-4"><a href="#cb8-4"></a><span class="in">  select(CNT,TCHTYPE) %&gt;% </span></span>
+<span id="cb8-5"><a href="#cb8-5"></a><span class="in">  head(3)</span></span>
+<span id="cb8-6"><a href="#cb8-6"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3 × 2
+  CNT     TCHTYPE            
+  &lt;fct&gt;   &lt;fct&gt;              
+1 Georgia Mathematics Teacher
+2 Georgia General Teacher    
+3 Georgia Mathematics Teacher</code></pre>
+</div>
+</div>
+<p>But maybe we want to show the reviewer some code without actually running it. To do this we can pass variables to the code chunks through the use of <code>#| setting: value</code> that tell quarto how to handle each chunk. For example, by adding <code>#| eval: false</code> to the top of the code chunk. The code then displays, but doesn’t run (<em><strong>eval</strong>uate</em>):</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb10-1"><a href="#cb10-1"></a><span class="in">```{r}</span></span>
+<span id="cb10-2"><a href="#cb10-2"></a><span class="in">teacher_df %&gt;% </span></span>
+<span id="cb10-3"><a href="#cb10-3"></a><span class="in">  head(3)</span></span>
+<span id="cb10-4"><a href="#cb10-4"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>We might want to do the opposite, to run the code chunk but display the output and not the code that produced the output. To do this we can either fold the code by adding <code>#| code-fold: true</code> to top of the code chunk:</p>
+<div class="cell">
+<details class="code-fold"><summary>Code</summary><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb11-1"><a href="#cb11-1"></a><span class="in">```{r}</span></span>
+<span id="cb11-2"><a href="#cb11-2"></a><span class="in">#| eval: true</span></span>
+<span id="cb11-3"><a href="#cb11-3"></a><span class="in">#| code-fold: true</span></span>
+<span id="cb11-4"><a href="#cb11-4"></a><span class="in">teacher_df %&gt;% </span></span>
+<span id="cb11-5"><a href="#cb11-5"></a><span class="in">  group_by(CNT) %&gt;%</span></span>
+<span id="cb11-6"><a href="#cb11-6"></a><span class="in">  summarise(n = n(), </span></span>
+<span id="cb11-7"><a href="#cb11-7"></a><span class="in">             median_age = median(TC002Q01NA, na.rm = TRUE),</span></span>
+<span id="cb11-8"><a href="#cb11-8"></a><span class="in">             males = sum(ifelse(TC001Q01NA == "Male", 1,0), na.rm = TRUE),</span></span>
+<span id="cb11-9"><a href="#cb11-9"></a><span class="in">             females = sum(ifelse(TC001Q01NA == "Female", 1,0), na.rm = TRUE))</span></span>
+<span id="cb11-10"><a href="#cb11-10"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 4 × 5
+  CNT          n median_age males females
+  &lt;fct&gt;    &lt;int&gt;      &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;
+1 Germany   3631         44  1449    2141
+2 Georgia   3202         52   432    2727
+3 Korea     3614         44  1584    2025
+4 Portugal  3487         51  1051    2407</code></pre>
+</div>
+</div>
+<p>Or we can hide the code entirely by adding <code>#| echo: false</code></p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 4 × 5
+  CNT          n median_age males females
+  &lt;fct&gt;    &lt;int&gt;      &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;
+1 Germany   3631         44  1449    2141
+2 Georgia   3202         52   432    2727
+3 Korea     3614         44  1584    2025
+4 Portugal  3487         51  1051    2407</code></pre>
+</div>
+</div>
+<p>The above examples show how you can output tables and simple sums to the screen, you might also want to output calculated values and graphs. Imagine we want to add the number of male teachers to a report, in the middle of some text, but we might change the focus questions. We don’t want to keep changing this number as we adjust the countries that we are focused on, it would be far better if this automatically updated itself. First we need to calculate this value and store it in an object <code>male_num</code>. Note here that we use the <code>pull(&lt;column&gt;)</code> command, this returns the vector stored in the <code>males</code> column, rather than the column datatype. Next we note the countries that we are studying and store that in an object <code>countries</code>:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb14-1"><a href="#cb14-1"></a><span class="in">```{r}</span></span>
+<span id="cb14-2"><a href="#cb14-2"></a><span class="in">#| eval: true</span></span>
+<span id="cb14-3"><a href="#cb14-3"></a><span class="in"># get number of male teachers in total</span></span>
+<span id="cb14-4"><a href="#cb14-4"></a><span class="in">male_num &lt;- teacher_df %&gt;% </span></span>
+<span id="cb14-5"><a href="#cb14-5"></a><span class="in">  summarise(males = sum(ifelse(TC001Q01NA == "Male", 1,0), </span></span>
+<span id="cb14-6"><a href="#cb14-6"></a><span class="in">                        na.rm = TRUE)) %&gt;% pull(males)</span></span>
+<span id="cb14-7"><a href="#cb14-7"></a></span>
+<span id="cb14-8"><a href="#cb14-8"></a><span class="in">countries &lt;- teacher_df %&gt;% distinct(CNT) %&gt;% pull(CNT)</span></span>
+<span id="cb14-9"><a href="#cb14-9"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Now that this has been calculated we can insert it into our text using the inline <code>Georgia, Germany, Korea, Portugal</code> and <code>4516</code> commands:</p>
+<p><code>The number of male teachers in the PISA data set for &amp;#96;r countries&amp;#96; is &amp;#96;r male_num&amp;#96;</code></p>
+<blockquote class="blockquote">
+<p>The number of male teachers in the PISA data set for Georgia, Germany, Korea, Portugal is 4516.</p>
+</blockquote>
+<p>The great thing about the above is that if the data set changes, the names and the number will automatically update.</p>
+</section><section id="including-graphs" class="level2" data-number="4.2"><h2 data-number="4.2" class="anchored" data-anchor-id="including-graphs">
+<span class="header-section-number">4.2</span> Including graphs</h2>
+<p>We saw above how we can include images into our quarto document, you could output ggplot to png and include them in this way. However, quarto allows you to dynamically create the graph each time the document is rendered. This means that if the data changes, the graph will automatically update.</p>
+<p>To add graphs to your booklets use the <code>```{r}</code> coding blocks as normal. Create your graph and it should display. You can add a caption to the graph using the <code>#| fig-cap: &lt;text&gt;</code> command:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb15-1"><a href="#cb15-1"></a><span class="in">```{r}</span></span>
+<span id="cb15-2"><a href="#cb15-2"></a><span class="in">#| fig-cap: median age of teacher by country</span></span>
+<span id="cb15-3"><a href="#cb15-3"></a><span class="in">#| label: fig-teachers</span></span>
+<span id="cb15-4"><a href="#cb15-4"></a><span class="in">#| warning: false</span></span>
+<span id="cb15-5"><a href="#cb15-5"></a><span class="in">#| eval: true</span></span>
+<span id="cb15-6"><a href="#cb15-6"></a><span class="in"># get number of male teachers in total</span></span>
+<span id="cb15-7"><a href="#cb15-7"></a><span class="in">graph_data &lt;- teacher_df %&gt;% </span></span>
+<span id="cb15-8"><a href="#cb15-8"></a><span class="in">  filter(TC001Q01NA %in% c("Male","Female")) %&gt;%</span></span>
+<span id="cb15-9"><a href="#cb15-9"></a><span class="in">  rename(gender = TC001Q01NA) %&gt;%</span></span>
+<span id="cb15-10"><a href="#cb15-10"></a><span class="in">  group_by(CNT, gender) %&gt;%</span></span>
+<span id="cb15-11"><a href="#cb15-11"></a><span class="in">  summarise(median_age = median(TC002Q01NA, na.rm = TRUE))</span></span>
+<span id="cb15-12"><a href="#cb15-12"></a></span>
+<span id="cb15-13"><a href="#cb15-13"></a><span class="in">ggplot(data=graph_data, </span></span>
+<span id="cb15-14"><a href="#cb15-14"></a><span class="in">       aes(x=CNT, y=median_age, fill=gender)) +</span></span>
+<span id="cb15-15"><a href="#cb15-15"></a><span class="in">  geom_bar(stat="identity", position = "dodge") +</span></span>
+<span id="cb15-16"><a href="#cb15-16"></a><span class="in">  theme(axis.text.x = element_text(angle = 45, hjust = 1))</span></span>
+<span id="cb15-17"><a href="#cb15-17"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="fig-teachers" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-teachers-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="07-Rpublications_files/figure-html/fig-teachers-1.png" class="img-fluid figure-img" style="width:95.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-teachers-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4.1: median age of teacher by country
+</figcaption></figure>
+</div>
+</div>
+</div>
+<p>Note that the above also includes <code>#| warning: false</code>, this stops <code>group_by</code> placing a warning message as output. The <code>#| label: fig-teachers</code> command allows us to reference the graph in the text in the same way we referenced images above, for example, “see <code>@fig-teachers</code> for the median age of teachers by country”.</p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Important
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>If you want to reference a graph in your text you can use the <code>#| label: &lt;name&gt;</code>, where <code>&lt;name&gt;</code> has to start with <code>fig-</code>, for example: <code>label: fig-correlation_graph</code>. the hyphen <code>-</code> is essential after <code>fig-</code>, you can’t use an underscore <code>_</code> or any other character.</p>
+</div>
+</div>
+<p>Sometimes your graphs will be too big or too small, you can adjust the height and width by using</p>
+<p><code>#| fig.width: 5</code> <code>#| fig.height: 5</code></p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>If you want to quickly make interactive graphs you can using the <a href="https://plotly-r.com">plotly</a> package. This allows you to hover over the graph and see the data points. To do this you need to install plotly and wrap up your plot within a code chunk. For example:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb16-1"><a href="#cb16-1"></a><span class="in">```{r}</span></span>
+<span id="cb16-2"><a href="#cb16-2"></a><span class="in">#| eval: true</span></span>
+<span id="cb16-3"><a href="#cb16-3"></a><span class="in">library(plotly)</span></span>
+<span id="cb16-4"><a href="#cb16-4"></a><span class="in">graph_data &lt;- teacher_df %&gt;% </span></span>
+<span id="cb16-5"><a href="#cb16-5"></a><span class="in">  filter(TC001Q01NA %in% c("Male","Female")) %&gt;%</span></span>
+<span id="cb16-6"><a href="#cb16-6"></a><span class="in">  rename(gender = TC001Q01NA) %&gt;%</span></span>
+<span id="cb16-7"><a href="#cb16-7"></a><span class="in">  group_by(CNT, gender) %&gt;%</span></span>
+<span id="cb16-8"><a href="#cb16-8"></a><span class="in">  summarise(median_age = median(TC002Q01NA, na.rm = TRUE))</span></span>
+<span id="cb16-9"><a href="#cb16-9"></a></span>
+<span id="cb16-10"><a href="#cb16-10"></a><span class="in">plt_teacher_age &lt;- ggplot(data=graph_data, </span></span>
+<span id="cb16-11"><a href="#cb16-11"></a><span class="in">       aes(x=CNT, y=median_age, fill=gender)) +</span></span>
+<span id="cb16-12"><a href="#cb16-12"></a><span class="in">  geom_bar(stat="identity", position = "dodge") +</span></span>
+<span id="cb16-13"><a href="#cb16-13"></a><span class="in">  theme(axis.text.x = element_text(angle = 45, hjust = 1))</span></span>
+<span id="cb16-14"><a href="#cb16-14"></a></span>
+<span id="cb16-15"><a href="#cb16-15"></a><span class="in">ggplotly(plt_teacher_age)</span></span>
+<span id="cb16-16"><a href="#cb16-16"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="plotly html-widget html-fill-item" id="htmlwidget-eb01c7cd1803487853d1" style="width:95%;height:480px;"></div>
+<script type="application/json" data-for="htmlwidget-eb01c7cd1803487853d1">{"x":{"data":[{"orientation":"v","width":[0.44999999999999996,0.45000000000000018,0.45000000000000018,0.45000000000000018],"base":[0,0,0,0],"x":[0.77500000000000002,1.7749999999999999,2.7749999999999999,3.7749999999999999],"y":[44,51,43,51],"text":["CNT: Germany<br />median_age: 44<br />gender: Female","CNT: Georgia<br />median_age: 51<br />gender: Female","CNT: Korea<br />median_age: 43<br />gender: Female","CNT: Portugal<br />median_age: 51<br />gender: Female"],"type":"bar","textposition":"none","marker":{"autocolorscale":false,"color":"rgba(248,118,109,1)","line":{"width":1.8897637795275593,"color":"transparent"}},"name":"Female","legendgroup":"Female","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"orientation":"v","width":[0.45000000000000018,0.45000000000000018,0.45000000000000018,0.44999999999999973],"base":[0,0,0,0],"x":[1.2250000000000001,2.2250000000000001,3.2250000000000001,4.2249999999999996],"y":[44,54,46,51],"text":["CNT: Germany<br />median_age: 44<br />gender: Male","CNT: Georgia<br />median_age: 54<br />gender: Male","CNT: Korea<br />median_age: 46<br />gender: Male","CNT: Portugal<br />median_age: 51<br />gender: Male"],"type":"bar","textposition":"none","marker":{"autocolorscale":false,"color":"rgba(0,191,196,1)","line":{"width":1.8897637795275593,"color":"transparent"}},"name":"Male","legendgroup":"Male","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null}],"layout":{"margin":{"t":26.228310502283108,"r":7.3059360730593621,"b":53.812112334378554,"l":37.260273972602747},"plot_bgcolor":"rgba(235,235,235,1)","paper_bgcolor":"rgba(255,255,255,1)","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724},"xaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[0.40000000000000002,4.5999999999999996],"tickmode":"array","ticktext":["Germany","Georgia","Korea","Portugal"],"tickvals":[1,2,3,4],"categoryorder":"array","categoryarray":["Germany","Georgia","Korea","Portugal"],"nticks":null,"ticks":"outside","tickcolor":"rgba(51,51,51,1)","ticklen":3.6529680365296811,"tickwidth":0.66417600664176002,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.68949771689498},"tickangle":-45,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(255,255,255,1)","gridwidth":0.66417600664176002,"zeroline":false,"anchor":"y","title":{"text":"CNT","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724}},"hoverformat":".2f"},"yaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[-2.7000000000000002,56.700000000000003],"tickmode":"array","ticktext":["0","20","40"],"tickvals":[0,20,40],"categoryorder":"array","categoryarray":["0","20","40"],"nticks":null,"ticks":"outside","tickcolor":"rgba(51,51,51,1)","ticklen":3.6529680365296811,"tickwidth":0.66417600664176002,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.68949771689498},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(255,255,255,1)","gridwidth":0.66417600664176002,"zeroline":false,"anchor":"x","title":{"text":"median_age","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724}},"hoverformat":".2f"},"shapes":[{"type":"rect","fillcolor":null,"line":{"color":null,"width":0,"linetype":[]},"yref":"paper","xref":"paper","x0":0,"x1":1,"y0":0,"y1":1}],"showlegend":true,"legend":{"bgcolor":"rgba(255,255,255,1)","bordercolor":"transparent","borderwidth":1.8897637795275593,"font":{"color":"rgba(0,0,0,1)","family":"","size":11.68949771689498},"title":{"text":"gender","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724}}},"hovermode":"closest","barmode":"relative"},"config":{"doubleClick":"reset","modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"source":"A","attrs":{"1d9e71ea5964":{"x":{},"y":{},"fill":{},"type":"bar"}},"cur_data":"1d9e71ea5964","visdat":{"1d9e71ea5964":["function (y) ","x"]},"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+</div>
+</div>
+</section><section id="questions-code-chunks-and-graphs" class="level2" data-number="4.3"><h2 data-number="4.3" class="anchored" data-anchor-id="questions-code-chunks-and-graphs">
+<span class="header-section-number">4.3</span> Questions: code chunks and graphs</h2>
+<div class="question">
+<p>Update your .qmd file to include:</p>
+<ol type="1">
+<li>a code chunk <code>```{r} ... ```</code> with libraries and loading the <a href="https://emckclac-my.sharepoint.com/:u:/g/personal/k1926273_kcl_ac_uk/EbFmgVVbQD9DlIIgOKHDhLcB8bA8lfQMDVSEkcjtByM2cQ?e=zYG4Is">PISA teacher data set</a>. Set <code>#| echo: false</code> and <code>#| warning: false</code> to stop the code displaying and the warnings from showing.</li>
+</ol>
+<div class="cell">
+<details class="code-fold"><summary>hint</summary><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1"></a><span class="fu">library</span>(arrow)</span>
+<span id="cb17-2"><a href="#cb17-2"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb17-3"><a href="#cb17-3"></a></span>
+<span id="cb17-4"><a href="#cb17-4"></a>teacher_df <span class="ot">&lt;-</span> <span class="fu">read_parquet</span>(<span class="st">"your_location/pisa/2022/PISA_teacher_2022.parquet"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<ol start="2" type="1">
+<li>Create a code chunk that displays the first 3 rows of <code>teacher_df %&gt;% select(TCHTYPE, LANGTEST_QQQ, TC001Q01NA)</code>.</li>
+</ol>
+<div class="cell">
+<details class="code-fold"><summary>hint</summary><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1"></a>teacher_df <span class="sc">%&gt;%</span> <span class="fu">select</span>(TCHTYPE, LANGTEST_QQQ, TC001Q01NA) <span class="sc">%&gt;%</span> <span class="fu">head</span>(<span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<ol start="3" type="1">
+<li>Create a code chunk that sets an object <code>n_rows</code> to be the number of rows in the data set. Use this object within some markdown text to tell the reader how many rows are in the data.</li>
+</ol>
+<div class="cell">
+<details class="code-fold"><summary>hint</summary><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1"></a>n_rows <span class="ot">&lt;-</span> <span class="fu">nrow</span>(teacher_df)</span>
+<span id="cb19-2"><a href="#cb19-2"></a><span class="co"># The markdown outside the code chunk would look like this:</span></span>
+<span id="cb19-3"><a href="#cb19-3"></a><span class="co">#&gt; "The data set contains `r n_rows` rows."</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<ol start="4" type="1">
+<li>Create a code chunk that makes a graph showing <code>mean_service</code> years of a teacher in a school (<code>TC007Q02NA</code>) by country.</li>
+</ol>
+<div class="cell">
+<details class="code-fold"><summary>hint</summary><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1"></a><span class="co"># get number of male teachers in total</span></span>
+<span id="cb20-2"><a href="#cb20-2"></a>graph_data <span class="ot">&lt;-</span> teacher_df <span class="sc">%&gt;%</span> </span>
+<span id="cb20-3"><a href="#cb20-3"></a>  <span class="fu">group_by</span>(CNT) <span class="sc">%&gt;%</span></span>
+<span id="cb20-4"><a href="#cb20-4"></a>  <span class="fu">summarise</span>(<span class="at">mean_service =</span> <span class="fu">mean</span>(TC007Q02NA, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span>
+<span id="cb20-5"><a href="#cb20-5"></a></span>
+<span id="cb20-6"><a href="#cb20-6"></a></span>
+<span id="cb20-7"><a href="#cb20-7"></a><span class="fu">ggplot</span>(<span class="at">data=</span>graph_data, </span>
+<span id="cb20-8"><a href="#cb20-8"></a>       <span class="fu">aes</span>(<span class="at">x=</span>CNT, <span class="at">y=</span>mean_service)) <span class="sc">+</span></span>
+<span id="cb20-9"><a href="#cb20-9"></a>  <span class="fu">geom_bar</span>(<span class="at">stat=</span><span class="st">"identity"</span>, <span class="at">position =</span> <span class="st">"dodge"</span>) <span class="sc">+</span></span>
+<span id="cb20-10"><a href="#cb20-10"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">45</span>, <span class="at">hjust =</span> <span class="dv">1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<ol start="5" type="1">
+<li>give the above graph a <code>#| label: fig-service_years</code> and a caption <code>#| fig-cap: mean service years of a teacher by country</code>. Reference the graph in the text, E.g. “<code>@fig-service_years</code> shows the mean number of years served by teachers in each country, with Portugal having the highest mean service years.”</li>
+</ol>
+</div>
+</section><section id="loading-code-files-from-outside-the-.qmd-file" class="level2" data-number="4.4"><h2 data-number="4.4" class="anchored" data-anchor-id="loading-code-files-from-outside-the-.qmd-file">
+<span class="header-section-number">4.4</span> Loading code files from outside the .qmd file</h2>
+<p>your quarto files can quickly become unwieldy if you have a lot of code in them. To help with this you can load code from external files. This is done by using the <code><a href="https://rdrr.io/r/base/source.html">source()</a></code> command in a code chunk. For example, if you have a file called <code>load_data.R</code> in the same folder as your <code>.qmd</code> file you can load it using:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb21-1"><a href="#cb21-1"></a><span class="in">```{r}</span></span>
+<span id="cb21-2"><a href="#cb21-2"></a><span class="in">#| warning: false</span></span>
+<span id="cb21-3"><a href="#cb21-3"></a><span class="in">source("setup.R") # this file contains the libraries and the location of the data</span></span>
+<span id="cb21-4"><a href="#cb21-4"></a><span class="in">source("load_data.R") # this file loads the data</span></span>
+<span id="cb21-5"><a href="#cb21-5"></a><span class="in">source("create_tables.R") # this file creates tables for display</span></span>
+<span id="cb21-6"><a href="#cb21-6"></a><span class="in">source("create_graphs.R") # this file creates graphs for display</span></span>
+<span id="cb21-7"><a href="#cb21-7"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>The above code will load the <code>setup.R</code>, <code>load_data.R</code>, <code>create_tables.R</code> and <code>create_graphs.R</code> files into your <code>.qmd</code> file. Within these files you might do the following:</p>
+<ul>
+<li>
+<code>setup.R</code> you would load the libraries that you need for your analysis and any objects that you need in other files such as the location of the data, or the countries that you are interested in.</li>
+<li>
+<code>load_data.R</code> you would load the large data sets into memory, these could then be used to create tables and graphs</li>
+<li>
+<code>create_tables.R</code> you would create the tables that you want to display in your document, try to stick to a naming convention, for example <code>tbl_staff_gender</code>
+</li>
+<li>
+<code>create_graphs.R</code> you would create the graphs that you want to display in your document, try to stick to a naming convention, for example <code>plt_staff_gender</code>
+</li>
+</ul>
+<p>Once these files have been loaded you can access the created objects quite easily in code chunks:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb22-1"><a href="#cb22-1"></a><span class="in">```{r}</span></span>
+<span id="cb22-2"><a href="#cb22-2"></a><span class="in">#| label: fig-staff_gender</span></span>
+<span id="cb22-3"><a href="#cb22-3"></a><span class="in">#| warning: false</span></span>
+<span id="cb22-4"><a href="#cb22-4"></a></span>
+<span id="cb22-5"><a href="#cb22-5"></a><span class="in">plt_staff_gender</span></span>
+<span id="cb22-6"><a href="#cb22-6"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section></section><section id="adding-tables" class="level1" data-number="5"><h1 data-number="5">
+<span class="header-section-number">5</span> Adding tables</h1>
+<p>The tables you have displayed above are rather simple and a bit ugly. This section will take you through how to make “great tables”. You can make a table using markdown:</p>
+<pre><code>| Country  | Language |  Population |
+| -------- | -------  |  ---------  |
+| UK       | English  |  68,350,000 |
+| USA      | English  | 334,900,000 |
+| France   | French   |  68,170,000 |</code></pre>
+<table class="caption-top table">
+<thead><tr class="header">
+<th>Country</th>
+<th>Language</th>
+<th>Population</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td>UK</td>
+<td>English</td>
+<td>68,350,000</td>
+</tr>
+<tr class="even">
+<td>USA</td>
+<td>English</td>
+<td>334,900,000</td>
+</tr>
+<tr class="odd">
+<td>France</td>
+<td>French</td>
+<td>68,170,000</td>
+</tr>
+</tbody>
+</table>
+<p>But it soon gets very fiddly (check out the <a href="https://quarto.org/docs/authoring/tables.html">advice document</a>) and doesn’t integrate well with R code. R has several packages that display tables in a more visually appealing way. One of these is <a href="https://gt.rstudio.com">gt</a>.</p>
+<section id="gt-great-tables" class="level2" data-number="5.1"><h2 data-number="5.1" class="anchored" data-anchor-id="gt-great-tables">
+<span class="header-section-number">5.1</span> gt (great tables)</h2>
+<p>To use <a href="https://gt.rstudio.com">gt</a> you need to install it and load the package. Converting a data frame to a gt table is as simple as using the <code>gt()</code> function:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1"></a><span class="fu">library</span>(gt)</span>
+<span id="cb24-2"><a href="#cb24-2"></a></span>
+<span id="cb24-3"><a href="#cb24-3"></a>df_teach_ages <span class="ot">&lt;-</span> teacher_df <span class="sc">%&gt;%</span> </span>
+<span id="cb24-4"><a href="#cb24-4"></a>  <span class="fu">filter</span>(CNT <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Portugal"</span>, <span class="st">"Korea"</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb24-5"><a href="#cb24-5"></a>  <span class="fu">group_by</span>(CNT) <span class="sc">%&gt;%</span></span>
+<span id="cb24-6"><a href="#cb24-6"></a>  <span class="fu">mutate</span>(<span class="at">n =</span> <span class="fu">n</span>(), </span>
+<span id="cb24-7"><a href="#cb24-7"></a>         <span class="at">median_age =</span> <span class="fu">median</span>(TC002Q01NA, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb24-8"><a href="#cb24-8"></a>  <span class="fu">group_by</span>(CNT, TC001Q01NA, n, median_age) <span class="sc">%&gt;%</span></span>
+<span id="cb24-9"><a href="#cb24-9"></a>  <span class="fu">summarise</span>(<span class="at">n_gen =</span> <span class="fu">n</span>(),</span>
+<span id="cb24-10"><a href="#cb24-10"></a>            <span class="at">med_age_gender =</span> <span class="fu">median</span>(TC002Q01NA, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb24-11"><a href="#cb24-11"></a>            <span class="at">pct_gender =</span> n_gen<span class="sc">/</span>n) <span class="sc">%&gt;%</span></span>
+<span id="cb24-12"><a href="#cb24-12"></a>  <span class="fu">distinct</span>()</span>
+<span id="cb24-13"><a href="#cb24-13"></a></span>
+<span id="cb24-14"><a href="#cb24-14"></a>df_teach_ages <span class="sc">%&gt;%</span> <span class="fu">gt</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="jvfdlbffex" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#jvfdlbffex table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#jvfdlbffex thead, #jvfdlbffex tbody, #jvfdlbffex tfoot, #jvfdlbffex tr, #jvfdlbffex td, #jvfdlbffex th {
+  border-style: none;
+}
+
+#jvfdlbffex p {
+  margin: 0;
+  padding: 0;
+}
+
+#jvfdlbffex .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#jvfdlbffex .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#jvfdlbffex .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#jvfdlbffex .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#jvfdlbffex .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#jvfdlbffex .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#jvfdlbffex .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#jvfdlbffex .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#jvfdlbffex .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#jvfdlbffex .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#jvfdlbffex .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#jvfdlbffex .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#jvfdlbffex .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#jvfdlbffex .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#jvfdlbffex .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#jvfdlbffex .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#jvfdlbffex .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#jvfdlbffex .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#jvfdlbffex .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#jvfdlbffex .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#jvfdlbffex .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#jvfdlbffex .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#jvfdlbffex .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#jvfdlbffex .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#jvfdlbffex .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#jvfdlbffex .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#jvfdlbffex .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#jvfdlbffex .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#jvfdlbffex .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#jvfdlbffex .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#jvfdlbffex .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#jvfdlbffex .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#jvfdlbffex .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#jvfdlbffex .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#jvfdlbffex .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#jvfdlbffex .gt_left {
+  text-align: left;
+}
+
+#jvfdlbffex .gt_center {
+  text-align: center;
+}
+
+#jvfdlbffex .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#jvfdlbffex .gt_font_normal {
+  font-weight: normal;
+}
+
+#jvfdlbffex .gt_font_bold {
+  font-weight: bold;
+}
+
+#jvfdlbffex .gt_font_italic {
+  font-style: italic;
+}
+
+#jvfdlbffex .gt_super {
+  font-size: 65%;
+}
+
+#jvfdlbffex .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#jvfdlbffex .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#jvfdlbffex .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#jvfdlbffex .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#jvfdlbffex .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#jvfdlbffex .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#jvfdlbffex .gt_indent_5 {
+  text-indent: 25px;
+}
+
+#jvfdlbffex .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#jvfdlbffex div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
+</style>
+<table class="gt_table caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+<thead><tr class="gt_col_headings header">
+<th id="n_gen" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">n_gen</th>
+<th id="med_age_gender" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">med_age_gender</th>
+<th id="pct_gender" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">pct_gender</th>
+</tr></thead>
+<tbody class="gt_table_body">
+<tr class="gt_group_heading_row odd">
+<td colspan="3" id="Korea - Female - 3614 - 44" class="gt_group_heading" data-quarto-table-cell-role="th" scope="colgroup">Korea - Female - 3614 - 44</td>
+</tr>
+<tr class="gt_row_group_first even">
+<td class="gt_row gt_right" headers="Korea - Female - 3614 - 44  n_gen">2025</td>
+<td class="gt_row gt_right" headers="Korea - Female - 3614 - 44  med_age_gender">43</td>
+<td class="gt_row gt_right" headers="Korea - Female - 3614 - 44  pct_gender">0.560320974</td>
+</tr>
+<tr class="gt_group_heading_row odd">
+<td colspan="3" id="Korea - Male - 3614 - 44" class="gt_group_heading" data-quarto-table-cell-role="th" scope="colgroup">Korea - Male - 3614 - 44</td>
+</tr>
+<tr class="gt_row_group_first even">
+<td class="gt_row gt_right" headers="Korea - Male - 3614 - 44  n_gen">1584</td>
+<td class="gt_row gt_right" headers="Korea - Male - 3614 - 44  med_age_gender">46</td>
+<td class="gt_row gt_right" headers="Korea - Male - 3614 - 44  pct_gender">0.438295517</td>
+</tr>
+<tr class="gt_group_heading_row odd">
+<td colspan="3" id="Korea - NA - 3614 - 44" class="gt_group_heading" data-quarto-table-cell-role="th" scope="colgroup">Korea - NA - 3614 - 44</td>
+</tr>
+<tr class="gt_row_group_first even">
+<td class="gt_row gt_right" headers="Korea - NA - 3614 - 44  n_gen">5</td>
+<td class="gt_row gt_right" headers="Korea - NA - 3614 - 44  med_age_gender">NA</td>
+<td class="gt_row gt_right" headers="Korea - NA - 3614 - 44  pct_gender">0.001383509</td>
+</tr>
+<tr class="gt_group_heading_row odd">
+<td colspan="3" id="Portugal - Female - 3487 - 51" class="gt_group_heading" data-quarto-table-cell-role="th" scope="colgroup">Portugal - Female - 3487 - 51</td>
+</tr>
+<tr class="gt_row_group_first even">
+<td class="gt_row gt_right" headers="Portugal - Female - 3487 - 51  n_gen">2407</td>
+<td class="gt_row gt_right" headers="Portugal - Female - 3487 - 51  med_age_gender">51</td>
+<td class="gt_row gt_right" headers="Portugal - Female - 3487 - 51  pct_gender">0.690278176</td>
+</tr>
+<tr class="gt_group_heading_row odd">
+<td colspan="3" id="Portugal - Male - 3487 - 51" class="gt_group_heading" data-quarto-table-cell-role="th" scope="colgroup">Portugal - Male - 3487 - 51</td>
+</tr>
+<tr class="gt_row_group_first even">
+<td class="gt_row gt_right" headers="Portugal - Male - 3487 - 51  n_gen">1051</td>
+<td class="gt_row gt_right" headers="Portugal - Male - 3487 - 51  med_age_gender">51</td>
+<td class="gt_row gt_right" headers="Portugal - Male - 3487 - 51  pct_gender">0.301405219</td>
+</tr>
+<tr class="gt_group_heading_row odd">
+<td colspan="3" id="Portugal - NA - 3487 - 51" class="gt_group_heading" data-quarto-table-cell-role="th" scope="colgroup">Portugal - NA - 3487 - 51</td>
+</tr>
+<tr class="gt_row_group_first even">
+<td class="gt_row gt_right" headers="Portugal - NA - 3487 - 51  n_gen">29</td>
+<td class="gt_row gt_right" headers="Portugal - NA - 3487 - 51  med_age_gender">57</td>
+<td class="gt_row gt_right" headers="Portugal - NA - 3487 - 51  pct_gender">0.008316605</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<p>The table looks better already, but there are a few issues that we need to sort out:</p>
+<ul>
+<li>the groups from the <code>group_by</code> commands are visible in the table, we need to <code>ungroup()</code> <code>df_teach_ages</code> before passing it to <code>gt()</code>
+</li>
+<li>the percentage has far too many decimal places, we can use <code>fmt_percent()</code> to adjust this</li>
+<li>some <code>n</code> values look unformatted, could we add some commas using <code>fmt_number()</code>
+</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1"></a>df_teach_ages <span class="sc">%&gt;%</span> </span>
+<span id="cb25-2"><a href="#cb25-2"></a>  <span class="fu">ungroup</span>() <span class="sc">%&gt;%</span>  <span class="co"># removes the grouping to put everything in columns</span></span>
+<span id="cb25-3"><a href="#cb25-3"></a>  <span class="fu">gt</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb25-4"><a href="#cb25-4"></a>  <span class="fu">fmt_percent</span>(<span class="at">columns =</span> <span class="fu">c</span>(<span class="st">"pct_gender"</span>),</span>
+<span id="cb25-5"><a href="#cb25-5"></a>              <span class="at">decimals =</span> <span class="dv">1</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb25-6"><a href="#cb25-6"></a>  <span class="fu">fmt_number</span>(<span class="at">columns =</span> <span class="fu">c</span>(<span class="st">"n"</span>, <span class="st">"n_gen"</span>),</span>
+<span id="cb25-7"><a href="#cb25-7"></a>             <span class="at">decimals =</span> <span class="dv">0</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="kwakfzhscz" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#kwakfzhscz table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#kwakfzhscz thead, #kwakfzhscz tbody, #kwakfzhscz tfoot, #kwakfzhscz tr, #kwakfzhscz td, #kwakfzhscz th {
+  border-style: none;
+}
+
+#kwakfzhscz p {
+  margin: 0;
+  padding: 0;
+}
+
+#kwakfzhscz .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#kwakfzhscz .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#kwakfzhscz .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#kwakfzhscz .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#kwakfzhscz .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#kwakfzhscz .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#kwakfzhscz .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#kwakfzhscz .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#kwakfzhscz .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#kwakfzhscz .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#kwakfzhscz .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#kwakfzhscz .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#kwakfzhscz .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#kwakfzhscz .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#kwakfzhscz .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#kwakfzhscz .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#kwakfzhscz .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#kwakfzhscz .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#kwakfzhscz .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#kwakfzhscz .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#kwakfzhscz .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#kwakfzhscz .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#kwakfzhscz .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#kwakfzhscz .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#kwakfzhscz .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#kwakfzhscz .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#kwakfzhscz .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#kwakfzhscz .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#kwakfzhscz .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#kwakfzhscz .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#kwakfzhscz .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#kwakfzhscz .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#kwakfzhscz .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#kwakfzhscz .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#kwakfzhscz .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#kwakfzhscz .gt_left {
+  text-align: left;
+}
+
+#kwakfzhscz .gt_center {
+  text-align: center;
+}
+
+#kwakfzhscz .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#kwakfzhscz .gt_font_normal {
+  font-weight: normal;
+}
+
+#kwakfzhscz .gt_font_bold {
+  font-weight: bold;
+}
+
+#kwakfzhscz .gt_font_italic {
+  font-style: italic;
+}
+
+#kwakfzhscz .gt_super {
+  font-size: 65%;
+}
+
+#kwakfzhscz .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#kwakfzhscz .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#kwakfzhscz .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#kwakfzhscz .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#kwakfzhscz .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#kwakfzhscz .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#kwakfzhscz .gt_indent_5 {
+  text-indent: 25px;
+}
+
+#kwakfzhscz .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#kwakfzhscz div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
+</style>
+<table class="gt_table caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+<thead><tr class="gt_col_headings header">
+<th id="CNT" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">Country code 3-character</th>
+<th id="TC001Q01NA" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">Are you female or male?</th>
+<th id="n" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">n</th>
+<th id="median_age" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">median_age</th>
+<th id="n_gen" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">n_gen</th>
+<th id="med_age_gender" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">med_age_gender</th>
+<th id="pct_gender" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">pct_gender</th>
+</tr></thead>
+<tbody class="gt_table_body">
+<tr class="odd">
+<td class="gt_row gt_center" headers="CNT">Korea</td>
+<td class="gt_row gt_center" headers="TC001Q01NA">Female</td>
+<td class="gt_row gt_right" headers="n">3,614</td>
+<td class="gt_row gt_right" headers="median_age">44</td>
+<td class="gt_row gt_right" headers="n_gen">2,025</td>
+<td class="gt_row gt_right" headers="med_age_gender">43</td>
+<td class="gt_row gt_right" headers="pct_gender">56.0%</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_center" headers="CNT">Korea</td>
+<td class="gt_row gt_center" headers="TC001Q01NA">Male</td>
+<td class="gt_row gt_right" headers="n">3,614</td>
+<td class="gt_row gt_right" headers="median_age">44</td>
+<td class="gt_row gt_right" headers="n_gen">1,584</td>
+<td class="gt_row gt_right" headers="med_age_gender">46</td>
+<td class="gt_row gt_right" headers="pct_gender">43.8%</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_center" headers="CNT">Korea</td>
+<td class="gt_row gt_center" headers="TC001Q01NA">NA</td>
+<td class="gt_row gt_right" headers="n">3,614</td>
+<td class="gt_row gt_right" headers="median_age">44</td>
+<td class="gt_row gt_right" headers="n_gen">5</td>
+<td class="gt_row gt_right" headers="med_age_gender">NA</td>
+<td class="gt_row gt_right" headers="pct_gender">0.1%</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_center" headers="CNT">Portugal</td>
+<td class="gt_row gt_center" headers="TC001Q01NA">Female</td>
+<td class="gt_row gt_right" headers="n">3,487</td>
+<td class="gt_row gt_right" headers="median_age">51</td>
+<td class="gt_row gt_right" headers="n_gen">2,407</td>
+<td class="gt_row gt_right" headers="med_age_gender">51</td>
+<td class="gt_row gt_right" headers="pct_gender">69.0%</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_center" headers="CNT">Portugal</td>
+<td class="gt_row gt_center" headers="TC001Q01NA">Male</td>
+<td class="gt_row gt_right" headers="n">3,487</td>
+<td class="gt_row gt_right" headers="median_age">51</td>
+<td class="gt_row gt_right" headers="n_gen">1,051</td>
+<td class="gt_row gt_right" headers="med_age_gender">51</td>
+<td class="gt_row gt_right" headers="pct_gender">30.1%</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_center" headers="CNT">Portugal</td>
+<td class="gt_row gt_center" headers="TC001Q01NA">NA</td>
+<td class="gt_row gt_right" headers="n">3,487</td>
+<td class="gt_row gt_right" headers="median_age">51</td>
+<td class="gt_row gt_right" headers="n_gen">29</td>
+<td class="gt_row gt_right" headers="med_age_gender">57</td>
+<td class="gt_row gt_right" headers="pct_gender">0.8%</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<p>This is looking better, but there are other issues:</p>
+<ul>
+<li>the headings are a bit messy, we can use <code>cols_label()</code> to rename the columns, at the moment country (<code>CNT</code>) and gender (<code>TC001Q01NA</code>) are using the label from the original SPSS file, we can rename these to <code>Country</code> and <code>Gender</code>
+</li>
+<li>there are <code>NA</code> values displayed, we can use <code>sub_missing()</code> to replace the med_age_gender with a <code>-</code> and the gender of the teacher with the word “Missing”:</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1"></a>df_teach_ages <span class="sc">%&gt;%</span> </span>
+<span id="cb26-2"><a href="#cb26-2"></a>  <span class="fu">ungroup</span>() <span class="sc">%&gt;%</span>  <span class="co"># removes the grouping to put everything in columns</span></span>
+<span id="cb26-3"><a href="#cb26-3"></a>  <span class="fu">gt</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb26-4"><a href="#cb26-4"></a>  <span class="fu">fmt_percent</span>(<span class="at">columns =</span> <span class="fu">c</span>(<span class="st">"pct_gender"</span>),</span>
+<span id="cb26-5"><a href="#cb26-5"></a>              <span class="at">decimals =</span> <span class="dv">1</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb26-6"><a href="#cb26-6"></a>  <span class="fu">fmt_number</span>(<span class="at">columns =</span> <span class="fu">c</span>(<span class="st">"n"</span>, <span class="st">"n_gen"</span>),</span>
+<span id="cb26-7"><a href="#cb26-7"></a>             <span class="at">decimals =</span> <span class="dv">0</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb26-8"><a href="#cb26-8"></a>  <span class="fu">cols_label</span>(<span class="at">CNT =</span> <span class="st">"Country"</span>, <span class="co"># note that you use the data frame column heading</span></span>
+<span id="cb26-9"><a href="#cb26-9"></a>             <span class="at">TC001Q01NA =</span> <span class="st">"Gender"</span>,</span>
+<span id="cb26-10"><a href="#cb26-10"></a>             <span class="at">pct_gender =</span> <span class="st">"%"</span>,</span>
+<span id="cb26-11"><a href="#cb26-11"></a>             <span class="at">med_age_gender =</span> <span class="st">"median age"</span>,</span>
+<span id="cb26-12"><a href="#cb26-12"></a>             <span class="at">n_gen =</span> <span class="st">"n"</span>,</span>
+<span id="cb26-13"><a href="#cb26-13"></a>             <span class="at">median_age =</span> <span class="st">"median age"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb26-14"><a href="#cb26-14"></a>  <span class="fu">sub_missing</span>(<span class="at">columns =</span> <span class="fu">c</span>(<span class="st">"TC001Q01NA"</span>),  <span class="co"># note we have to use the original name</span></span>
+<span id="cb26-15"><a href="#cb26-15"></a>              <span class="at">missing_text =</span> <span class="st">"Missing"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb26-16"><a href="#cb26-16"></a>  <span class="fu">sub_missing</span>(<span class="at">columns =</span> <span class="fu">c</span>(<span class="st">"med_age_gender"</span>),  <span class="co"># note we have to use the original name</span></span>
+<span id="cb26-17"><a href="#cb26-17"></a>              <span class="at">missing_text =</span> <span class="st">"-"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="heryorirwl" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#heryorirwl table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#heryorirwl thead, #heryorirwl tbody, #heryorirwl tfoot, #heryorirwl tr, #heryorirwl td, #heryorirwl th {
+  border-style: none;
+}
+
+#heryorirwl p {
+  margin: 0;
+  padding: 0;
+}
+
+#heryorirwl .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#heryorirwl .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#heryorirwl .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#heryorirwl .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#heryorirwl .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#heryorirwl .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#heryorirwl .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#heryorirwl .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#heryorirwl .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#heryorirwl .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#heryorirwl .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#heryorirwl .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#heryorirwl .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#heryorirwl .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#heryorirwl .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#heryorirwl .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#heryorirwl .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#heryorirwl .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#heryorirwl .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#heryorirwl .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#heryorirwl .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#heryorirwl .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#heryorirwl .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#heryorirwl .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#heryorirwl .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#heryorirwl .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#heryorirwl .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#heryorirwl .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#heryorirwl .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#heryorirwl .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#heryorirwl .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#heryorirwl .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#heryorirwl .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#heryorirwl .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#heryorirwl .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#heryorirwl .gt_left {
+  text-align: left;
+}
+
+#heryorirwl .gt_center {
+  text-align: center;
+}
+
+#heryorirwl .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#heryorirwl .gt_font_normal {
+  font-weight: normal;
+}
+
+#heryorirwl .gt_font_bold {
+  font-weight: bold;
+}
+
+#heryorirwl .gt_font_italic {
+  font-style: italic;
+}
+
+#heryorirwl .gt_super {
+  font-size: 65%;
+}
+
+#heryorirwl .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#heryorirwl .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#heryorirwl .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#heryorirwl .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#heryorirwl .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#heryorirwl .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#heryorirwl .gt_indent_5 {
+  text-indent: 25px;
+}
+
+#heryorirwl .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#heryorirwl div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
+</style>
+<table class="gt_table caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+<thead><tr class="gt_col_headings header">
+<th id="CNT" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">Country</th>
+<th id="TC001Q01NA" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">Gender</th>
+<th id="n" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">n</th>
+<th id="median_age" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">median age</th>
+<th id="n_gen" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">n</th>
+<th id="med_age_gender" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">median age</th>
+<th id="pct_gender" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">%</th>
+</tr></thead>
+<tbody class="gt_table_body">
+<tr class="odd">
+<td class="gt_row gt_center" headers="CNT">Korea</td>
+<td class="gt_row gt_center" headers="TC001Q01NA">Female</td>
+<td class="gt_row gt_right" headers="n">3,614</td>
+<td class="gt_row gt_right" headers="median_age">44</td>
+<td class="gt_row gt_right" headers="n_gen">2,025</td>
+<td class="gt_row gt_right" headers="med_age_gender">43</td>
+<td class="gt_row gt_right" headers="pct_gender">56.0%</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_center" headers="CNT">Korea</td>
+<td class="gt_row gt_center" headers="TC001Q01NA">Male</td>
+<td class="gt_row gt_right" headers="n">3,614</td>
+<td class="gt_row gt_right" headers="median_age">44</td>
+<td class="gt_row gt_right" headers="n_gen">1,584</td>
+<td class="gt_row gt_right" headers="med_age_gender">46</td>
+<td class="gt_row gt_right" headers="pct_gender">43.8%</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_center" headers="CNT">Korea</td>
+<td class="gt_row gt_center" headers="TC001Q01NA">Missing</td>
+<td class="gt_row gt_right" headers="n">3,614</td>
+<td class="gt_row gt_right" headers="median_age">44</td>
+<td class="gt_row gt_right" headers="n_gen">5</td>
+<td class="gt_row gt_right" headers="med_age_gender">-</td>
+<td class="gt_row gt_right" headers="pct_gender">0.1%</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_center" headers="CNT">Portugal</td>
+<td class="gt_row gt_center" headers="TC001Q01NA">Female</td>
+<td class="gt_row gt_right" headers="n">3,487</td>
+<td class="gt_row gt_right" headers="median_age">51</td>
+<td class="gt_row gt_right" headers="n_gen">2,407</td>
+<td class="gt_row gt_right" headers="med_age_gender">51</td>
+<td class="gt_row gt_right" headers="pct_gender">69.0%</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_center" headers="CNT">Portugal</td>
+<td class="gt_row gt_center" headers="TC001Q01NA">Male</td>
+<td class="gt_row gt_right" headers="n">3,487</td>
+<td class="gt_row gt_right" headers="median_age">51</td>
+<td class="gt_row gt_right" headers="n_gen">1,051</td>
+<td class="gt_row gt_right" headers="med_age_gender">51</td>
+<td class="gt_row gt_right" headers="pct_gender">30.1%</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_center" headers="CNT">Portugal</td>
+<td class="gt_row gt_center" headers="TC001Q01NA">Missing</td>
+<td class="gt_row gt_right" headers="n">3,487</td>
+<td class="gt_row gt_right" headers="median_age">51</td>
+<td class="gt_row gt_right" headers="n_gen">29</td>
+<td class="gt_row gt_right" headers="med_age_gender">57</td>
+<td class="gt_row gt_right" headers="pct_gender">0.8%</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<p>This is looking even better, but now we have multiple columns with the same name. We need to group these columns so it’s clear which refers to the total and which to the individual gender group. If we have several fields that contain data with a similar theme and we want to put a title over the top of them we can use <code>tab_spanner()</code>. Remember, when performing calculations on gt columns we need to refer to the original column names, not the new ones we have created through <code>cols_label()</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1"></a>nice_table <span class="ot">&lt;-</span> df_teach_ages <span class="sc">%&gt;%</span> </span>
+<span id="cb27-2"><a href="#cb27-2"></a>  <span class="fu">ungroup</span>() <span class="sc">%&gt;%</span>  <span class="co"># removes the grouping to put everything in columns</span></span>
+<span id="cb27-3"><a href="#cb27-3"></a>  <span class="fu">gt</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb27-4"><a href="#cb27-4"></a>  <span class="fu">fmt_percent</span>(<span class="at">columns =</span> <span class="fu">c</span>(<span class="st">"pct_gender"</span>),</span>
+<span id="cb27-5"><a href="#cb27-5"></a>              <span class="at">decimals =</span> <span class="dv">1</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb27-6"><a href="#cb27-6"></a>  <span class="fu">fmt_number</span>(<span class="at">columns =</span> <span class="fu">c</span>(<span class="st">"n"</span>, <span class="st">"n_gen"</span>),</span>
+<span id="cb27-7"><a href="#cb27-7"></a>             <span class="at">decimals =</span> <span class="dv">0</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb27-8"><a href="#cb27-8"></a>  <span class="fu">cols_label</span>(<span class="at">CNT =</span> <span class="st">"Country"</span>, <span class="co"># note that you use the data frame column heading</span></span>
+<span id="cb27-9"><a href="#cb27-9"></a>             <span class="at">TC001Q01NA =</span> <span class="st">"Gender"</span>,</span>
+<span id="cb27-10"><a href="#cb27-10"></a>             <span class="at">pct_gender =</span> <span class="st">"%"</span>,</span>
+<span id="cb27-11"><a href="#cb27-11"></a>             <span class="at">med_age_gender =</span> <span class="st">"median age"</span>,</span>
+<span id="cb27-12"><a href="#cb27-12"></a>             <span class="at">n_gen =</span> <span class="st">"n"</span>,</span>
+<span id="cb27-13"><a href="#cb27-13"></a>             <span class="at">median_age =</span> <span class="st">"median age"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb27-14"><a href="#cb27-14"></a>  <span class="fu">sub_missing</span>(<span class="at">columns =</span> <span class="fu">c</span>(<span class="st">"TC001Q01NA"</span>),  <span class="co"># note we have to use the original name</span></span>
+<span id="cb27-15"><a href="#cb27-15"></a>              <span class="at">missing_text =</span> <span class="st">"Missing"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb27-16"><a href="#cb27-16"></a>  <span class="fu">sub_missing</span>(<span class="at">columns =</span> <span class="fu">c</span>(<span class="st">"med_age_gender"</span>),  <span class="co"># note we have to use the original name</span></span>
+<span id="cb27-17"><a href="#cb27-17"></a>              <span class="at">missing_text =</span> <span class="st">"-"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb27-18"><a href="#cb27-18"></a>  <span class="fu">tab_spanner</span>(<span class="at">columns =</span> <span class="fu">c</span>(<span class="st">"n_gen"</span>,<span class="st">"med_age_gender"</span>,<span class="st">"pct_gender"</span>),</span>
+<span id="cb27-19"><a href="#cb27-19"></a>              <span class="at">label=</span><span class="st">"gender"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb27-20"><a href="#cb27-20"></a>  <span class="fu">tab_spanner</span>(<span class="at">columns =</span> <span class="fu">c</span>(<span class="st">"n"</span>,<span class="st">"median_age"</span>),</span>
+<span id="cb27-21"><a href="#cb27-21"></a>              <span class="at">label=</span><span class="st">"overall"</span>)</span>
+<span id="cb27-22"><a href="#cb27-22"></a></span>
+<span id="cb27-23"><a href="#cb27-23"></a>nice_table</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="yghkunmzby" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#yghkunmzby table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#yghkunmzby thead, #yghkunmzby tbody, #yghkunmzby tfoot, #yghkunmzby tr, #yghkunmzby td, #yghkunmzby th {
+  border-style: none;
+}
+
+#yghkunmzby p {
+  margin: 0;
+  padding: 0;
+}
+
+#yghkunmzby .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#yghkunmzby .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#yghkunmzby .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#yghkunmzby .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#yghkunmzby .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#yghkunmzby .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#yghkunmzby .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#yghkunmzby .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#yghkunmzby .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#yghkunmzby .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#yghkunmzby .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#yghkunmzby .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#yghkunmzby .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#yghkunmzby .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#yghkunmzby .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#yghkunmzby .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#yghkunmzby .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#yghkunmzby .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#yghkunmzby .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#yghkunmzby .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#yghkunmzby .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#yghkunmzby .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#yghkunmzby .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#yghkunmzby .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#yghkunmzby .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#yghkunmzby .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#yghkunmzby .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#yghkunmzby .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#yghkunmzby .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#yghkunmzby .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#yghkunmzby .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#yghkunmzby .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#yghkunmzby .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#yghkunmzby .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#yghkunmzby .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#yghkunmzby .gt_left {
+  text-align: left;
+}
+
+#yghkunmzby .gt_center {
+  text-align: center;
+}
+
+#yghkunmzby .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#yghkunmzby .gt_font_normal {
+  font-weight: normal;
+}
+
+#yghkunmzby .gt_font_bold {
+  font-weight: bold;
+}
+
+#yghkunmzby .gt_font_italic {
+  font-style: italic;
+}
+
+#yghkunmzby .gt_super {
+  font-size: 65%;
+}
+
+#yghkunmzby .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#yghkunmzby .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#yghkunmzby .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#yghkunmzby .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#yghkunmzby .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#yghkunmzby .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#yghkunmzby .gt_indent_5 {
+  text-indent: 25px;
+}
+
+#yghkunmzby .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#yghkunmzby div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
+</style>
+<table class="gt_table caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+<colgroup>
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 14%">
+</colgroup>
+<thead>
+<tr class="gt_col_headings gt_spanner_row header">
+<th rowspan="2" id="CNT" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">Country</th>
+<th rowspan="2" id="TC001Q01NA" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">Gender</th>
+<th colspan="2" id="overall" class="gt_center gt_columns_top_border gt_column_spanner_outer" data-quarto-table-cell-role="th" scope="colgroup"><div class="gt_column_spanner">
+overall
+</div></th>
+<th colspan="3" id="gender" class="gt_center gt_columns_top_border gt_column_spanner_outer" data-quarto-table-cell-role="th" scope="colgroup"><div class="gt_column_spanner">
+gender
+</div></th>
+</tr>
+<tr class="gt_col_headings even">
+<th id="n" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">n</th>
+<th id="median_age" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">median age</th>
+<th id="n_gen" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">n</th>
+<th id="med_age_gender" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">median age</th>
+<th id="pct_gender" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">%</th>
+</tr>
+</thead>
+<tbody class="gt_table_body">
+<tr class="odd">
+<td class="gt_row gt_center" headers="CNT">Korea</td>
+<td class="gt_row gt_center" headers="TC001Q01NA">Female</td>
+<td class="gt_row gt_right" headers="n">3,614</td>
+<td class="gt_row gt_right" headers="median_age">44</td>
+<td class="gt_row gt_right" headers="n_gen">2,025</td>
+<td class="gt_row gt_right" headers="med_age_gender">43</td>
+<td class="gt_row gt_right" headers="pct_gender">56.0%</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_center" headers="CNT">Korea</td>
+<td class="gt_row gt_center" headers="TC001Q01NA">Male</td>
+<td class="gt_row gt_right" headers="n">3,614</td>
+<td class="gt_row gt_right" headers="median_age">44</td>
+<td class="gt_row gt_right" headers="n_gen">1,584</td>
+<td class="gt_row gt_right" headers="med_age_gender">46</td>
+<td class="gt_row gt_right" headers="pct_gender">43.8%</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_center" headers="CNT">Korea</td>
+<td class="gt_row gt_center" headers="TC001Q01NA">Missing</td>
+<td class="gt_row gt_right" headers="n">3,614</td>
+<td class="gt_row gt_right" headers="median_age">44</td>
+<td class="gt_row gt_right" headers="n_gen">5</td>
+<td class="gt_row gt_right" headers="med_age_gender">-</td>
+<td class="gt_row gt_right" headers="pct_gender">0.1%</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_center" headers="CNT">Portugal</td>
+<td class="gt_row gt_center" headers="TC001Q01NA">Female</td>
+<td class="gt_row gt_right" headers="n">3,487</td>
+<td class="gt_row gt_right" headers="median_age">51</td>
+<td class="gt_row gt_right" headers="n_gen">2,407</td>
+<td class="gt_row gt_right" headers="med_age_gender">51</td>
+<td class="gt_row gt_right" headers="pct_gender">69.0%</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_center" headers="CNT">Portugal</td>
+<td class="gt_row gt_center" headers="TC001Q01NA">Male</td>
+<td class="gt_row gt_right" headers="n">3,487</td>
+<td class="gt_row gt_right" headers="median_age">51</td>
+<td class="gt_row gt_right" headers="n_gen">1,051</td>
+<td class="gt_row gt_right" headers="med_age_gender">51</td>
+<td class="gt_row gt_right" headers="pct_gender">30.1%</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_center" headers="CNT">Portugal</td>
+<td class="gt_row gt_center" headers="TC001Q01NA">Missing</td>
+<td class="gt_row gt_right" headers="n">3,487</td>
+<td class="gt_row gt_right" headers="median_age">51</td>
+<td class="gt_row gt_right" headers="n_gen">29</td>
+<td class="gt_row gt_right" headers="med_age_gender">57</td>
+<td class="gt_row gt_right" headers="pct_gender">0.8%</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<p>Finally, we might want to add a footnote to the table, this is done using the <code>tab_footnote()</code> command. <a href="https://gt.rstudio.com">gt</a> also allows you to insert markdown into the table by wrapping text in the <code>md()</code> command, as shown below. If we want to include this table with caption in the same way we used a caption on the figures above, we can use <code>#| tbl-cap: teacher ages by country</code> and provide a label to reference the table in our text: <code>#| label: tbl-teacher_ages</code>.:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb28-1"><a href="#cb28-1"></a><span class="in">```{r}</span></span>
+<span id="cb28-2"><a href="#cb28-2"></a><span class="in">#| eval: true</span></span>
+<span id="cb28-3"><a href="#cb28-3"></a><span class="in">#| label: tbl-teacher_ages</span></span>
+<span id="cb28-4"><a href="#cb28-4"></a><span class="in">#| tbl-cap: teacher ages by country</span></span>
+<span id="cb28-5"><a href="#cb28-5"></a><span class="in">nice_table %&gt;% </span></span>
+<span id="cb28-6"><a href="#cb28-6"></a><span class="in">  tab_footnote(footnote = md("__source__: PISA 2022 teacher survey"))</span></span>
+<span id="cb28-7"><a href="#cb28-7"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="tbl-teacher_ages" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure"><figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-teacher_ages-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;5.1: teacher ages by country
+</figcaption><div aria-describedby="tbl-teacher_ages-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell-output-display">
+<div id="aazkaaqnlv" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#aazkaaqnlv table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#aazkaaqnlv thead, #aazkaaqnlv tbody, #aazkaaqnlv tfoot, #aazkaaqnlv tr, #aazkaaqnlv td, #aazkaaqnlv th {
+  border-style: none;
+}
+
+#aazkaaqnlv p {
+  margin: 0;
+  padding: 0;
+}
+
+#aazkaaqnlv .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#aazkaaqnlv .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#aazkaaqnlv .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#aazkaaqnlv .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#aazkaaqnlv .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#aazkaaqnlv .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#aazkaaqnlv .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#aazkaaqnlv .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#aazkaaqnlv .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#aazkaaqnlv .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#aazkaaqnlv .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#aazkaaqnlv .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#aazkaaqnlv .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#aazkaaqnlv .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#aazkaaqnlv .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#aazkaaqnlv .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#aazkaaqnlv .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#aazkaaqnlv .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#aazkaaqnlv .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#aazkaaqnlv .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#aazkaaqnlv .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#aazkaaqnlv .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#aazkaaqnlv .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#aazkaaqnlv .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#aazkaaqnlv .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#aazkaaqnlv .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#aazkaaqnlv .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#aazkaaqnlv .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#aazkaaqnlv .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#aazkaaqnlv .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#aazkaaqnlv .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#aazkaaqnlv .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#aazkaaqnlv .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#aazkaaqnlv .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#aazkaaqnlv .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#aazkaaqnlv .gt_left {
+  text-align: left;
+}
+
+#aazkaaqnlv .gt_center {
+  text-align: center;
+}
+
+#aazkaaqnlv .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#aazkaaqnlv .gt_font_normal {
+  font-weight: normal;
+}
+
+#aazkaaqnlv .gt_font_bold {
+  font-weight: bold;
+}
+
+#aazkaaqnlv .gt_font_italic {
+  font-style: italic;
+}
+
+#aazkaaqnlv .gt_super {
+  font-size: 65%;
+}
+
+#aazkaaqnlv .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#aazkaaqnlv .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#aazkaaqnlv .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#aazkaaqnlv .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#aazkaaqnlv .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#aazkaaqnlv .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#aazkaaqnlv .gt_indent_5 {
+  text-indent: 25px;
+}
+
+#aazkaaqnlv .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#aazkaaqnlv div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
+</style>
+<table class="gt_table do-not-create-environment cell caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+<colgroup>
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 14%">
+</colgroup>
+<thead>
+<tr class="gt_col_headings gt_spanner_row header">
+<th rowspan="2" id="CNT" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">Country</th>
+<th rowspan="2" id="TC001Q01NA" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">Gender</th>
+<th colspan="2" id="overall" class="gt_center gt_columns_top_border gt_column_spanner_outer" data-quarto-table-cell-role="th" scope="colgroup"><div class="gt_column_spanner">
+overall
+</div></th>
+<th colspan="3" id="gender" class="gt_center gt_columns_top_border gt_column_spanner_outer" data-quarto-table-cell-role="th" scope="colgroup"><div class="gt_column_spanner">
+gender
+</div></th>
+</tr>
+<tr class="gt_col_headings even">
+<th id="n" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">n</th>
+<th id="median_age" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">median age</th>
+<th id="n_gen" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">n</th>
+<th id="med_age_gender" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">median age</th>
+<th id="pct_gender" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">%</th>
+</tr>
+</thead>
+<tbody class="gt_table_body">
+<tr class="odd">
+<td class="gt_row gt_center" headers="CNT">Korea</td>
+<td class="gt_row gt_center" headers="TC001Q01NA">Female</td>
+<td class="gt_row gt_right" headers="n">3,614</td>
+<td class="gt_row gt_right" headers="median_age">44</td>
+<td class="gt_row gt_right" headers="n_gen">2,025</td>
+<td class="gt_row gt_right" headers="med_age_gender">43</td>
+<td class="gt_row gt_right" headers="pct_gender">56.0%</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_center" headers="CNT">Korea</td>
+<td class="gt_row gt_center" headers="TC001Q01NA">Male</td>
+<td class="gt_row gt_right" headers="n">3,614</td>
+<td class="gt_row gt_right" headers="median_age">44</td>
+<td class="gt_row gt_right" headers="n_gen">1,584</td>
+<td class="gt_row gt_right" headers="med_age_gender">46</td>
+<td class="gt_row gt_right" headers="pct_gender">43.8%</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_center" headers="CNT">Korea</td>
+<td class="gt_row gt_center" headers="TC001Q01NA">Missing</td>
+<td class="gt_row gt_right" headers="n">3,614</td>
+<td class="gt_row gt_right" headers="median_age">44</td>
+<td class="gt_row gt_right" headers="n_gen">5</td>
+<td class="gt_row gt_right" headers="med_age_gender">-</td>
+<td class="gt_row gt_right" headers="pct_gender">0.1%</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_center" headers="CNT">Portugal</td>
+<td class="gt_row gt_center" headers="TC001Q01NA">Female</td>
+<td class="gt_row gt_right" headers="n">3,487</td>
+<td class="gt_row gt_right" headers="median_age">51</td>
+<td class="gt_row gt_right" headers="n_gen">2,407</td>
+<td class="gt_row gt_right" headers="med_age_gender">51</td>
+<td class="gt_row gt_right" headers="pct_gender">69.0%</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_center" headers="CNT">Portugal</td>
+<td class="gt_row gt_center" headers="TC001Q01NA">Male</td>
+<td class="gt_row gt_right" headers="n">3,487</td>
+<td class="gt_row gt_right" headers="median_age">51</td>
+<td class="gt_row gt_right" headers="n_gen">1,051</td>
+<td class="gt_row gt_right" headers="med_age_gender">51</td>
+<td class="gt_row gt_right" headers="pct_gender">30.1%</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_center" headers="CNT">Portugal</td>
+<td class="gt_row gt_center" headers="TC001Q01NA">Missing</td>
+<td class="gt_row gt_right" headers="n">3,487</td>
+<td class="gt_row gt_right" headers="median_age">51</td>
+<td class="gt_row gt_right" headers="n_gen">29</td>
+<td class="gt_row gt_right" headers="med_age_gender">57</td>
+<td class="gt_row gt_right" headers="pct_gender">0.8%</td>
+</tr>
+</tbody>
+<tfoot class="gt_footnotes"><tr class="odd">
+<td colspan="7" class="gt_footnote">
+<strong>source</strong>: PISA 2022 teacher survey</td>
+</tr></tfoot>
+</table>
+</div>
+</div>
+</div>
+</figure>
+</div>
+</div>
+<p><a href="https://gt.rstudio.com">gt</a> and the support package <code>gtExtras</code> have a lot of functionality, for example you might want to rearrange the columns in your table with <code>cols_move()</code> or conditionally format the colours of rows using <code>tab_style()</code>, you can find out more about them on their websites <a href="https://gt.rstudio.com/reference/index.html">gt</a>, <a href="https://jthomasmock.github.io/gtExtras/">gtExtras</a></p>
+</section><section id="questions-gt" class="level2" data-number="5.2"><h2 data-number="5.2" class="anchored" data-anchor-id="questions-gt">
+<span class="header-section-number">5.2</span> Questions: gt</h2>
+<div class="question">
+<p>Using the following data frame <code>df_extra_curricular</code> about teacher engagement with extra curricular activities, try to answer these questions:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1"></a>df_extra_curricular <span class="ot">&lt;-</span> teacher_df <span class="sc">%&gt;%</span> </span>
+<span id="cb29-2"><a href="#cb29-2"></a>  <span class="fu">select</span>(CNT,TC001Q01NA, TC216Q08JA) <span class="sc">%&gt;%</span></span>
+<span id="cb29-3"><a href="#cb29-3"></a>  <span class="fu">filter</span>(CNT <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Portugal"</span>, <span class="st">"Korea"</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb29-4"><a href="#cb29-4"></a>  <span class="fu">group_by</span>(CNT) <span class="sc">%&gt;%</span></span>
+<span id="cb29-5"><a href="#cb29-5"></a>  <span class="fu">mutate</span>(<span class="at">n =</span> <span class="fu">n</span>(), </span>
+<span id="cb29-6"><a href="#cb29-6"></a>         <span class="at">mean_hours =</span> <span class="fu">mean</span>(TC216Q08JA, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb29-7"><a href="#cb29-7"></a>  <span class="fu">group_by</span>(CNT, TC001Q01NA, n, mean_hours) <span class="sc">%&gt;%</span></span>
+<span id="cb29-8"><a href="#cb29-8"></a>  <span class="fu">summarise</span>(<span class="at">n_gen =</span> <span class="fu">n</span>(),</span>
+<span id="cb29-9"><a href="#cb29-9"></a>            <span class="at">mean_ec_gender =</span> <span class="fu">mean</span>(TC216Q08JA, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb29-10"><a href="#cb29-10"></a>            <span class="at">pct_gender =</span> n_gen<span class="sc">/</span>n) <span class="sc">%&gt;%</span></span>
+<span id="cb29-11"><a href="#cb29-11"></a>  <span class="fu">distinct</span>()</span>
+<span id="cb29-12"><a href="#cb29-12"></a>df_extra_curricular</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 7
+# Groups:   CNT, TC001Q01NA, n, mean_hours [6]
+  CNT      TC001Q01NA     n mean_hours n_gen mean_ec_gender pct_gender
+  &lt;fct&gt;    &lt;fct&gt;      &lt;int&gt;      &lt;dbl&gt; &lt;int&gt;          &lt;dbl&gt;      &lt;dbl&gt;
+1 Korea    Female      3614       2.10  2025           1.94    0.560  
+2 Korea    Male        3614       2.10  1584           2.31    0.438  
+3 Korea    &lt;NA&gt;        3614       2.10     5           0       0.00138
+4 Portugal Female      3487       1.52  2407           1.53    0.690  
+5 Portugal Male        3487       1.52  1051           1.51    0.301  
+6 Portugal &lt;NA&gt;        3487       1.52    29           1       0.00832</code></pre>
+</div>
+</div>
+<p>Create a table using <a href="https://gt.rstudio.com">gt</a> that has the following formating:</p>
+<ul>
+<li>use <code>ungroup</code> to create a column for each variable</li>
+</ul>
+<div class="cell">
+<details class="code-fold"><summary>answer</summary><div class="sourceCode cell-code" id="cb31"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1"></a>df_extra_curricular <span class="sc">%&gt;%</span> </span>
+<span id="cb31-2"><a href="#cb31-2"></a>  <span class="fu">ungroup</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb31-3"><a href="#cb31-3"></a>  <span class="fu">gt</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<ul>
+<li>format <code>pct_gender</code> to be a percentage with one decimal place</li>
+</ul>
+<div class="cell">
+<details class="code-fold"><summary>answer</summary><div class="sourceCode cell-code" id="cb32"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1"></a>df_extra_curricular <span class="sc">%&gt;%</span> </span>
+<span id="cb32-2"><a href="#cb32-2"></a>  <span class="fu">ungroup</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb32-3"><a href="#cb32-3"></a>  <span class="fu">gt</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb32-4"><a href="#cb32-4"></a>  <span class="fu">fmt_percent</span>(<span class="at">columns =</span> <span class="fu">c</span>(<span class="st">"pct_gender"</span>),</span>
+<span id="cb32-5"><a href="#cb32-5"></a>              <span class="at">decimals=</span><span class="dv">1</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<ul>
+<li>format <code>mean_hours</code> and <code>mean_ec_gender</code> to have two decimal places</li>
+</ul>
+<div class="cell">
+<details class="code-fold"><summary>answer</summary><div class="sourceCode cell-code" id="cb33"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1"></a>df_extra_curricular <span class="sc">%&gt;%</span> </span>
+<span id="cb33-2"><a href="#cb33-2"></a>  <span class="fu">ungroup</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb33-3"><a href="#cb33-3"></a>  <span class="fu">gt</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb33-4"><a href="#cb33-4"></a>  <span class="fu">fmt_percent</span>(<span class="at">columns =</span> <span class="fu">c</span>(<span class="st">"pct_gender"</span>),</span>
+<span id="cb33-5"><a href="#cb33-5"></a>              <span class="at">decimals=</span><span class="dv">1</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb33-6"><a href="#cb33-6"></a>  <span class="fu">fmt_number</span>(<span class="at">columns =</span> <span class="fu">c</span>(<span class="st">"mean_hours"</span>, <span class="st">"mean_ec_gender"</span>),</span>
+<span id="cb33-7"><a href="#cb33-7"></a>             <span class="at">decimals =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<ul>
+<li>replace the <code>NA</code> gender with the word “Missing” (Bonus, make this text bold using markdown!)</li>
+</ul>
+<div class="cell">
+<details class="code-fold"><summary>answer</summary><div class="sourceCode cell-code" id="cb34"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1"></a>df_extra_curricular <span class="sc">%&gt;%</span> </span>
+<span id="cb34-2"><a href="#cb34-2"></a>  <span class="fu">ungroup</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb34-3"><a href="#cb34-3"></a>  <span class="fu">gt</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb34-4"><a href="#cb34-4"></a>  <span class="fu">fmt_percent</span>(<span class="at">columns =</span> <span class="fu">c</span>(<span class="st">"pct_gender"</span>),</span>
+<span id="cb34-5"><a href="#cb34-5"></a>              <span class="at">decimals=</span><span class="dv">1</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb34-6"><a href="#cb34-6"></a>  <span class="fu">fmt_number</span>(<span class="at">columns =</span> <span class="fu">c</span>(<span class="st">"mean_hours"</span>, <span class="st">"mean_ec_gender"</span>),</span>
+<span id="cb34-7"><a href="#cb34-7"></a>             <span class="at">decimals =</span> <span class="dv">2</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb34-8"><a href="#cb34-8"></a>  <span class="fu">sub_missing</span>(<span class="at">columns =</span> <span class="fu">c</span>(<span class="st">"TC001Q01NA"</span>),</span>
+<span id="cb34-9"><a href="#cb34-9"></a>              <span class="at">missing_text =</span> <span class="fu">md</span>(<span class="st">"__Missing__"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<ul>
+<li>relabel the CNT to “Country”, TC001Q01NA to “Gender”, n to “Total”, n_gen to “n”, mean_ec_gender to “mean_hours” and pct_gender to “%”.</li>
+</ul>
+<div class="cell">
+<details class="code-fold"><summary>answer</summary><div class="sourceCode cell-code" id="cb35"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1"></a>df_extra_curricular <span class="sc">%&gt;%</span> </span>
+<span id="cb35-2"><a href="#cb35-2"></a>  <span class="fu">ungroup</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb35-3"><a href="#cb35-3"></a>  <span class="fu">gt</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb35-4"><a href="#cb35-4"></a>  <span class="fu">fmt_percent</span>(<span class="at">columns =</span> <span class="fu">c</span>(<span class="st">"pct_gender"</span>),</span>
+<span id="cb35-5"><a href="#cb35-5"></a>              <span class="at">decimals=</span><span class="dv">1</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb35-6"><a href="#cb35-6"></a>  <span class="fu">fmt_number</span>(<span class="at">columns =</span> <span class="fu">c</span>(<span class="st">"mean_hours"</span>, <span class="st">"mean_ec_gender"</span>),</span>
+<span id="cb35-7"><a href="#cb35-7"></a>             <span class="at">decimals =</span> <span class="dv">2</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb35-8"><a href="#cb35-8"></a>  <span class="fu">sub_missing</span>(<span class="at">columns =</span> <span class="fu">c</span>(<span class="st">"TC001Q01NA"</span>),</span>
+<span id="cb35-9"><a href="#cb35-9"></a>              <span class="at">missing_text =</span> <span class="fu">md</span>(<span class="st">"__Missing__"</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb35-10"><a href="#cb35-10"></a>  <span class="fu">cols_label</span>(<span class="at">CNT =</span> <span class="st">"Country"</span>,</span>
+<span id="cb35-11"><a href="#cb35-11"></a>             <span class="at">TC001Q01NA =</span> <span class="st">"Gender"</span>,</span>
+<span id="cb35-12"><a href="#cb35-12"></a>             <span class="at">n =</span> <span class="st">"Total"</span>,</span>
+<span id="cb35-13"><a href="#cb35-13"></a>             <span class="at">n_gen =</span> <span class="st">"n"</span>,</span>
+<span id="cb35-14"><a href="#cb35-14"></a>             <span class="at">mean_ec_gender =</span> <span class="st">"mean_hours"</span>,</span>
+<span id="cb35-15"><a href="#cb35-15"></a>             <span class="at">pct_gender =</span> <span class="st">"%"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<ul>
+<li>create a spanner called “by gender” for the gendered results, i.e.&nbsp;<code>n_gen</code>, <code>mean_ec_gender</code> and <code>pct_gender</code>
+</li>
+</ul>
+<div class="cell">
+<details class="code-fold"><summary>answer</summary><div class="sourceCode cell-code" id="cb36"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1"></a>df_extra_curricular <span class="sc">%&gt;%</span> </span>
+<span id="cb36-2"><a href="#cb36-2"></a>  <span class="fu">ungroup</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb36-3"><a href="#cb36-3"></a>  <span class="fu">gt</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb36-4"><a href="#cb36-4"></a>  <span class="fu">fmt_percent</span>(<span class="at">columns =</span> <span class="fu">c</span>(<span class="st">"pct_gender"</span>),</span>
+<span id="cb36-5"><a href="#cb36-5"></a>              <span class="at">decimals=</span><span class="dv">1</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb36-6"><a href="#cb36-6"></a>  <span class="fu">fmt_number</span>(<span class="at">columns =</span> <span class="fu">c</span>(<span class="st">"mean_hours"</span>, <span class="st">"mean_ec_gender"</span>),</span>
+<span id="cb36-7"><a href="#cb36-7"></a>             <span class="at">decimals =</span> <span class="dv">2</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb36-8"><a href="#cb36-8"></a>  <span class="fu">sub_missing</span>(<span class="at">columns =</span> <span class="fu">c</span>(<span class="st">"TC001Q01NA"</span>),</span>
+<span id="cb36-9"><a href="#cb36-9"></a>              <span class="at">missing_text =</span> <span class="fu">md</span>(<span class="st">"__Missing__"</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb36-10"><a href="#cb36-10"></a>  <span class="fu">cols_label</span>(<span class="at">CNT =</span> <span class="st">"Country"</span>,</span>
+<span id="cb36-11"><a href="#cb36-11"></a>             <span class="at">TC001Q01NA =</span> <span class="st">"Gender"</span>,</span>
+<span id="cb36-12"><a href="#cb36-12"></a>             <span class="at">n =</span> <span class="st">"Total"</span>,</span>
+<span id="cb36-13"><a href="#cb36-13"></a>             <span class="at">n_gen =</span> <span class="st">"n"</span>,</span>
+<span id="cb36-14"><a href="#cb36-14"></a>             <span class="at">mean_ec_gender =</span> <span class="st">"mean_hours"</span>,</span>
+<span id="cb36-15"><a href="#cb36-15"></a>             <span class="at">pct_gender =</span> <span class="st">"%"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb36-16"><a href="#cb36-16"></a>  <span class="fu">tab_spanner</span>(<span class="at">columns =</span> <span class="fu">c</span>(<span class="st">"n_gen"</span>,<span class="st">"mean_ec_gender"</span>, <span class="st">"pct_gender"</span>),</span>
+<span id="cb36-17"><a href="#cb36-17"></a>              <span class="at">label =</span> <span class="st">"by gender"</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<ul>
+<li>create a footnote that says “source: PISA 2022 teacher survey”</li>
+</ul>
+<div class="cell">
+<details class="code-fold"><summary>answer</summary><div class="sourceCode cell-code" id="cb37"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1"></a>df_extra_curricular <span class="sc">%&gt;%</span> </span>
+<span id="cb37-2"><a href="#cb37-2"></a>  <span class="fu">ungroup</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb37-3"><a href="#cb37-3"></a>  <span class="fu">gt</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb37-4"><a href="#cb37-4"></a>  <span class="fu">fmt_percent</span>(<span class="at">columns =</span> <span class="fu">c</span>(<span class="st">"pct_gender"</span>),</span>
+<span id="cb37-5"><a href="#cb37-5"></a>              <span class="at">decimals=</span><span class="dv">1</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb37-6"><a href="#cb37-6"></a>  <span class="fu">fmt_number</span>(<span class="at">columns =</span> <span class="fu">c</span>(<span class="st">"mean_hours"</span>, <span class="st">"mean_ec_gender"</span>),</span>
+<span id="cb37-7"><a href="#cb37-7"></a>             <span class="at">decimals =</span> <span class="dv">2</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb37-8"><a href="#cb37-8"></a>  <span class="fu">sub_missing</span>(<span class="at">columns =</span> <span class="fu">c</span>(<span class="st">"TC001Q01NA"</span>),</span>
+<span id="cb37-9"><a href="#cb37-9"></a>              <span class="at">missing_text =</span> <span class="fu">md</span>(<span class="st">"__Missing__"</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb37-10"><a href="#cb37-10"></a>  <span class="fu">cols_label</span>(<span class="at">CNT =</span> <span class="st">"Country"</span>,</span>
+<span id="cb37-11"><a href="#cb37-11"></a>             <span class="at">TC001Q01NA =</span> <span class="st">"Gender"</span>,</span>
+<span id="cb37-12"><a href="#cb37-12"></a>             <span class="at">n =</span> <span class="st">"Total"</span>,</span>
+<span id="cb37-13"><a href="#cb37-13"></a>             <span class="at">n_gen =</span> <span class="st">"n"</span>,</span>
+<span id="cb37-14"><a href="#cb37-14"></a>             <span class="at">mean_ec_gender =</span> <span class="st">"mean_hours"</span>,</span>
+<span id="cb37-15"><a href="#cb37-15"></a>             <span class="at">pct_gender =</span> <span class="st">"%"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb37-16"><a href="#cb37-16"></a>  <span class="fu">tab_spanner</span>(<span class="at">columns =</span> <span class="fu">c</span>(<span class="st">"n_gen"</span>,<span class="st">"mean_ec_gender"</span>, <span class="st">"pct_gender"</span>),</span>
+<span id="cb37-17"><a href="#cb37-17"></a>              <span class="at">label =</span> <span class="st">"by gender"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb37-18"><a href="#cb37-18"></a>  <span class="fu">tab_footnote</span>(<span class="at">footnote =</span> <span class="st">"source: PISA 2022 teacher survey"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</div>
+</section></section><section id="different-types-of-output" class="level1" data-number="6"><h1 data-number="6">
+<span class="header-section-number">6</span> Different types of output</h1>
+<p>The default output of quarto is a webpage, but this probably won’t be suitable if you’re looking to write your thesis or a journal article. You can adjust the quarto output by editing the YAML block at the top of the <code>.qmd</code> file. For example, to output a pdf you would add a <code>format:</code> command, you can then specify the type of output you want, for example a <a href="https://quarto.org/docs/reference/formats/pdf.html">pdf</a> <code>pdf</code> or <a href="https://quarto.org/docs/reference/formats/docx.html">Word document</a> <code>docx</code>. You can also specify how tables of contents are displayed, style sheets that you want to apply, whether to include lists of figures etc.</p>
+<p>Not all of the options are available for all types of output and some of the functionality of packages such as <code>gt</code> will be better in some formats than others (HTML is currently the best supported), so it’s worth checking the outputs often before any deadlines you might have.</p>
+
+
+
+</section><div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+<div id="ref-kuhn1970structure" class="csl-entry" role="listitem">
+Kuhn, Thomas S. 1970. <em>The Structure of Scientific Revolutions</em>. Vol. 111. Chicago University of Chicago Press.
+</div>
+<div id="ref-stoet2018gender" class="csl-entry" role="listitem">
+Stoet, Gijsbert, and David C Geary. 2018. <span>“The Gender-Equality Paradox in Science, Technology, Engineering, and Mathematics Education.”</span> <em>Psychological Science</em> 29 (4): 581–93. <a href="https://eprints.leedsbeckett.ac.uk/id/eprint/4753/6/symplectic-version.pdf">https://eprints.leedsbeckett.ac.uk/id/eprint/4753/6/symplectic-version.pdf</a>.
+</div>
+</div></section></div></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>
