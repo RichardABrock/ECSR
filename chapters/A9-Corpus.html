@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.5.57">
+<meta name="generator" content="quarto-1.6.42">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <title>Corpus Analysis – ECSR</title>
 <style>
@@ -65,10 +65,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-2f5df379a58b258e96c21c0638c20c03.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light"><script id="quarto-search-options" type="application/json">{
+<link href="../site_libs/bootstrap/bootstrap-868b9742d7bde9f1698ef1c41a43f714.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light"><script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
   "collapse-after": 3,
@@ -309,20 +309,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><a href="#creating-a-custom-dictionary" id="toc-creating-a-custom-dictionary" class="nav-link" data-scroll-target="#creating-a-custom-dictionary"><span class="header-section-number">1.5.1</span> Creating a custom dictionary</a></li>
   </ul>
 </li>
-  <li><a href="#word-clouds" id="toc-word-clouds" class="nav-link" data-scroll-target="#word-clouds"><span class="header-section-number">1.6</span> Word clouds</a></li>
-  <li><a href="#lexical-dispersion-plots" id="toc-lexical-dispersion-plots" class="nav-link" data-scroll-target="#lexical-dispersion-plots"><span class="header-section-number">1.7</span> Lexical dispersion plots</a></li>
-  <li><a href="#network-analysis" id="toc-network-analysis" class="nav-link" data-scroll-target="#network-analysis"><span class="header-section-number">1.8</span> Network analysis</a></li>
-  <li><a href="#sentiment-analysis" id="toc-sentiment-analysis" class="nav-link" data-scroll-target="#sentiment-analysis"><span class="header-section-number">1.9</span> Sentiment analysis</a></li>
-  <li><a href="#comparison-of-sameness-of-documents" id="toc-comparison-of-sameness-of-documents" class="nav-link" data-scroll-target="#comparison-of-sameness-of-documents"><span class="header-section-number">1.10</span> Comparison of sameness of documents</a></li>
-  <li><a href="#keyness" id="toc-keyness" class="nav-link" data-scroll-target="#keyness"><span class="header-section-number">1.11</span> Keyness</a></li>
-  <li><a href="#topic-models" id="toc-topic-models" class="nav-link" data-scroll-target="#topic-models"><span class="header-section-number">1.12</span> Topic models</a></li>
+  <li><a href="#words-that-co-occur" id="toc-words-that-co-occur" class="nav-link" data-scroll-target="#words-that-co-occur"><span class="header-section-number">1.6</span> Words that co-occur</a></li>
+  <li><a href="#word-clouds" id="toc-word-clouds" class="nav-link" data-scroll-target="#word-clouds"><span class="header-section-number">1.7</span> Word clouds</a></li>
+  <li><a href="#lexical-dispersion-plots" id="toc-lexical-dispersion-plots" class="nav-link" data-scroll-target="#lexical-dispersion-plots"><span class="header-section-number">1.8</span> Lexical dispersion plots</a></li>
+  <li><a href="#network-analysis" id="toc-network-analysis" class="nav-link" data-scroll-target="#network-analysis"><span class="header-section-number">1.9</span> Network analysis</a></li>
+  <li><a href="#sentiment-analysis" id="toc-sentiment-analysis" class="nav-link" data-scroll-target="#sentiment-analysis"><span class="header-section-number">1.10</span> Sentiment analysis</a></li>
+  <li><a href="#comparison-of-sameness-of-documents" id="toc-comparison-of-sameness-of-documents" class="nav-link" data-scroll-target="#comparison-of-sameness-of-documents"><span class="header-section-number">1.11</span> Comparison of sameness of documents</a></li>
+  <li><a href="#keyness" id="toc-keyness" class="nav-link" data-scroll-target="#keyness"><span class="header-section-number">1.12</span> Keyness</a></li>
+  <li><a href="#topic-models" id="toc-topic-models" class="nav-link" data-scroll-target="#topic-models"><span class="header-section-number">1.13</span> Topic models</a></li>
   <li>
-<a href="#seminar-activities" id="toc-seminar-activities" class="nav-link" data-scroll-target="#seminar-activities"><span class="header-section-number">1.13</span> Seminar activities</a>
+<a href="#seminar-activities" id="toc-seminar-activities" class="nav-link" data-scroll-target="#seminar-activities"><span class="header-section-number">1.14</span> Seminar activities</a>
   <ul class="collapse">
-<li><a href="#task-1-word-clouds" id="toc-task-1-word-clouds" class="nav-link" data-scroll-target="#task-1-word-clouds"><span class="header-section-number">1.13.1</span> Task 1 Word clouds</a></li>
-  <li><a href="#task-2-wordclouds-and-network-analysis" id="toc-task-2-wordclouds-and-network-analysis" class="nav-link" data-scroll-target="#task-2-wordclouds-and-network-analysis"><span class="header-section-number">1.13.2</span> Task 2 wordclouds and network analysis</a></li>
-  <li><a href="#task-3-keyness-analysis" id="toc-task-3-keyness-analysis" class="nav-link" data-scroll-target="#task-3-keyness-analysis"><span class="header-section-number">1.13.3</span> Task 3 keyness analysis</a></li>
-  <li><a href="#task-4-lexical-disperssion-plot" id="toc-task-4-lexical-disperssion-plot" class="nav-link" data-scroll-target="#task-4-lexical-disperssion-plot"><span class="header-section-number">1.13.4</span> Task 4 lexical disperssion plot</a></li>
+<li><a href="#task-1-word-clouds" id="toc-task-1-word-clouds" class="nav-link" data-scroll-target="#task-1-word-clouds"><span class="header-section-number">1.14.1</span> Task 1 Word clouds</a></li>
+  <li><a href="#task-2-wordclouds-and-network-analysis" id="toc-task-2-wordclouds-and-network-analysis" class="nav-link" data-scroll-target="#task-2-wordclouds-and-network-analysis"><span class="header-section-number">1.14.2</span> Task 2 wordclouds and network analysis</a></li>
+  <li><a href="#task-3-keyness-analysis" id="toc-task-3-keyness-analysis" class="nav-link" data-scroll-target="#task-3-keyness-analysis"><span class="header-section-number">1.14.3</span> Task 3 keyness analysis</a></li>
+  <li><a href="#task-4-lexical-disperssion-plot" id="toc-task-4-lexical-disperssion-plot" class="nav-link" data-scroll-target="#task-4-lexical-disperssion-plot"><span class="header-section-number">1.14.4</span> Task 4 lexical disperssion plot</a></li>
   </ul>
 </li>
   </ul>
@@ -809,7 +810,7 @@ Tip
 <span id="cb16-8"><a href="#cb16-8"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Occurrences of 'dad' in CHILDES corpus"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
-<figure class="figure"><p><img src="A9-Corpus_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid figure-img" style="width:95.0%"></p>
+<figure class="figure"><p><img src="A9-Corpus_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid figure-img" style="width:95.0%"></p>
 </figure>
 </div>
 </div>
@@ -901,7 +902,7 @@ Tip
 <span id="cb23-2"><a href="#cb23-2"></a></span>
 <span id="cb23-3"><a href="#cb23-3"></a>word_frequencies_df <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(word_frequencies)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>A useful feature is to be able to add a grouping varibale when doing word counts. For example, we can group by file, using the <code>dfm_group()</code> function.</p>
+<p>A useful feature is to be able to add a grouping variable when doing word counts. For example, we can group by file, using the <code>dfm_group()</code> function.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1"></a><span class="co"># Create a document-feature matrix (DFM) grouped by transcript </span></span>
 <span id="cb24-2"><a href="#cb24-2"></a></span>
@@ -1043,7 +1044,7 @@ scotland                     1
 <span id="cb32-14"><a href="#cb32-14"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
-<figure class="figure"><p><img src="A9-Corpus_files/figure-html/unnamed-chunk-20-1.png" class="img-fluid figure-img" style="width:95.0%"></p>
+<figure class="figure"><p><img src="A9-Corpus_files/figure-html/unnamed-chunk-21-1.png" class="img-fluid figure-img" style="width:95.0%"></p>
 </figure>
 </div>
 </div>
@@ -1061,7 +1062,7 @@ scotland                     1
 <span id="cb33-12"><a href="#cb33-12"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
-<figure class="figure"><p><img src="A9-Corpus_files/figure-html/unnamed-chunk-20-2.png" class="img-fluid figure-img" style="width:95.0%"></p>
+<figure class="figure"><p><img src="A9-Corpus_files/figure-html/unnamed-chunk-21-2.png" class="img-fluid figure-img" style="width:95.0%"></p>
 </figure>
 </div>
 </div>
@@ -1130,7 +1131,7 @@ scotland                     1
 <span id="cb36-20"><a href="#cb36-20"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
-<figure class="figure"><p><img src="A9-Corpus_files/figure-html/unnamed-chunk-21-1.png" class="img-fluid figure-img" style="width:95.0%"></p>
+<figure class="figure"><p><img src="A9-Corpus_files/figure-html/unnamed-chunk-22-1.png" class="img-fluid figure-img" style="width:95.0%"></p>
 </figure>
 </div>
 </div>
@@ -1163,8 +1164,10 @@ docs                      parent colour
   CHILDES_Gathburn_13.txt      4     20</code></pre>
 </div>
 </div>
-</section></section><section id="word-clouds" class="level2" data-number="1.6"><h2 data-number="1.6" class="anchored" data-anchor-id="word-clouds">
-<span class="header-section-number">1.6</span> Word clouds</h2>
+</section></section><section id="words-that-co-occur" class="level2" data-number="1.6"><h2 data-number="1.6" class="anchored" data-anchor-id="words-that-co-occur">
+<span class="header-section-number">1.6</span> Words that co-occur</h2>
+</section><section id="word-clouds" class="level2" data-number="1.7"><h2 data-number="1.7" class="anchored" data-anchor-id="word-clouds">
+<span class="header-section-number">1.7</span> Word clouds</h2>
 <p>A common way to visualise word frequencies is to use a word cloud. A word cloud is a visual representation of text data, where the size of each word indicates its frequency in the text. The <code>quanteda.textplots</code> package can be used to create word clouds in R.</p>
 <p>The code below shows how to create a word cloud from the <code>CHILDES_tokens_no_stop</code> object. The <code>text_plotwordcloud</code> function is used to create the word cloud from a ‘dfm’ object. The <code>dim.trim</code> function is used to set the minimum frequency of words to include in the word cloud. If low frequencies words are left in, the word cloud is hard to read. The <code>min_termfreq</code> argument is used to set the minimum frequency of words to include in the word cloud. The <code>textplot_wordcloud</code> function is used to create the word cloud.</p>
 <div class="cell">
@@ -1194,7 +1197,7 @@ docs                      parent colour
 <span id="cb39-24"><a href="#cb39-24"></a><span class="fu">textplot_wordcloud</span>(dfm) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
-<figure class="figure"><p><img src="A9-Corpus_files/figure-html/unnamed-chunk-23-1.png" class="img-fluid figure-img" style="width:95.0%"></p>
+<figure class="figure"><p><img src="A9-Corpus_files/figure-html/unnamed-chunk-24-1.png" class="img-fluid figure-img" style="width:95.0%"></p>
 </figure>
 </div>
 </div>
@@ -1206,7 +1209,7 @@ docs                      parent colour
 <span id="cb40-3"><a href="#cb40-3"></a><span class="fu">textplot_wordcloud</span>(dfm, <span class="at">color =</span><span class="fu">c</span>(<span class="st">"lightblue"</span>, <span class="st">"skyblue"</span>, <span class="st">"blue"</span>, <span class="st">"darkblue"</span>)) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
-<figure class="figure"><p><img src="A9-Corpus_files/figure-html/unnamed-chunk-24-1.png" class="img-fluid figure-img" style="width:95.0%"></p>
+<figure class="figure"><p><img src="A9-Corpus_files/figure-html/unnamed-chunk-25-1.png" class="img-fluid figure-img" style="width:95.0%"></p>
 </figure>
 </div>
 </div>
@@ -1218,13 +1221,13 @@ docs                      parent colour
 <span id="cb41-3"><a href="#cb41-3"></a><span class="fu">textplot_wordcloud</span>(dfm, <span class="at">comparison =</span> <span class="cn">TRUE</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
-<figure class="figure"><p><img src="A9-Corpus_files/figure-html/unnamed-chunk-25-1.png" class="img-fluid figure-img" style="width:95.0%"></p>
+<figure class="figure"><p><img src="A9-Corpus_files/figure-html/unnamed-chunk-26-1.png" class="img-fluid figure-img" style="width:95.0%"></p>
 </figure>
 </div>
 </div>
 </div>
-</section><section id="lexical-dispersion-plots" class="level2" data-number="1.7"><h2 data-number="1.7" class="anchored" data-anchor-id="lexical-dispersion-plots">
-<span class="header-section-number">1.7</span> Lexical dispersion plots</h2>
+</section><section id="lexical-dispersion-plots" class="level2" data-number="1.8"><h2 data-number="1.8" class="anchored" data-anchor-id="lexical-dispersion-plots">
+<span class="header-section-number">1.8</span> Lexical dispersion plots</h2>
 <p>Lexical dispersion plots are a way to visualise the distribution of words in a text. The <code>textplot_xray</code> function from the <code>quanteda.textplots</code> package can be used to create lexical dispersion plots in R. The code below shows how to create a lexical dispersion plot from the <code>CHILDES_tokens_no_stop</code> object. The <code>textplot_xray</code> function is used to create the lexical dispersion plot. Notice <code>kwic</code> search is first used and the <code>regex</code> arguments introduced above can be applied. The plot shows the occuranve of words over time in the transcripts.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb42"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1"></a><span class="fu">library</span>(quanteda.textplots)</span>
@@ -1236,7 +1239,7 @@ docs                      parent colour
 <span id="cb42-7"><a href="#cb42-7"></a>    <span class="fu">textplot_xray</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
-<figure class="figure"><p><img src="A9-Corpus_files/figure-html/unnamed-chunk-26-1.png" class="img-fluid figure-img" style="width:95.0%"></p>
+<figure class="figure"><p><img src="A9-Corpus_files/figure-html/unnamed-chunk-27-1.png" class="img-fluid figure-img" style="width:95.0%"></p>
 </figure>
 </div>
 </div>
@@ -1250,13 +1253,13 @@ docs                      parent colour
 <span id="cb43-5"><a href="#cb43-5"></a><span class="fu">kwic</span>(CHILDES_tokens_no_stop, <span class="at">pattern =</span> <span class="st">"like"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
-<figure class="figure"><p><img src="A9-Corpus_files/figure-html/unnamed-chunk-27-1.png" class="img-fluid figure-img" style="width:95.0%"></p>
+<figure class="figure"><p><img src="A9-Corpus_files/figure-html/unnamed-chunk-28-1.png" class="img-fluid figure-img" style="width:95.0%"></p>
 </figure>
 </div>
 </div>
 </div>
-</section><section id="network-analysis" class="level2" data-number="1.8"><h2 data-number="1.8" class="anchored" data-anchor-id="network-analysis">
-<span class="header-section-number">1.8</span> Network analysis</h2>
+</section><section id="network-analysis" class="level2" data-number="1.9"><h2 data-number="1.9" class="anchored" data-anchor-id="network-analysis">
+<span class="header-section-number">1.9</span> Network analysis</h2>
 <p>Quanteda can plot a ‘dfm’ object to show the relationship between words. The <code>textplot_network</code> function can be used to create a network plot from a ‘dfm’ object. The code below shows how to create a network plot from the <code>CHILDES_tokens_no_stop</code> object. The <code>textplot_network</code> function is used to create the network plot. The <code>min_freq</code> argument is used to set the minimum frequency of words to include in the network plot. It is important to set a sensible threshold for <code>min_freq</code> to prevent the chart becoming cluttered.</p>
 <p>Additional arguments are used to format the plot:</p>
 <p>• <code>edge_size</code> sets the size of the edges in the network plot. • <code>edge_color</code> is used to set the colour of the edges in the network plot. • <code>vertex_size</code> determines the size of the vertices in the network plot. • <code>vertex_labelsize</code> sets the size of the vertex labels in the network plot. • <code>vertex_labelcolor</code> is used to set the colour of the vertex labels in the network plot. • <code>vertex_color</code> sets the colour of the vertices in the network plot. • <code>vertex_alpha</code> sets the transparency of the vertices in the network plot. • <code>repel</code> is used to set whether the vertices should be repelled from each other in the network plot. • <code>seed</code> is used to set the seed for the random number generator in the network plot.</p>
@@ -1264,13 +1267,13 @@ docs                      parent colour
 <div class="sourceCode cell-code" id="cb44"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1"></a><span class="fu">textplot_network</span>(dfm, <span class="at">min_freq =</span> <span class="dv">3000</span>, <span class="at">edge_size =</span> <span class="fl">0.5</span>, <span class="at">edge_color =</span> <span class="st">"grey"</span>, <span class="at">vertex_size =</span> <span class="fl">0.5</span>, <span class="at">vertex_labelsize =</span> <span class="dv">5</span>, <span class="at">vertex_labelcolor =</span> <span class="st">"black"</span>, <span class="at">vertex_color =</span> <span class="st">"lightblue"</span>, <span class="at">vertex_alpha =</span> <span class="fl">0.5</span>, <span class="at">repel =</span> <span class="cn">TRUE</span>, <span class="at">seed =</span> <span class="dv">1234</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
-<figure class="figure"><p><img src="A9-Corpus_files/figure-html/unnamed-chunk-28-1.png" class="img-fluid figure-img" style="width:95.0%"></p>
+<figure class="figure"><p><img src="A9-Corpus_files/figure-html/unnamed-chunk-29-1.png" class="img-fluid figure-img" style="width:95.0%"></p>
 </figure>
 </div>
 </div>
 </div>
-</section><section id="sentiment-analysis" class="level2" data-number="1.9"><h2 data-number="1.9" class="anchored" data-anchor-id="sentiment-analysis">
-<span class="header-section-number">1.9</span> Sentiment analysis</h2>
+</section><section id="sentiment-analysis" class="level2" data-number="1.10"><h2 data-number="1.10" class="anchored" data-anchor-id="sentiment-analysis">
+<span class="header-section-number">1.10</span> Sentiment analysis</h2>
 <p>Sentiment analysis is a way to determine the emotional tone behind a series of words. The <code>syuzhet</code> package can be used to perform sentiment analysis in R. The package uses a dictionary-based approach to sentiment analysis. Words are assigned a score based on their emotional valence, with positive words having a positive score and negative words having a negative score. The scores are then aggregated to give an overall measure of the emotional tone of the text.</p>
 <p>The package uses the <a href="https://saifmohammad.com/WebPages/NRC-Emotion-Lexicon.htm">NRC lexicon</a> a list of words and their associations with eight emotions (emotions (anger, fear, anticipation, trust, surprise, sadness, joy, and disgust) and two sentiments (negative and positive). The categorisations were achieved through a crowd sourcing process. You can see some of the categorisations below:</p>
 <div class="cell">
@@ -1342,13 +1345,13 @@ docs                      parent colour
 <span id="cb49-11"><a href="#cb49-11"></a>  <span class="fu">theme_minimal</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
-<figure class="figure"><p><img src="A9-Corpus_files/figure-html/unnamed-chunk-31-1.png" class="img-fluid figure-img" style="width:95.0%"></p>
+<figure class="figure"><p><img src="A9-Corpus_files/figure-html/unnamed-chunk-32-1.png" class="img-fluid figure-img" style="width:95.0%"></p>
 </figure>
 </div>
 </div>
 </div>
-</section><section id="comparison-of-sameness-of-documents" class="level2" data-number="1.10"><h2 data-number="1.10" class="anchored" data-anchor-id="comparison-of-sameness-of-documents">
-<span class="header-section-number">1.10</span> Comparison of sameness of documents</h2>
+</section><section id="comparison-of-sameness-of-documents" class="level2" data-number="1.11"><h2 data-number="1.11" class="anchored" data-anchor-id="comparison-of-sameness-of-documents">
+<span class="header-section-number">1.11</span> Comparison of sameness of documents</h2>
 <p>Similarity analysis is a way to compare the similarity of two or more documents. The <code>textstat_simil</code> function from the <code>quanteda.textstats</code> package can be used to perform similarity analysis in R. The code below shows how to perform similarity analysis on two party manifestos. First a document feature matrix object, grouped by party, is created. Then <code>textstat_simil</code> function is used to perform similarity analysis. The <code>as.matrix</code> function is used to convert the similarity analysis results to a matrix. A score of 1.0 indicates texts are identical, and 0 indicates they are completely distinct. The <code>heatmap</code> function is used to plot the similarity analysis results.</p>
 <p>As an example we will use manifesto text from a corpus of political party manifestos. The manifestos come from: <a href="https://visuals.manifesto-project.wzb.eu">The Manifesto Corpus version 2024-1</a>, :Lehmann, Pola / Franzmann, Simon / Al-Gaddooa, Denise / Burst, Tobias / Ivanusch, Christoph / Lewandowski, Jirka / Regel, Sven / Riethmüller, Felicia / Zehnter, Lisa (2024): Manifesto Corpus. Version: 2024-1. Berlin: WZB Berlin Social Science Center/Göttingen: Institute for Democracy Research (IfDem).</p>
 <p>You can download the 2019 <a href="https://emckclac-my.sharepoint.com/:t:/g/personal/k1926273_kcl_ac_uk/ETJJtTMpTpVJugbeZZW-QLcBq2ohTlfBY12N53JiFJB77Q?e=rUVeW4">labour</a> and <a href="https://emckclac-my.sharepoint.com/:t:/g/personal/k1926273_kcl_ac_uk/ERFqltmtfbJEm1zFjSPbym0BALUbAsZELyc8jXNETC3YCw?e=BctGQc">conservative</a> <a href="https://emckclac-my.sharepoint.com/:t:/g/personal/k1926273_kcl_ac_uk/ERm6iEG-_eJLt21KhlFyeFMBrhEOP2OELeSMbs-94ORKgg?e=y3nHCj">Liberal Democrat</a> <a href="https://emckclac-my.sharepoint.com/:t:/g/personal/k1926273_kcl_ac_uk/EetvkGADcAdNlrnpVpoylPMB5rryzH4gk3ZgwxXLizJ48g?e=J31XhN">Scottish National</a>, <a href="https://emckclac-my.sharepoint.com/:t:/g/personal/k1926273_kcl_ac_uk/ETHtdiwCrX9Pqf6IcCng8usBm4Kp9JIpZYOihN6XBDet1A?e=awz7W9">Plaid Cymru</a>, <a href="https://emckclac-my.sharepoint.com/:x:/g/personal/k1926273_kcl_ac_uk/EZYIyHnug4ZIowPZO1a5_OcBQNZGbJK0l-RfdxwWmOCsUw?e=yRelvq">Green Party</a>, <a href="https://emckclac-my.sharepoint.com/:t:/g/personal/k1926273_kcl_ac_uk/EcQMMH1unTVImkjpr-P_JiMBUASaId-_GeGP1jdUYEwBpw?e=65GckY">Democatic Unionist Party</a> manifestos here.</p>
@@ -1403,13 +1406,13 @@ Liberal_democrat   0.9825760 0.9772731
 <span id="cb53-3"><a href="#cb53-3"></a><span class="fu">heatmap</span>(mat_sim, <span class="at">cexRow =</span> <span class="fl">0.7</span>, <span class="at">cexCol =</span> <span class="fl">0.7</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
-<figure class="figure"><p><img src="A9-Corpus_files/figure-html/unnamed-chunk-33-1.png" class="img-fluid figure-img" style="width:95.0%"></p>
+<figure class="figure"><p><img src="A9-Corpus_files/figure-html/unnamed-chunk-34-1.png" class="img-fluid figure-img" style="width:95.0%"></p>
 </figure>
 </div>
 </div>
 </div>
-</section><section id="keyness" class="level2" data-number="1.11"><h2 data-number="1.11" class="anchored" data-anchor-id="keyness">
-<span class="header-section-number">1.11</span> Keyness</h2>
+</section><section id="keyness" class="level2" data-number="1.12"><h2 data-number="1.12" class="anchored" data-anchor-id="keyness">
+<span class="header-section-number">1.12</span> Keyness</h2>
 <p>Keyness analysis is a way to identify words that are significantly more frequent in one text compared to another. The <code>textstat_keyness</code> function from the <code>quanteda.textstats</code> package can be used to perform keyness analysis in R. The code below shows how to perform keyness analysis on two texts. The <code>textstat_keyness</code> function is used to perform keyness analysis. The <code>target</code> argument is used to specify the texts to compare against. The results are plotted using the <code>textplot_keyness</code> function, specifying the number of words to plot with the <code>n</code> argument and the colours to use with the <code>color</code> argument.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb54"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1"></a><span class="fu">library</span>(quanteda.textplots)</span>
@@ -1443,13 +1446,13 @@ Liberal_democrat   0.9825760 0.9772731
 <span id="cb54-29"><a href="#cb54-29"></a><span class="fu">textplot_keyness</span>(keyness_stat, <span class="at">color =</span> <span class="fu">c</span>(<span class="st">"green"</span>, <span class="st">"red"</span>), <span class="at">n =</span> <span class="dv">20</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
-<figure class="figure"><p><img src="A9-Corpus_files/figure-html/unnamed-chunk-34-1.png" class="img-fluid figure-img" style="width:95.0%"></p>
+<figure class="figure"><p><img src="A9-Corpus_files/figure-html/unnamed-chunk-35-1.png" class="img-fluid figure-img" style="width:95.0%"></p>
 </figure>
 </div>
 </div>
 </div>
-</section><section id="topic-models" class="level2" data-number="1.12"><h2 data-number="1.12" class="anchored" data-anchor-id="topic-models">
-<span class="header-section-number">1.12</span> Topic models</h2>
+</section><section id="topic-models" class="level2" data-number="1.13"><h2 data-number="1.13" class="anchored" data-anchor-id="topic-models">
+<span class="header-section-number">1.13</span> Topic models</h2>
 <p>Topics modelling is an approach that attempts to find clusters of words that occur - these clusters can be thought of as topics in the text. For example, in a manifesto, the words industry, workers, energy, manufacturing may co-occur and be thought to relate to industrial policy. Topic modelling can use a number of different algorithms to define clusters of words, one of the most common is Latent Dirichlet Allocation (LDA). To perform a LDA topic model, you can use the <code>seededlda</code> package. The topic modelling is performed using the function <code>textmodel_lda(&lt;dfmat_object&gt;, k = &lt;number of desired clusters&gt;)</code></p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb55"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a href="#cb55-1"></a><span class="fu">library</span>(seededlda)</span>
@@ -1457,43 +1460,31 @@ Liberal_democrat   0.9825760 0.9772731
 <span id="cb55-3"><a href="#cb55-3"></a><span class="co"># Using the dfm_mat from above - set number of topics to 5</span></span>
 <span id="cb55-4"><a href="#cb55-4"></a>tmod_con <span class="ot">&lt;-</span> <span class="fu">textmodel_lda</span>(dfmat_manifesto, <span class="at">k =</span> <span class="dv">5</span>)</span>
 <span id="cb55-5"><a href="#cb55-5"></a><span class="fu">terms</span>(tmod_con)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>      topic1          topic2      topic3       topic4           topic5   
- [1,] "labour"        "rates"     "na"         "develop"        "green"  
- [2,] "review"        "young"     "people"     "life"           "new"    
- [3,] "tories"        "place"     "public"     "least"          "tax"    
- [4,] "conservatives" "given"     "government" "changes"        "deal"   
- [5,] "standards"     "allow"     "ensure"     "discrimination" "billion"
- [6,] "care"          "healthy"   "new"        "share"          "local"  
- [7,] "employers"     "uk’s"      "uk"         "local"          "carbon" 
- [8,] "police"        "committed" "support"    "animal"         "income" 
- [ reached getOption("max.print") -- omitted 2 rows ]</code></pre>
 </div>
-</div>
-</section><section id="seminar-activities" class="level2" data-number="1.13"><h2 data-number="1.13" class="anchored" data-anchor-id="seminar-activities">
-<span class="header-section-number">1.13</span> Seminar activities</h2>
+</section><section id="seminar-activities" class="level2" data-number="1.14"><h2 data-number="1.14" class="anchored" data-anchor-id="seminar-activities">
+<span class="header-section-number">1.14</span> Seminar activities</h2>
 <p>The first tasks use the election manifesto corpus. The manifestos come from: <a href="https://visuals.manifesto-project.wzb.eu">The Manifesto Corpus version 2024-1</a>, :Lehmann, Pola / Franzmann, Simon / Al-Gaddooa, Denise / Burst, Tobias / Ivanusch, Christoph / Lewandowski, Jirka / Regel, Sven / Riethmüller, Felicia / Zehnter, Lisa (2024): Manifesto Corpus. Version: 2024-1. Berlin: WZB Berlin Social Science Center/Göttingen: Institute for Democracy Research (IfDem).</p>
 <p>You can download the 2019 <a href="https://emckclac-my.sharepoint.com/:t:/g/personal/k1926273_kcl_ac_uk/ETJJtTMpTpVJugbeZZW-QLcBq2ohTlfBY12N53JiFJB77Q?e=rUVeW4">labour</a> and <a href="https://emckclac-my.sharepoint.com/:t:/g/personal/k1926273_kcl_ac_uk/ERFqltmtfbJEm1zFjSPbym0BALUbAsZELyc8jXNETC3YCw?e=BctGQc">conservative</a> <a href="https://emckclac-my.sharepoint.com/:t:/g/personal/k1926273_kcl_ac_uk/ERm6iEG-_eJLt21KhlFyeFMBrhEOP2OELeSMbs-94ORKgg?e=y3nHCj">Liberal Democrat</a> <a href="https://emckclac-my.sharepoint.com/:t:/g/personal/k1926273_kcl_ac_uk/EetvkGADcAdNlrnpVpoylPMB5rryzH4gk3ZgwxXLizJ48g?e=J31XhN">Scottish National</a>, <a href="https://emckclac-my.sharepoint.com/:t:/g/personal/k1926273_kcl_ac_uk/ETHtdiwCrX9Pqf6IcCng8usBm4Kp9JIpZYOihN6XBDet1A?e=awz7W9">Plaid Cymru</a>, <a href="https://emckclac-my.sharepoint.com/:x:/g/personal/k1926273_kcl_ac_uk/EZYIyHnug4ZIowPZO1a5_OcBQNZGbJK0l-RfdxwWmOCsUw?e=yRelvq">Green Party</a>, <a href="https://emckclac-my.sharepoint.com/:t:/g/personal/k1926273_kcl_ac_uk/EcQMMH1unTVImkjpr-P_JiMBUASaId-_GeGP1jdUYEwBpw?e=65GckY">Democatic Unionist Party</a> manifestos here.</p>
-<section id="task-1-word-clouds" class="level3" data-number="1.13.1"><h3 data-number="1.13.1" class="anchored" data-anchor-id="task-1-word-clouds">
-<span class="header-section-number">1.13.1</span> Task 1 Word clouds</h3>
+<section id="task-1-word-clouds" class="level3" data-number="1.14.1"><h3 data-number="1.14.1" class="anchored" data-anchor-id="task-1-word-clouds">
+<span class="header-section-number">1.14.1</span> Task 1 Word clouds</h3>
 <div class="question">
 <p>Download the manifesto texts for the parties. Create a corpus object from the texts. Add metadata to the corpus object to indicate the party of each manifesto. Create a document-feature matrix (DFM) from the corpus object. Produce a table and a graph of the counts of words by frequency.</p>
 <p>Hint - when you prepare the data frame for plotting you will want to convert the rownames in the dfm object dataframe to a new column - you can do that with: <code>word_frequencies_df &lt;- word_frequencies_df %&gt;% mutate(feat = rownames(word_frequencies_df))</code>. To make the graph look reasonable you will also need to filter the data frame to get only the top words by frequency.</p>
 </div>
 <div class="cell">
-<details class="code-fold"><summary>Answer</summary><div class="sourceCode cell-code" id="cb57"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a href="#cb57-1"></a><span class="co"># Load the manifestos</span></span>
-<span id="cb57-2"><a href="#cb57-2"></a></span>
-<span id="cb57-3"><a href="#cb57-3"></a><span class="co"># manifesto_text &lt;- readtext(glue("&lt;your manifesto text file folder&gt;")) </span></span>
-<span id="cb57-4"><a href="#cb57-4"></a></span>
-<span id="cb57-5"><a href="#cb57-5"></a><span class="co"># Create a corpus object</span></span>
-<span id="cb57-6"><a href="#cb57-6"></a></span>
-<span id="cb57-7"><a href="#cb57-7"></a>manifesto_corpus <span class="ot">&lt;-</span> <span class="fu">corpus</span>(manifesto_text)</span>
-<span id="cb57-8"><a href="#cb57-8"></a></span>
-<span id="cb57-9"><a href="#cb57-9"></a><span class="co"># Add metadata to the corpus object</span></span>
-<span id="cb57-10"><a href="#cb57-10"></a></span>
-<span id="cb57-11"><a href="#cb57-11"></a><span class="fu">docvars</span>(manifesto_corpus, <span class="st">"party"</span>) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"conserative"</span>, <span class="st">"DUP"</span>, <span class="st">"Green,"</span>, <span class="st">"Labour"</span>, <span class="st">"Liberal_democrat"</span>, <span class="st">"Plaid_cymru"</span>, <span class="st">"SNP"</span>)</span>
-<span id="cb57-12"><a href="#cb57-12"></a></span>
-<span id="cb57-13"><a href="#cb57-13"></a><span class="fu">summary</span>(manifesto_corpus)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<details class="code-fold"><summary>Answer</summary><div class="sourceCode cell-code" id="cb56"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1"></a><span class="co"># Load the manifestos</span></span>
+<span id="cb56-2"><a href="#cb56-2"></a></span>
+<span id="cb56-3"><a href="#cb56-3"></a><span class="co"># manifesto_text &lt;- readtext(glue("&lt;your manifesto text file folder&gt;")) </span></span>
+<span id="cb56-4"><a href="#cb56-4"></a></span>
+<span id="cb56-5"><a href="#cb56-5"></a><span class="co"># Create a corpus object</span></span>
+<span id="cb56-6"><a href="#cb56-6"></a></span>
+<span id="cb56-7"><a href="#cb56-7"></a>manifesto_corpus <span class="ot">&lt;-</span> <span class="fu">corpus</span>(manifesto_text)</span>
+<span id="cb56-8"><a href="#cb56-8"></a></span>
+<span id="cb56-9"><a href="#cb56-9"></a><span class="co"># Add metadata to the corpus object</span></span>
+<span id="cb56-10"><a href="#cb56-10"></a></span>
+<span id="cb56-11"><a href="#cb56-11"></a><span class="fu">docvars</span>(manifesto_corpus, <span class="st">"party"</span>) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"conserative"</span>, <span class="st">"DUP"</span>, <span class="st">"Green,"</span>, <span class="st">"Labour"</span>, <span class="st">"Liberal_democrat"</span>, <span class="st">"Plaid_cymru"</span>, <span class="st">"SNP"</span>)</span>
+<span id="cb56-12"><a href="#cb56-12"></a></span>
+<span id="cb56-13"><a href="#cb56-13"></a><span class="fu">summary</span>(manifesto_corpus)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div class="cell-output cell-output-stdout">
 <pre><code>Corpus consisting of 7 documents, showing 7 documents:
 
@@ -1506,40 +1497,40 @@ Liberal_democrat   0.9825760 0.9772731
  plaid_cymru_manifesto.txt  3870  30239        37      Plaid_cymru
          SNP_manifesto.txt  3596  35561        16              SNP</code></pre>
 </div>
-<details class="code-fold"><summary>Answer</summary><div class="sourceCode cell-code" id="cb59"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb59-1"><a href="#cb59-1"></a><span class="co"># Create a dfm grouped by party</span></span>
-<span id="cb59-2"><a href="#cb59-2"></a></span>
-<span id="cb59-3"><a href="#cb59-3"></a>dfmat_manifesto <span class="ot">&lt;-</span> <span class="fu">tokens</span>(manifesto_corpus) <span class="sc">%&gt;%</span></span>
-<span id="cb59-4"><a href="#cb59-4"></a>  <span class="fu">tokens_group</span>(<span class="at">groups =</span> party) <span class="sc">%&gt;%</span></span>
-<span id="cb59-5"><a href="#cb59-5"></a>  <span class="fu">dfm</span>()</span>
-<span id="cb59-6"><a href="#cb59-6"></a></span>
-<span id="cb59-7"><a href="#cb59-7"></a><span class="co"># Get word frequencies</span></span>
-<span id="cb59-8"><a href="#cb59-8"></a></span>
-<span id="cb59-9"><a href="#cb59-9"></a>word_frequencies <span class="ot">&lt;-</span> <span class="fu">featfreq</span>(dfmat_manifesto)</span>
-<span id="cb59-10"><a href="#cb59-10"></a></span>
-<span id="cb59-11"><a href="#cb59-11"></a><span class="co"># Convert to dataframe</span></span>
-<span id="cb59-12"><a href="#cb59-12"></a></span>
-<span id="cb59-13"><a href="#cb59-13"></a>word_frequencies_df <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(word_frequencies)</span>
-<span id="cb59-14"><a href="#cb59-14"></a></span>
-<span id="cb59-15"><a href="#cb59-15"></a><span class="co"># Prepare the data for plotting by adding a column for features</span></span>
-<span id="cb59-16"><a href="#cb59-16"></a><span class="co"># Arrange by frequency and select the top 20 words</span></span>
-<span id="cb59-17"><a href="#cb59-17"></a></span>
-<span id="cb59-18"><a href="#cb59-18"></a>word_frequencies_df <span class="ot">&lt;-</span> word_frequencies_df <span class="sc">%&gt;%</span></span>
-<span id="cb59-19"><a href="#cb59-19"></a>  <span class="fu">mutate</span>(<span class="at">feat =</span> <span class="fu">rownames</span>(word_frequencies_df)) <span class="sc">%&gt;%</span></span>
-<span id="cb59-20"><a href="#cb59-20"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(word_frequencies)) <span class="sc">%&gt;%</span></span>
-<span id="cb59-21"><a href="#cb59-21"></a>  <span class="fu">slice_head</span>(<span class="at">n =</span> <span class="dv">20</span>)</span>
-<span id="cb59-22"><a href="#cb59-22"></a></span>
-<span id="cb59-23"><a href="#cb59-23"></a></span>
-<span id="cb59-24"><a href="#cb59-24"></a><span class="co"># Plot the word frequencies</span></span>
-<span id="cb59-25"><a href="#cb59-25"></a></span>
-<span id="cb59-26"><a href="#cb59-26"></a><span class="fu">ggplot</span>(word_frequencies_df, <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">reorder</span>(feat, <span class="sc">-</span> word_frequencies), <span class="at">y =</span> word_frequencies, <span class="at">fill =</span> feat)) <span class="sc">+</span></span>
-<span id="cb59-27"><a href="#cb59-27"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">"identity"</span>) <span class="sc">+</span></span>
-<span id="cb59-28"><a href="#cb59-28"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
-<span id="cb59-29"><a href="#cb59-29"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Word frequencies in the manifestos"</span>) <span class="sc">+</span></span>
-<span id="cb59-30"><a href="#cb59-30"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Word"</span>, <span class="at">y =</span> <span class="st">"Frequency"</span>) <span class="sc">+</span></span>
-<span id="cb59-31"><a href="#cb59-31"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<details class="code-fold"><summary>Answer</summary><div class="sourceCode cell-code" id="cb58"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a href="#cb58-1"></a><span class="co"># Create a dfm grouped by party</span></span>
+<span id="cb58-2"><a href="#cb58-2"></a></span>
+<span id="cb58-3"><a href="#cb58-3"></a>dfmat_manifesto <span class="ot">&lt;-</span> <span class="fu">tokens</span>(manifesto_corpus) <span class="sc">%&gt;%</span></span>
+<span id="cb58-4"><a href="#cb58-4"></a>  <span class="fu">tokens_group</span>(<span class="at">groups =</span> party) <span class="sc">%&gt;%</span></span>
+<span id="cb58-5"><a href="#cb58-5"></a>  <span class="fu">dfm</span>()</span>
+<span id="cb58-6"><a href="#cb58-6"></a></span>
+<span id="cb58-7"><a href="#cb58-7"></a><span class="co"># Get word frequencies</span></span>
+<span id="cb58-8"><a href="#cb58-8"></a></span>
+<span id="cb58-9"><a href="#cb58-9"></a>word_frequencies <span class="ot">&lt;-</span> <span class="fu">featfreq</span>(dfmat_manifesto)</span>
+<span id="cb58-10"><a href="#cb58-10"></a></span>
+<span id="cb58-11"><a href="#cb58-11"></a><span class="co"># Convert to dataframe</span></span>
+<span id="cb58-12"><a href="#cb58-12"></a></span>
+<span id="cb58-13"><a href="#cb58-13"></a>word_frequencies_df <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(word_frequencies)</span>
+<span id="cb58-14"><a href="#cb58-14"></a></span>
+<span id="cb58-15"><a href="#cb58-15"></a><span class="co"># Prepare the data for plotting by adding a column for features</span></span>
+<span id="cb58-16"><a href="#cb58-16"></a><span class="co"># Arrange by frequency and select the top 20 words</span></span>
+<span id="cb58-17"><a href="#cb58-17"></a></span>
+<span id="cb58-18"><a href="#cb58-18"></a>word_frequencies_df <span class="ot">&lt;-</span> word_frequencies_df <span class="sc">%&gt;%</span></span>
+<span id="cb58-19"><a href="#cb58-19"></a>  <span class="fu">mutate</span>(<span class="at">feat =</span> <span class="fu">rownames</span>(word_frequencies_df)) <span class="sc">%&gt;%</span></span>
+<span id="cb58-20"><a href="#cb58-20"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(word_frequencies)) <span class="sc">%&gt;%</span></span>
+<span id="cb58-21"><a href="#cb58-21"></a>  <span class="fu">slice_head</span>(<span class="at">n =</span> <span class="dv">20</span>)</span>
+<span id="cb58-22"><a href="#cb58-22"></a></span>
+<span id="cb58-23"><a href="#cb58-23"></a></span>
+<span id="cb58-24"><a href="#cb58-24"></a><span class="co"># Plot the word frequencies</span></span>
+<span id="cb58-25"><a href="#cb58-25"></a></span>
+<span id="cb58-26"><a href="#cb58-26"></a><span class="fu">ggplot</span>(word_frequencies_df, <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">reorder</span>(feat, <span class="sc">-</span> word_frequencies), <span class="at">y =</span> word_frequencies, <span class="at">fill =</span> feat)) <span class="sc">+</span></span>
+<span id="cb58-27"><a href="#cb58-27"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">"identity"</span>) <span class="sc">+</span></span>
+<span id="cb58-28"><a href="#cb58-28"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb58-29"><a href="#cb58-29"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Word frequencies in the manifestos"</span>) <span class="sc">+</span></span>
+<span id="cb58-30"><a href="#cb58-30"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Word"</span>, <span class="at">y =</span> <span class="st">"Frequency"</span>) <span class="sc">+</span></span>
+<span id="cb58-31"><a href="#cb58-31"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div class="cell-output-display">
 <div>
-<figure class="figure"><p><img src="A9-Corpus_files/figure-html/unnamed-chunk-36-1.png" class="img-fluid figure-img" style="width:95.0%"></p>
+<figure class="figure"><p><img src="A9-Corpus_files/figure-html/unnamed-chunk-37-1.png" class="img-fluid figure-img" style="width:95.0%"></p>
 </figure>
 </div>
 </div>
@@ -1549,19 +1540,19 @@ Liberal_democrat   0.9825760 0.9772731
 <p>This time use <code>tokens_group(groups = party)</code> to create graphs of word frequencies by party.</p>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb60"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb60-1"><a href="#cb60-1"></a><span class="co"># Load the manifestos</span></span>
-<span id="cb60-2"><a href="#cb60-2"></a></span>
-<span id="cb60-3"><a href="#cb60-3"></a><span class="co"># manifesto_text &lt;- readtext(glue("&lt;your manifesto text file folder&gt;")) </span></span>
-<span id="cb60-4"><a href="#cb60-4"></a></span>
-<span id="cb60-5"><a href="#cb60-5"></a><span class="co"># Create a corpus object</span></span>
-<span id="cb60-6"><a href="#cb60-6"></a></span>
-<span id="cb60-7"><a href="#cb60-7"></a>manifesto_corpus <span class="ot">&lt;-</span> <span class="fu">corpus</span>(manifesto_text)</span>
-<span id="cb60-8"><a href="#cb60-8"></a></span>
-<span id="cb60-9"><a href="#cb60-9"></a><span class="co"># Add metadata to the corpus object</span></span>
-<span id="cb60-10"><a href="#cb60-10"></a></span>
-<span id="cb60-11"><a href="#cb60-11"></a><span class="fu">docvars</span>(manifesto_corpus, <span class="st">"party"</span>) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"conserative"</span>, <span class="st">"DUP"</span>, <span class="st">"Green,"</span>, <span class="st">"Labour"</span>, <span class="st">"Liberal_democrat"</span>, <span class="st">"Plaid_cymru"</span>, <span class="st">"SNP"</span>)</span>
-<span id="cb60-12"><a href="#cb60-12"></a></span>
-<span id="cb60-13"><a href="#cb60-13"></a><span class="fu">summary</span>(manifesto_corpus)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb59"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb59-1"><a href="#cb59-1"></a><span class="co"># Load the manifestos</span></span>
+<span id="cb59-2"><a href="#cb59-2"></a></span>
+<span id="cb59-3"><a href="#cb59-3"></a><span class="co"># manifesto_text &lt;- readtext(glue("&lt;your manifesto text file folder&gt;")) </span></span>
+<span id="cb59-4"><a href="#cb59-4"></a></span>
+<span id="cb59-5"><a href="#cb59-5"></a><span class="co"># Create a corpus object</span></span>
+<span id="cb59-6"><a href="#cb59-6"></a></span>
+<span id="cb59-7"><a href="#cb59-7"></a>manifesto_corpus <span class="ot">&lt;-</span> <span class="fu">corpus</span>(manifesto_text)</span>
+<span id="cb59-8"><a href="#cb59-8"></a></span>
+<span id="cb59-9"><a href="#cb59-9"></a><span class="co"># Add metadata to the corpus object</span></span>
+<span id="cb59-10"><a href="#cb59-10"></a></span>
+<span id="cb59-11"><a href="#cb59-11"></a><span class="fu">docvars</span>(manifesto_corpus, <span class="st">"party"</span>) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"conserative"</span>, <span class="st">"DUP"</span>, <span class="st">"Green,"</span>, <span class="st">"Labour"</span>, <span class="st">"Liberal_democrat"</span>, <span class="st">"Plaid_cymru"</span>, <span class="st">"SNP"</span>)</span>
+<span id="cb59-12"><a href="#cb59-12"></a></span>
+<span id="cb59-13"><a href="#cb59-13"></a><span class="fu">summary</span>(manifesto_corpus)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Corpus consisting of 7 documents, showing 7 documents:
 
@@ -1574,108 +1565,108 @@ Liberal_democrat   0.9825760 0.9772731
  plaid_cymru_manifesto.txt  3870  30239        37      Plaid_cymru
          SNP_manifesto.txt  3596  35561        16              SNP</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb62"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb62-1"><a href="#cb62-1"></a><span class="co"># Create a dfm grouped by party</span></span>
+<div class="sourceCode cell-code" id="cb61"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb61-1"><a href="#cb61-1"></a><span class="co"># Create a dfm grouped by party</span></span>
+<span id="cb61-2"><a href="#cb61-2"></a></span>
+<span id="cb61-3"><a href="#cb61-3"></a>custom_stopwords <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"na"</span>, <span class="st">"£"</span>)</span>
+<span id="cb61-4"><a href="#cb61-4"></a></span>
+<span id="cb61-5"><a href="#cb61-5"></a>dfmat_manifesto <span class="ot">&lt;-</span> <span class="fu">tokens</span>(manifesto_corpus, </span>
+<span id="cb61-6"><a href="#cb61-6"></a>                          <span class="at">remove_punct =</span> <span class="cn">TRUE</span>, <span class="at">remove_numbers =</span> <span class="cn">TRUE</span>, <span class="at">remove_symbols =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb61-7"><a href="#cb61-7"></a>  <span class="fu">tokens_remove</span>(<span class="fu">stopwords</span>(<span class="st">"en"</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb61-8"><a href="#cb61-8"></a>  <span class="fu">tokens_remove</span>(custom_stopwords) <span class="sc">%&gt;%</span></span>
+<span id="cb61-9"><a href="#cb61-9"></a>  <span class="fu">tokens_group</span>(<span class="at">groups =</span> party) <span class="sc">%&gt;%</span></span>
+<span id="cb61-10"><a href="#cb61-10"></a>  <span class="fu">dfm</span>()</span>
+<span id="cb61-11"><a href="#cb61-11"></a></span>
+<span id="cb61-12"><a href="#cb61-12"></a><span class="co"># Get word frequencies</span></span>
+<span id="cb61-13"><a href="#cb61-13"></a></span>
+<span id="cb61-14"><a href="#cb61-14"></a>word_frequencies_by_party <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(<span class="fu">as.matrix</span>(dfmat_manifesto))</span>
+<span id="cb61-15"><a href="#cb61-15"></a></span>
+<span id="cb61-16"><a href="#cb61-16"></a><span class="co"># Tidy the columns - delete meta-data</span></span>
+<span id="cb61-17"><a href="#cb61-17"></a></span>
+<span id="cb61-18"><a href="#cb61-18"></a>word_frequencies_by_party <span class="ot">&lt;-</span> word_frequencies_by_party <span class="sc">%&gt;%</span></span>
+<span id="cb61-19"><a href="#cb61-19"></a>  <span class="fu">select</span>(<span class="sc">-</span>text, <span class="sc">-</span>text_en, <span class="sc">-</span>cmp_code, <span class="sc">-</span>eu_code)</span>
+<span id="cb61-20"><a href="#cb61-20"></a></span>
+<span id="cb61-21"><a href="#cb61-21"></a><span class="co"># Get a total count of words across party</span></span>
+<span id="cb61-22"><a href="#cb61-22"></a><span class="co"># Prepare the data for plotting by adding a column for features</span></span>
+<span id="cb61-23"><a href="#cb61-23"></a><span class="co"># Arrange by frequency and select the top 20 words</span></span>
+<span id="cb61-24"><a href="#cb61-24"></a></span>
+<span id="cb61-25"><a href="#cb61-25"></a>word_frequencies_total <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(<span class="fu">colSums</span>(word_frequencies_by_party)) </span>
+<span id="cb61-26"><a href="#cb61-26"></a></span>
+<span id="cb61-27"><a href="#cb61-27"></a><span class="co"># add column `feat` with rownames</span></span>
+<span id="cb61-28"><a href="#cb61-28"></a>word_frequencies_total<span class="sc">$</span>feat <span class="ot">&lt;-</span> <span class="fu">rownames</span>(word_frequencies_total)</span>
+<span id="cb61-29"><a href="#cb61-29"></a></span>
+<span id="cb61-30"><a href="#cb61-30"></a>word_frequencies_total <span class="ot">&lt;-</span> word_frequencies_total <span class="sc">%&gt;%</span></span>
+<span id="cb61-31"><a href="#cb61-31"></a>  <span class="fu">rename</span>(<span class="at">word_frequencies =</span> <span class="st">"colSums(word_frequencies_by_party)"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb61-32"><a href="#cb61-32"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(word_frequencies)) <span class="sc">%&gt;%</span></span>
+<span id="cb61-33"><a href="#cb61-33"></a>  <span class="fu">slice_head</span>(<span class="at">n =</span> <span class="dv">20</span>)</span>
+<span id="cb61-34"><a href="#cb61-34"></a></span>
+<span id="cb61-35"><a href="#cb61-35"></a></span>
+<span id="cb61-36"><a href="#cb61-36"></a><span class="co"># Plot the word frequencies</span></span>
+<span id="cb61-37"><a href="#cb61-37"></a></span>
+<span id="cb61-38"><a href="#cb61-38"></a><span class="fu">ggplot</span>(word_frequencies_total, <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">reorder</span>(feat, <span class="sc">-</span> word_frequencies), <span class="at">y =</span> word_frequencies, <span class="at">fill =</span> feat)) <span class="sc">+</span></span>
+<span id="cb61-39"><a href="#cb61-39"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">"identity"</span>) <span class="sc">+</span></span>
+<span id="cb61-40"><a href="#cb61-40"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb61-41"><a href="#cb61-41"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Word frequencies in all the manifestos"</span>) <span class="sc">+</span></span>
+<span id="cb61-42"><a href="#cb61-42"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Word"</span>, <span class="at">y =</span> <span class="st">"Frequency"</span>) <span class="sc">+</span></span>
+<span id="cb61-43"><a href="#cb61-43"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>) <span class="sc">+</span></span>
+<span id="cb61-44"><a href="#cb61-44"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">90</span>, <span class="at">vjust =</span> <span class="fl">0.5</span>, <span class="at">hjust =</span> <span class="dv">1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure"><p><img src="A9-Corpus_files/figure-html/unnamed-chunk-38-1.png" class="img-fluid figure-img" style="width:95.0%"></p>
+</figure>
+</div>
+</div>
+<div class="sourceCode cell-code" id="cb62"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb62-1"><a href="#cb62-1"></a><span class="co"># Prepare the data for parties for plotting by pivoting</span></span>
 <span id="cb62-2"><a href="#cb62-2"></a></span>
-<span id="cb62-3"><a href="#cb62-3"></a>custom_stopwords <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"na"</span>, <span class="st">"£"</span>)</span>
-<span id="cb62-4"><a href="#cb62-4"></a></span>
-<span id="cb62-5"><a href="#cb62-5"></a>dfmat_manifesto <span class="ot">&lt;-</span> <span class="fu">tokens</span>(manifesto_corpus, </span>
-<span id="cb62-6"><a href="#cb62-6"></a>                          <span class="at">remove_punct =</span> <span class="cn">TRUE</span>, <span class="at">remove_numbers =</span> <span class="cn">TRUE</span>, <span class="at">remove_symbols =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb62-7"><a href="#cb62-7"></a>  <span class="fu">tokens_remove</span>(<span class="fu">stopwords</span>(<span class="st">"en"</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb62-8"><a href="#cb62-8"></a>  <span class="fu">tokens_remove</span>(custom_stopwords) <span class="sc">%&gt;%</span></span>
-<span id="cb62-9"><a href="#cb62-9"></a>  <span class="fu">tokens_group</span>(<span class="at">groups =</span> party) <span class="sc">%&gt;%</span></span>
-<span id="cb62-10"><a href="#cb62-10"></a>  <span class="fu">dfm</span>()</span>
-<span id="cb62-11"><a href="#cb62-11"></a></span>
-<span id="cb62-12"><a href="#cb62-12"></a><span class="co"># Get word frequencies</span></span>
-<span id="cb62-13"><a href="#cb62-13"></a></span>
-<span id="cb62-14"><a href="#cb62-14"></a>word_frequencies_by_party <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(<span class="fu">as.matrix</span>(dfmat_manifesto))</span>
-<span id="cb62-15"><a href="#cb62-15"></a></span>
-<span id="cb62-16"><a href="#cb62-16"></a><span class="co"># Tidy the columns - delete meta-data</span></span>
-<span id="cb62-17"><a href="#cb62-17"></a></span>
-<span id="cb62-18"><a href="#cb62-18"></a>word_frequencies_by_party <span class="ot">&lt;-</span> word_frequencies_by_party <span class="sc">%&gt;%</span></span>
-<span id="cb62-19"><a href="#cb62-19"></a>  <span class="fu">select</span>(<span class="sc">-</span>text, <span class="sc">-</span>text_en, <span class="sc">-</span>cmp_code, <span class="sc">-</span>eu_code)</span>
-<span id="cb62-20"><a href="#cb62-20"></a></span>
-<span id="cb62-21"><a href="#cb62-21"></a><span class="co"># Get a total count of words across party</span></span>
-<span id="cb62-22"><a href="#cb62-22"></a><span class="co"># Prepare the data for plotting by adding a column for features</span></span>
-<span id="cb62-23"><a href="#cb62-23"></a><span class="co"># Arrange by frequency and select the top 20 words</span></span>
-<span id="cb62-24"><a href="#cb62-24"></a></span>
-<span id="cb62-25"><a href="#cb62-25"></a>word_frequencies_total <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(<span class="fu">colSums</span>(word_frequencies_by_party)) </span>
-<span id="cb62-26"><a href="#cb62-26"></a></span>
-<span id="cb62-27"><a href="#cb62-27"></a><span class="co"># add column `feat` with rownames</span></span>
-<span id="cb62-28"><a href="#cb62-28"></a>word_frequencies_total<span class="sc">$</span>feat <span class="ot">&lt;-</span> <span class="fu">rownames</span>(word_frequencies_total)</span>
-<span id="cb62-29"><a href="#cb62-29"></a></span>
-<span id="cb62-30"><a href="#cb62-30"></a>word_frequencies_total <span class="ot">&lt;-</span> word_frequencies_total <span class="sc">%&gt;%</span></span>
-<span id="cb62-31"><a href="#cb62-31"></a>  <span class="fu">rename</span>(<span class="at">word_frequencies =</span> <span class="st">"colSums(word_frequencies_by_party)"</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb62-32"><a href="#cb62-32"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(word_frequencies)) <span class="sc">%&gt;%</span></span>
-<span id="cb62-33"><a href="#cb62-33"></a>  <span class="fu">slice_head</span>(<span class="at">n =</span> <span class="dv">20</span>)</span>
-<span id="cb62-34"><a href="#cb62-34"></a></span>
-<span id="cb62-35"><a href="#cb62-35"></a></span>
-<span id="cb62-36"><a href="#cb62-36"></a><span class="co"># Plot the word frequencies</span></span>
-<span id="cb62-37"><a href="#cb62-37"></a></span>
-<span id="cb62-38"><a href="#cb62-38"></a><span class="fu">ggplot</span>(word_frequencies_total, <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">reorder</span>(feat, <span class="sc">-</span> word_frequencies), <span class="at">y =</span> word_frequencies, <span class="at">fill =</span> feat)) <span class="sc">+</span></span>
-<span id="cb62-39"><a href="#cb62-39"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">"identity"</span>) <span class="sc">+</span></span>
-<span id="cb62-40"><a href="#cb62-40"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
-<span id="cb62-41"><a href="#cb62-41"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Word frequencies in all the manifestos"</span>) <span class="sc">+</span></span>
-<span id="cb62-42"><a href="#cb62-42"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Word"</span>, <span class="at">y =</span> <span class="st">"Frequency"</span>) <span class="sc">+</span></span>
-<span id="cb62-43"><a href="#cb62-43"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>) <span class="sc">+</span></span>
-<span id="cb62-44"><a href="#cb62-44"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">90</span>, <span class="at">vjust =</span> <span class="fl">0.5</span>, <span class="at">hjust =</span> <span class="dv">1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb62-3"><a href="#cb62-3"></a>word_frequencies_by_party<span class="sc">$</span>parties <span class="ot">&lt;-</span> <span class="fu">rownames</span>(word_frequencies_by_party) <span class="co"># turn the row names into a column</span></span>
+<span id="cb62-4"><a href="#cb62-4"></a> </span>
+<span id="cb62-5"><a href="#cb62-5"></a>party_frequencies <span class="ot">&lt;-</span> word_frequencies_by_party <span class="sc">%&gt;%</span></span>
+<span id="cb62-6"><a href="#cb62-6"></a>  <span class="fu">pivot_longer</span>(</span>
+<span id="cb62-7"><a href="#cb62-7"></a>    <span class="at">cols =</span> <span class="sc">-</span>parties,          </span>
+<span id="cb62-8"><a href="#cb62-8"></a>    <span class="at">names_to =</span> <span class="st">"word"</span>,      </span>
+<span id="cb62-9"><a href="#cb62-9"></a>    <span class="at">values_to =</span> <span class="st">"count"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb62-10"><a href="#cb62-10"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(count)) <span class="sc">%&gt;%</span></span>
+<span id="cb62-11"><a href="#cb62-11"></a>  <span class="fu">slice_head</span>(<span class="at">n =</span> <span class="dv">20</span>)</span>
+<span id="cb62-12"><a href="#cb62-12"></a></span>
+<span id="cb62-13"><a href="#cb62-13"></a><span class="co"># Facet plot by party</span></span>
+<span id="cb62-14"><a href="#cb62-14"></a></span>
+<span id="cb62-15"><a href="#cb62-15"></a><span class="fu">ggplot</span>(party_frequencies, <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">reorder</span>(word, <span class="sc">-</span> count), <span class="at">y =</span> count, <span class="at">fill =</span> word)) <span class="sc">+</span></span>
+<span id="cb62-16"><a href="#cb62-16"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">"identity"</span>) <span class="sc">+</span></span>
+<span id="cb62-17"><a href="#cb62-17"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb62-18"><a href="#cb62-18"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Word frequencies in the manifestos by party"</span>) <span class="sc">+</span></span>
+<span id="cb62-19"><a href="#cb62-19"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Word"</span>, <span class="at">y =</span> <span class="st">"Frequency"</span>) <span class="sc">+</span></span>
+<span id="cb62-20"><a href="#cb62-20"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>) <span class="sc">+</span></span>
+<span id="cb62-21"><a href="#cb62-21"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">90</span>, <span class="at">vjust =</span> <span class="fl">0.5</span>, <span class="at">hjust =</span> <span class="dv">1</span>)) <span class="sc">+</span></span>
+<span id="cb62-22"><a href="#cb62-22"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>parties)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
-<figure class="figure"><p><img src="A9-Corpus_files/figure-html/unnamed-chunk-37-1.png" class="img-fluid figure-img" style="width:95.0%"></p>
-</figure>
-</div>
-</div>
-<div class="sourceCode cell-code" id="cb63"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb63-1"><a href="#cb63-1"></a><span class="co"># Prepare the data for parties for plotting by pivoting</span></span>
-<span id="cb63-2"><a href="#cb63-2"></a></span>
-<span id="cb63-3"><a href="#cb63-3"></a>word_frequencies_by_party<span class="sc">$</span>parties <span class="ot">&lt;-</span> <span class="fu">rownames</span>(word_frequencies_by_party) <span class="co"># turn the row names into a column</span></span>
-<span id="cb63-4"><a href="#cb63-4"></a> </span>
-<span id="cb63-5"><a href="#cb63-5"></a>party_frequencies <span class="ot">&lt;-</span> word_frequencies_by_party <span class="sc">%&gt;%</span></span>
-<span id="cb63-6"><a href="#cb63-6"></a>  <span class="fu">pivot_longer</span>(</span>
-<span id="cb63-7"><a href="#cb63-7"></a>    <span class="at">cols =</span> <span class="sc">-</span>parties,          </span>
-<span id="cb63-8"><a href="#cb63-8"></a>    <span class="at">names_to =</span> <span class="st">"word"</span>,      </span>
-<span id="cb63-9"><a href="#cb63-9"></a>    <span class="at">values_to =</span> <span class="st">"count"</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb63-10"><a href="#cb63-10"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(count)) <span class="sc">%&gt;%</span></span>
-<span id="cb63-11"><a href="#cb63-11"></a>  <span class="fu">slice_head</span>(<span class="at">n =</span> <span class="dv">20</span>)</span>
-<span id="cb63-12"><a href="#cb63-12"></a></span>
-<span id="cb63-13"><a href="#cb63-13"></a><span class="co"># Facet plot by party</span></span>
-<span id="cb63-14"><a href="#cb63-14"></a></span>
-<span id="cb63-15"><a href="#cb63-15"></a><span class="fu">ggplot</span>(party_frequencies, <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">reorder</span>(word, <span class="sc">-</span> count), <span class="at">y =</span> count, <span class="at">fill =</span> word)) <span class="sc">+</span></span>
-<span id="cb63-16"><a href="#cb63-16"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">"identity"</span>) <span class="sc">+</span></span>
-<span id="cb63-17"><a href="#cb63-17"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
-<span id="cb63-18"><a href="#cb63-18"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Word frequencies in the manifestos by party"</span>) <span class="sc">+</span></span>
-<span id="cb63-19"><a href="#cb63-19"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Word"</span>, <span class="at">y =</span> <span class="st">"Frequency"</span>) <span class="sc">+</span></span>
-<span id="cb63-20"><a href="#cb63-20"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>) <span class="sc">+</span></span>
-<span id="cb63-21"><a href="#cb63-21"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">90</span>, <span class="at">vjust =</span> <span class="fl">0.5</span>, <span class="at">hjust =</span> <span class="dv">1</span>)) <span class="sc">+</span></span>
-<span id="cb63-22"><a href="#cb63-22"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>parties)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<div>
-<figure class="figure"><p><img src="A9-Corpus_files/figure-html/unnamed-chunk-37-2.png" class="img-fluid figure-img" style="width:95.0%"></p>
+<figure class="figure"><p><img src="A9-Corpus_files/figure-html/unnamed-chunk-38-2.png" class="img-fluid figure-img" style="width:95.0%"></p>
 </figure>
 </div>
 </div>
 </div>
-</section><section id="task-2-wordclouds-and-network-analysis" class="level3" data-number="1.13.2"><h3 data-number="1.13.2" class="anchored" data-anchor-id="task-2-wordclouds-and-network-analysis">
-<span class="header-section-number">1.13.2</span> Task 2 wordclouds and network analysis</h3>
+</section><section id="task-2-wordclouds-and-network-analysis" class="level3" data-number="1.14.2"><h3 data-number="1.14.2" class="anchored" data-anchor-id="task-2-wordclouds-and-network-analysis">
+<span class="header-section-number">1.14.2</span> Task 2 wordclouds and network analysis</h3>
 <div class="question">
 <p>Create wordclouds for the conservative and labour party manifestos using the <code>textplot_network</code> function. Work with the formatting options to get the best possible output. What patterns can you determine about differences in word use?</p>
 <p>Create a network plot of the words in the conservative and labour party manifestos using the <code>textplot_network</code> function. Work with the formatting options to get the best possible output. What patterns can you determine about differences in word use?</p>
 </div>
 <div class="cell">
-<details class="code-fold"><summary>Answer word clouds</summary><div class="sourceCode cell-code" id="cb64"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb64-1"><a href="#cb64-1"></a><span class="fu">library</span>(quanteda.textplots)</span>
-<span id="cb64-2"><a href="#cb64-2"></a></span>
-<span id="cb64-3"><a href="#cb64-3"></a></span>
-<span id="cb64-4"><a href="#cb64-4"></a><span class="co"># Load the manifestos</span></span>
-<span id="cb64-5"><a href="#cb64-5"></a></span>
-<span id="cb64-6"><a href="#cb64-6"></a><span class="co"># manifesto_text &lt;- readtext(glue("&lt;your manifesto text file folder&gt;")) </span></span>
-<span id="cb64-7"><a href="#cb64-7"></a></span>
-<span id="cb64-8"><a href="#cb64-8"></a><span class="co"># Create a corpus object</span></span>
-<span id="cb64-9"><a href="#cb64-9"></a></span>
-<span id="cb64-10"><a href="#cb64-10"></a>manifesto_corpus <span class="ot">&lt;-</span> <span class="fu">corpus</span>(manifesto_text)</span>
-<span id="cb64-11"><a href="#cb64-11"></a></span>
-<span id="cb64-12"><a href="#cb64-12"></a><span class="co"># Add metadata to the corpus object</span></span>
-<span id="cb64-13"><a href="#cb64-13"></a></span>
-<span id="cb64-14"><a href="#cb64-14"></a><span class="fu">docvars</span>(manifesto_corpus, <span class="st">"party"</span>) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"conservative"</span>, <span class="st">"dup"</span>, <span class="st">"green,"</span>, <span class="st">"labour"</span>, <span class="st">"liberal_democrat"</span>, <span class="st">"Plaid_cymru"</span>, <span class="st">"SNP"</span>)</span>
-<span id="cb64-15"><a href="#cb64-15"></a></span>
-<span id="cb64-16"><a href="#cb64-16"></a><span class="fu">summary</span>(manifesto_corpus)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<details class="code-fold"><summary>Answer word clouds</summary><div class="sourceCode cell-code" id="cb63"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb63-1"><a href="#cb63-1"></a><span class="fu">library</span>(quanteda.textplots)</span>
+<span id="cb63-2"><a href="#cb63-2"></a></span>
+<span id="cb63-3"><a href="#cb63-3"></a></span>
+<span id="cb63-4"><a href="#cb63-4"></a><span class="co"># Load the manifestos</span></span>
+<span id="cb63-5"><a href="#cb63-5"></a></span>
+<span id="cb63-6"><a href="#cb63-6"></a><span class="co"># manifesto_text &lt;- readtext(glue("&lt;your manifesto text file folder&gt;")) </span></span>
+<span id="cb63-7"><a href="#cb63-7"></a></span>
+<span id="cb63-8"><a href="#cb63-8"></a><span class="co"># Create a corpus object</span></span>
+<span id="cb63-9"><a href="#cb63-9"></a></span>
+<span id="cb63-10"><a href="#cb63-10"></a>manifesto_corpus <span class="ot">&lt;-</span> <span class="fu">corpus</span>(manifesto_text)</span>
+<span id="cb63-11"><a href="#cb63-11"></a></span>
+<span id="cb63-12"><a href="#cb63-12"></a><span class="co"># Add metadata to the corpus object</span></span>
+<span id="cb63-13"><a href="#cb63-13"></a></span>
+<span id="cb63-14"><a href="#cb63-14"></a><span class="fu">docvars</span>(manifesto_corpus, <span class="st">"party"</span>) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"conservative"</span>, <span class="st">"dup"</span>, <span class="st">"green,"</span>, <span class="st">"labour"</span>, <span class="st">"liberal_democrat"</span>, <span class="st">"Plaid_cymru"</span>, <span class="st">"SNP"</span>)</span>
+<span id="cb63-15"><a href="#cb63-15"></a></span>
+<span id="cb63-16"><a href="#cb63-16"></a><span class="fu">summary</span>(manifesto_corpus)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div class="cell-output cell-output-stdout">
 <pre><code>Corpus consisting of 7 documents, showing 7 documents:
 
@@ -1688,102 +1679,144 @@ Liberal_democrat   0.9825760 0.9772731
  plaid_cymru_manifesto.txt  3870  30239        37      Plaid_cymru
          SNP_manifesto.txt  3596  35561        16              SNP</code></pre>
 </div>
-<details class="code-fold"><summary>Answer word clouds</summary><div class="sourceCode cell-code" id="cb66"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb66-1"><a href="#cb66-1"></a><span class="co"># Subset for the conservative and labour party</span></span>
-<span id="cb66-2"><a href="#cb66-2"></a></span>
-<span id="cb66-3"><a href="#cb66-3"></a>con_manifesto <span class="ot">&lt;-</span> <span class="fu">corpus_subset</span>(manifesto_corpus, party <span class="sc">==</span> <span class="st">"conservative"</span>)</span>
-<span id="cb66-4"><a href="#cb66-4"></a>lab_manifesto <span class="ot">&lt;-</span> <span class="fu">corpus_subset</span>(manifesto_corpus, party <span class="sc">==</span> <span class="st">"labour"</span>)</span>
-<span id="cb66-5"><a href="#cb66-5"></a></span>
-<span id="cb66-6"><a href="#cb66-6"></a></span>
-<span id="cb66-7"><a href="#cb66-7"></a><span class="co"># Create a dfm grouped for the conservative and labour party, cleaning the corpus</span></span>
-<span id="cb66-8"><a href="#cb66-8"></a></span>
-<span id="cb66-9"><a href="#cb66-9"></a>custom_stopwords <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"na"</span>, <span class="st">"£"</span>)</span>
-<span id="cb66-10"><a href="#cb66-10"></a></span>
-<span id="cb66-11"><a href="#cb66-11"></a>dfmat_con_manifesto <span class="ot">&lt;-</span> <span class="fu">tokens</span>(con_manifesto, <span class="at">remove_punct =</span> <span class="cn">TRUE</span>, <span class="at">remove_numbers =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb66-12"><a href="#cb66-12"></a>  <span class="fu">tokens_remove</span>(<span class="fu">stopwords</span>(<span class="st">"en"</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb66-13"><a href="#cb66-13"></a>  <span class="fu">tokens_remove</span>(custom_stopwords) <span class="sc">%&gt;%</span></span>
-<span id="cb66-14"><a href="#cb66-14"></a>  <span class="fu">dfm</span>()</span>
-<span id="cb66-15"><a href="#cb66-15"></a></span>
-<span id="cb66-16"><a href="#cb66-16"></a>dfmat_lab_manifesto <span class="ot">&lt;-</span> <span class="fu">tokens</span>(lab_manifesto, <span class="at">remove_punct =</span> <span class="cn">TRUE</span>, <span class="at">remove_numbers =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb66-17"><a href="#cb66-17"></a>  <span class="fu">tokens_remove</span>(<span class="fu">stopwords</span>(<span class="st">"en"</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb66-18"><a href="#cb66-18"></a>  <span class="fu">tokens_remove</span>(custom_stopwords) <span class="sc">%&gt;%</span></span>
-<span id="cb66-19"><a href="#cb66-19"></a>  <span class="fu">dfm</span>()</span>
-<span id="cb66-20"><a href="#cb66-20"></a></span>
-<span id="cb66-21"><a href="#cb66-21"></a><span class="co"># Create word clouds</span></span>
-<span id="cb66-22"><a href="#cb66-22"></a></span>
-<span id="cb66-23"><a href="#cb66-23"></a><span class="fu">textplot_wordcloud</span>(dfmat_con_manifesto, </span>
-<span id="cb66-24"><a href="#cb66-24"></a>                   <span class="at">min_count =</span> <span class="dv">5</span>, </span>
-<span id="cb66-25"><a href="#cb66-25"></a>                   <span class="at">max_words =</span> <span class="dv">100</span>, </span>
-<span id="cb66-26"><a href="#cb66-26"></a>                   <span class="at">color =</span> <span class="st">"blue"</span>, </span>
-<span id="cb66-27"><a href="#cb66-27"></a>                   <span class="at">max_size =</span> <span class="dv">5</span>, </span>
-<span id="cb66-28"><a href="#cb66-28"></a>                   <span class="at">min_size =</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<details class="code-fold"><summary>Answer word clouds</summary><div class="sourceCode cell-code" id="cb65"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb65-1"><a href="#cb65-1"></a><span class="co"># Subset for the conservative and labour party</span></span>
+<span id="cb65-2"><a href="#cb65-2"></a></span>
+<span id="cb65-3"><a href="#cb65-3"></a>con_manifesto <span class="ot">&lt;-</span> <span class="fu">corpus_subset</span>(manifesto_corpus, party <span class="sc">==</span> <span class="st">"conservative"</span>)</span>
+<span id="cb65-4"><a href="#cb65-4"></a>lab_manifesto <span class="ot">&lt;-</span> <span class="fu">corpus_subset</span>(manifesto_corpus, party <span class="sc">==</span> <span class="st">"labour"</span>)</span>
+<span id="cb65-5"><a href="#cb65-5"></a></span>
+<span id="cb65-6"><a href="#cb65-6"></a></span>
+<span id="cb65-7"><a href="#cb65-7"></a><span class="co"># Create a dfm grouped for the conservative and labour party, cleaning the corpus</span></span>
+<span id="cb65-8"><a href="#cb65-8"></a></span>
+<span id="cb65-9"><a href="#cb65-9"></a>custom_stopwords <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"na"</span>, <span class="st">"£"</span>)</span>
+<span id="cb65-10"><a href="#cb65-10"></a></span>
+<span id="cb65-11"><a href="#cb65-11"></a>dfmat_con_manifesto <span class="ot">&lt;-</span> <span class="fu">tokens</span>(con_manifesto, <span class="at">remove_punct =</span> <span class="cn">TRUE</span>, <span class="at">remove_numbers =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb65-12"><a href="#cb65-12"></a>  <span class="fu">tokens_remove</span>(<span class="fu">stopwords</span>(<span class="st">"en"</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb65-13"><a href="#cb65-13"></a>  <span class="fu">tokens_remove</span>(custom_stopwords) <span class="sc">%&gt;%</span></span>
+<span id="cb65-14"><a href="#cb65-14"></a>  <span class="fu">dfm</span>()</span>
+<span id="cb65-15"><a href="#cb65-15"></a></span>
+<span id="cb65-16"><a href="#cb65-16"></a>dfmat_lab_manifesto <span class="ot">&lt;-</span> <span class="fu">tokens</span>(lab_manifesto, <span class="at">remove_punct =</span> <span class="cn">TRUE</span>, <span class="at">remove_numbers =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb65-17"><a href="#cb65-17"></a>  <span class="fu">tokens_remove</span>(<span class="fu">stopwords</span>(<span class="st">"en"</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb65-18"><a href="#cb65-18"></a>  <span class="fu">tokens_remove</span>(custom_stopwords) <span class="sc">%&gt;%</span></span>
+<span id="cb65-19"><a href="#cb65-19"></a>  <span class="fu">dfm</span>()</span>
+<span id="cb65-20"><a href="#cb65-20"></a></span>
+<span id="cb65-21"><a href="#cb65-21"></a><span class="co"># Create word clouds</span></span>
+<span id="cb65-22"><a href="#cb65-22"></a></span>
+<span id="cb65-23"><a href="#cb65-23"></a><span class="fu">textplot_wordcloud</span>(dfmat_con_manifesto, </span>
+<span id="cb65-24"><a href="#cb65-24"></a>                   <span class="at">min_count =</span> <span class="dv">5</span>, </span>
+<span id="cb65-25"><a href="#cb65-25"></a>                   <span class="at">max_words =</span> <span class="dv">100</span>, </span>
+<span id="cb65-26"><a href="#cb65-26"></a>                   <span class="at">color =</span> <span class="st">"blue"</span>, </span>
+<span id="cb65-27"><a href="#cb65-27"></a>                   <span class="at">max_size =</span> <span class="dv">5</span>, </span>
+<span id="cb65-28"><a href="#cb65-28"></a>                   <span class="at">min_size =</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div class="cell-output-display">
-<div>
-<figure class="figure"><p><img src="A9-Corpus_files/figure-html/unnamed-chunk-38-1.png" class="img-fluid figure-img" style="width:95.0%"></p>
-</figure>
-</div>
-</div>
-<details class="code-fold"><summary>Answer word clouds</summary><div class="sourceCode cell-code" id="cb67"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb67-1"><a href="#cb67-1"></a><span class="fu">textplot_wordcloud</span>(dfmat_lab_manifesto,</span>
-<span id="cb67-2"><a href="#cb67-2"></a>                   <span class="at">min_count =</span> <span class="dv">5</span>,</span>
-<span id="cb67-3"><a href="#cb67-3"></a>                   <span class="at">max_words =</span> <span class="dv">100</span>, </span>
-<span id="cb67-4"><a href="#cb67-4"></a>                   <span class="at">color =</span> <span class="st">"red"</span>,</span>
-<span id="cb67-5"><a href="#cb67-5"></a>                   <span class="at">max_size =</span> <span class="dv">5</span>,</span>
-<span id="cb67-6"><a href="#cb67-6"></a>                   <span class="at">min_size =</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details><div class="cell-output-display">
-<div>
-<figure class="figure"><p><img src="A9-Corpus_files/figure-html/unnamed-chunk-38-2.png" class="img-fluid figure-img" style="width:95.0%"></p>
-</figure>
-</div>
-</div>
-</div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb68"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb68-1"><a href="#cb68-1"></a><span class="co"># Create network plots</span></span>
-<span id="cb68-2"><a href="#cb68-2"></a><span class="co"># create dfms </span></span>
-<span id="cb68-3"><a href="#cb68-3"></a>custom_stopwords <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"na"</span>, <span class="st">"£"</span>, <span class="st">"h"</span>)</span>
-<span id="cb68-4"><a href="#cb68-4"></a></span>
-<span id="cb68-5"><a href="#cb68-5"></a></span>
-<span id="cb68-6"><a href="#cb68-6"></a>dfmat_con_manifesto <span class="ot">&lt;-</span> <span class="fu">tokens</span>(con_manifesto, <span class="at">remove_punct =</span> <span class="cn">TRUE</span>, <span class="at">remove_numbers =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb68-7"><a href="#cb68-7"></a>  <span class="fu">tokens_remove</span>(<span class="fu">stopwords</span>(<span class="st">"en"</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb68-8"><a href="#cb68-8"></a>  <span class="fu">tokens_remove</span>(custom_stopwords) <span class="sc">%&gt;%</span></span>
-<span id="cb68-9"><a href="#cb68-9"></a>  <span class="fu">dfm</span>()</span>
-<span id="cb68-10"><a href="#cb68-10"></a></span>
-<span id="cb68-11"><a href="#cb68-11"></a></span>
-<span id="cb68-12"><a href="#cb68-12"></a>dfmat_lab_manifesto <span class="ot">&lt;-</span> <span class="fu">tokens</span>(lab_manifesto, <span class="at">remove_punct =</span> <span class="cn">TRUE</span>, <span class="at">remove_numbers =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb68-13"><a href="#cb68-13"></a>  <span class="fu">tokens_remove</span>(<span class="fu">stopwords</span>(<span class="st">"en"</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb68-14"><a href="#cb68-14"></a>  <span class="fu">tokens_remove</span>(custom_stopwords) <span class="sc">%&gt;%</span></span>
-<span id="cb68-15"><a href="#cb68-15"></a>  <span class="fu">dfm</span>()</span>
-<span id="cb68-16"><a href="#cb68-16"></a></span>
-<span id="cb68-17"><a href="#cb68-17"></a></span>
-<span id="cb68-18"><a href="#cb68-18"></a><span class="co"># Include only top 20 terms</span></span>
-<span id="cb68-19"><a href="#cb68-19"></a>top_terms <span class="ot">&lt;-</span> <span class="fu">names</span>(<span class="fu">topfeatures</span>(dfmat_con_manifesto, <span class="dv">20</span>))</span>
-<span id="cb68-20"><a href="#cb68-20"></a>dfmat_con_manifesto_filtered <span class="ot">&lt;-</span> <span class="fu">dfm_select</span>(dfmat_con_manifesto, <span class="at">pattern =</span> top_terms)</span>
-<span id="cb68-21"><a href="#cb68-21"></a></span>
-<span id="cb68-22"><a href="#cb68-22"></a></span>
-<span id="cb68-23"><a href="#cb68-23"></a><span class="co"># Include only top 20 terms</span></span>
-<span id="cb68-24"><a href="#cb68-24"></a>top_terms <span class="ot">&lt;-</span> <span class="fu">names</span>(<span class="fu">topfeatures</span>(dfmat_lab_manifesto, <span class="dv">20</span>))</span>
-<span id="cb68-25"><a href="#cb68-25"></a>dfmat_lab_manifesto_filtered <span class="ot">&lt;-</span> <span class="fu">dfm_select</span>(dfmat_lab_manifesto, <span class="at">pattern =</span> top_terms)</span>
-<span id="cb68-26"><a href="#cb68-26"></a></span>
-<span id="cb68-27"><a href="#cb68-27"></a></span>
-<span id="cb68-28"><a href="#cb68-28"></a><span class="co"># Produce a network plot</span></span>
-<span id="cb68-29"><a href="#cb68-29"></a></span>
-<span id="cb68-30"><a href="#cb68-30"></a><span class="fu">textplot_network</span>(dfmat_con_manifesto_filtered, <span class="at">min_freq =</span> <span class="dv">50</span>, <span class="at">edge_size =</span> <span class="fl">0.5</span>, <span class="at">edge_color =</span> <span class="st">"lightblue"</span>, <span class="at">vertex_size =</span> <span class="fl">0.5</span>, <span class="at">vertex_labelsize =</span> <span class="dv">5</span>, <span class="at">vertex_labelcolor =</span> <span class="st">"darkblue"</span>, <span class="at">vertex_color =</span> <span class="st">"lightblue"</span>, <span class="at">vertex_alpha =</span> <span class="fl">0.5</span>, <span class="at">repel =</span> <span class="cn">TRUE</span>, <span class="at">seed =</span> <span class="dv">1234</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
 <div>
 <figure class="figure"><p><img src="A9-Corpus_files/figure-html/unnamed-chunk-39-1.png" class="img-fluid figure-img" style="width:95.0%"></p>
 </figure>
 </div>
 </div>
-<div class="sourceCode cell-code" id="cb69"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb69-1"><a href="#cb69-1"></a><span class="fu">textplot_network</span>(dfmat_lab_manifesto_filtered, <span class="at">min_freq =</span> <span class="dv">50</span>, <span class="at">edge_size =</span> <span class="fl">0.5</span>, <span class="at">edge_color =</span> <span class="st">"red"</span>, <span class="at">vertex_size =</span> <span class="fl">0.5</span>, <span class="at">vertex_labelsize =</span> <span class="dv">5</span>, <span class="at">vertex_labelcolor =</span> <span class="st">"darkred"</span>, <span class="at">vertex_color =</span> <span class="st">"red"</span>, <span class="at">vertex_alpha =</span> <span class="fl">0.5</span>, <span class="at">repel =</span> <span class="cn">TRUE</span>, <span class="at">seed =</span> <span class="dv">1234</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
+<details class="code-fold"><summary>Answer word clouds</summary><div class="sourceCode cell-code" id="cb66"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb66-1"><a href="#cb66-1"></a><span class="fu">textplot_wordcloud</span>(dfmat_lab_manifesto,</span>
+<span id="cb66-2"><a href="#cb66-2"></a>                   <span class="at">min_count =</span> <span class="dv">5</span>,</span>
+<span id="cb66-3"><a href="#cb66-3"></a>                   <span class="at">max_words =</span> <span class="dv">100</span>, </span>
+<span id="cb66-4"><a href="#cb66-4"></a>                   <span class="at">color =</span> <span class="st">"red"</span>,</span>
+<span id="cb66-5"><a href="#cb66-5"></a>                   <span class="at">max_size =</span> <span class="dv">5</span>,</span>
+<span id="cb66-6"><a href="#cb66-6"></a>                   <span class="at">min_size =</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output-display">
 <div>
 <figure class="figure"><p><img src="A9-Corpus_files/figure-html/unnamed-chunk-39-2.png" class="img-fluid figure-img" style="width:95.0%"></p>
 </figure>
 </div>
 </div>
 </div>
-</section><section id="task-3-keyness-analysis" class="level3" data-number="1.13.3"><h3 data-number="1.13.3" class="anchored" data-anchor-id="task-3-keyness-analysis">
-<span class="header-section-number">1.13.3</span> Task 3 keyness analysis</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb67"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb67-1"><a href="#cb67-1"></a><span class="co"># Create network plots</span></span>
+<span id="cb67-2"><a href="#cb67-2"></a><span class="co"># create dfms </span></span>
+<span id="cb67-3"><a href="#cb67-3"></a>custom_stopwords <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"na"</span>, <span class="st">"£"</span>, <span class="st">"h"</span>)</span>
+<span id="cb67-4"><a href="#cb67-4"></a></span>
+<span id="cb67-5"><a href="#cb67-5"></a></span>
+<span id="cb67-6"><a href="#cb67-6"></a>dfmat_con_manifesto <span class="ot">&lt;-</span> <span class="fu">tokens</span>(con_manifesto, <span class="at">remove_punct =</span> <span class="cn">TRUE</span>, <span class="at">remove_numbers =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb67-7"><a href="#cb67-7"></a>  <span class="fu">tokens_remove</span>(<span class="fu">stopwords</span>(<span class="st">"en"</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb67-8"><a href="#cb67-8"></a>  <span class="fu">tokens_remove</span>(custom_stopwords) <span class="sc">%&gt;%</span></span>
+<span id="cb67-9"><a href="#cb67-9"></a>  <span class="fu">dfm</span>()</span>
+<span id="cb67-10"><a href="#cb67-10"></a></span>
+<span id="cb67-11"><a href="#cb67-11"></a></span>
+<span id="cb67-12"><a href="#cb67-12"></a>dfmat_lab_manifesto <span class="ot">&lt;-</span> <span class="fu">tokens</span>(lab_manifesto, <span class="at">remove_punct =</span> <span class="cn">TRUE</span>, <span class="at">remove_numbers =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb67-13"><a href="#cb67-13"></a>  <span class="fu">tokens_remove</span>(<span class="fu">stopwords</span>(<span class="st">"en"</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb67-14"><a href="#cb67-14"></a>  <span class="fu">tokens_remove</span>(custom_stopwords) <span class="sc">%&gt;%</span></span>
+<span id="cb67-15"><a href="#cb67-15"></a>  <span class="fu">dfm</span>()</span>
+<span id="cb67-16"><a href="#cb67-16"></a></span>
+<span id="cb67-17"><a href="#cb67-17"></a></span>
+<span id="cb67-18"><a href="#cb67-18"></a><span class="co"># Include only top 20 terms</span></span>
+<span id="cb67-19"><a href="#cb67-19"></a>top_terms <span class="ot">&lt;-</span> <span class="fu">names</span>(<span class="fu">topfeatures</span>(dfmat_con_manifesto, <span class="dv">20</span>))</span>
+<span id="cb67-20"><a href="#cb67-20"></a>dfmat_con_manifesto_filtered <span class="ot">&lt;-</span> <span class="fu">dfm_select</span>(dfmat_con_manifesto, <span class="at">pattern =</span> top_terms)</span>
+<span id="cb67-21"><a href="#cb67-21"></a></span>
+<span id="cb67-22"><a href="#cb67-22"></a></span>
+<span id="cb67-23"><a href="#cb67-23"></a><span class="co"># Include only top 20 terms</span></span>
+<span id="cb67-24"><a href="#cb67-24"></a>top_terms <span class="ot">&lt;-</span> <span class="fu">names</span>(<span class="fu">topfeatures</span>(dfmat_lab_manifesto, <span class="dv">20</span>))</span>
+<span id="cb67-25"><a href="#cb67-25"></a>dfmat_lab_manifesto_filtered <span class="ot">&lt;-</span> <span class="fu">dfm_select</span>(dfmat_lab_manifesto, <span class="at">pattern =</span> top_terms)</span>
+<span id="cb67-26"><a href="#cb67-26"></a></span>
+<span id="cb67-27"><a href="#cb67-27"></a></span>
+<span id="cb67-28"><a href="#cb67-28"></a><span class="co"># Produce a network plot</span></span>
+<span id="cb67-29"><a href="#cb67-29"></a></span>
+<span id="cb67-30"><a href="#cb67-30"></a><span class="fu">textplot_network</span>(dfmat_con_manifesto_filtered, <span class="at">min_freq =</span> <span class="dv">50</span>, <span class="at">edge_size =</span> <span class="fl">0.5</span>, <span class="at">edge_color =</span> <span class="st">"lightblue"</span>, <span class="at">vertex_size =</span> <span class="fl">0.5</span>, <span class="at">vertex_labelsize =</span> <span class="dv">5</span>, <span class="at">vertex_labelcolor =</span> <span class="st">"darkblue"</span>, <span class="at">vertex_color =</span> <span class="st">"lightblue"</span>, <span class="at">vertex_alpha =</span> <span class="fl">0.5</span>, <span class="at">repel =</span> <span class="cn">TRUE</span>, <span class="at">seed =</span> <span class="dv">1234</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure"><p><img src="A9-Corpus_files/figure-html/unnamed-chunk-40-1.png" class="img-fluid figure-img" style="width:95.0%"></p>
+</figure>
+</div>
+</div>
+<div class="sourceCode cell-code" id="cb68"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb68-1"><a href="#cb68-1"></a><span class="fu">textplot_network</span>(dfmat_lab_manifesto_filtered, <span class="at">min_freq =</span> <span class="dv">50</span>, <span class="at">edge_size =</span> <span class="fl">0.5</span>, <span class="at">edge_color =</span> <span class="st">"red"</span>, <span class="at">vertex_size =</span> <span class="fl">0.5</span>, <span class="at">vertex_labelsize =</span> <span class="dv">5</span>, <span class="at">vertex_labelcolor =</span> <span class="st">"darkred"</span>, <span class="at">vertex_color =</span> <span class="st">"red"</span>, <span class="at">vertex_alpha =</span> <span class="fl">0.5</span>, <span class="at">repel =</span> <span class="cn">TRUE</span>, <span class="at">seed =</span> <span class="dv">1234</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure"><p><img src="A9-Corpus_files/figure-html/unnamed-chunk-40-2.png" class="img-fluid figure-img" style="width:95.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+</section><section id="task-3-keyness-analysis" class="level3" data-number="1.14.3"><h3 data-number="1.14.3" class="anchored" data-anchor-id="task-3-keyness-analysis">
+<span class="header-section-number">1.14.3</span> Task 3 keyness analysis</h3>
 <div class="question">
 <p>Create a keyness plot comparing the language in the labour and conservative manifestos. What words are most distinctive in each manifesto?</p>
+</div>
+<div class="cell">
+<details class="code-fold"><summary>Answer</summary><div class="sourceCode cell-code" id="cb69"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb69-1"><a href="#cb69-1"></a><span class="fu">library</span>(quanteda.textplots)</span>
+<span id="cb69-2"><a href="#cb69-2"></a></span>
+<span id="cb69-3"><a href="#cb69-3"></a></span>
+<span id="cb69-4"><a href="#cb69-4"></a><span class="co"># Create a corpus</span></span>
+<span id="cb69-5"><a href="#cb69-5"></a></span>
+<span id="cb69-6"><a href="#cb69-6"></a>manifesto_corpus <span class="ot">&lt;-</span> <span class="fu">corpus</span>(manifesto_text)</span>
+<span id="cb69-7"><a href="#cb69-7"></a></span>
+<span id="cb69-8"><a href="#cb69-8"></a><span class="co"># Label the manifestos</span></span>
+<span id="cb69-9"><a href="#cb69-9"></a></span>
+<span id="cb69-10"><a href="#cb69-10"></a><span class="fu">docvars</span>(manifesto_corpus, <span class="st">"party"</span>) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"conservative"</span>, <span class="st">"DUP"</span>, <span class="st">"green"</span>, <span class="st">"labour"</span>, <span class="st">"liberal_democrat"</span>, <span class="st">"Plaid_cymru"</span>, <span class="st">"SNP"</span>)</span>
+<span id="cb69-11"><a href="#cb69-11"></a></span>
+<span id="cb69-12"><a href="#cb69-12"></a></span>
+<span id="cb69-13"><a href="#cb69-13"></a><span class="co"># Subset to labour and conservative</span></span>
+<span id="cb69-14"><a href="#cb69-14"></a></span>
+<span id="cb69-15"><a href="#cb69-15"></a>con_lab_manifesto <span class="ot">&lt;-</span> <span class="fu">corpus_subset</span>(manifesto_corpus, party <span class="sc">==</span> <span class="st">"conservative"</span> <span class="sc">|</span> party <span class="sc">==</span> <span class="st">"labour"</span>)</span>
+<span id="cb69-16"><a href="#cb69-16"></a></span>
+<span id="cb69-17"><a href="#cb69-17"></a><span class="co"># Remove punctuation and stopwords</span></span>
+<span id="cb69-18"><a href="#cb69-18"></a><span class="co"># group by party</span></span>
+<span id="cb69-19"><a href="#cb69-19"></a></span>
+<span id="cb69-20"><a href="#cb69-20"></a>dfmat_manifesto <span class="ot">&lt;-</span> <span class="fu">tokens</span>(con_lab_manifesto, <span class="at">remove_punct =</span> <span class="cn">TRUE</span>, </span>
+<span id="cb69-21"><a href="#cb69-21"></a>                          <span class="at">remove_numbers =</span> <span class="cn">TRUE</span>, <span class="at">remove_symbols =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb69-22"><a href="#cb69-22"></a>  <span class="fu">tokens_remove</span>(<span class="fu">stopwords</span>(<span class="st">"english"</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb69-23"><a href="#cb69-23"></a>  <span class="fu">dfm</span>() </span>
+<span id="cb69-24"><a href="#cb69-24"></a></span>
+<span id="cb69-25"><a href="#cb69-25"></a><span class="co"># Perform keyness analysis</span></span>
+<span id="cb69-26"><a href="#cb69-26"></a>keyness_stat <span class="ot">&lt;-</span> <span class="fu">textstat_keyness</span>(dfmat_manifesto, <span class="at">target =</span> <span class="st">"lab_manifesto.txt"</span>, <span class="at">measure =</span> <span class="st">"lr"</span>)</span>
+<span id="cb69-27"><a href="#cb69-27"></a></span>
+<span id="cb69-28"><a href="#cb69-28"></a><span class="co"># Plot the keyness analysis</span></span>
+<span id="cb69-29"><a href="#cb69-29"></a><span class="fu">textplot_keyness</span>(keyness_stat, <span class="at">color =</span> <span class="fu">c</span>(<span class="st">"red"</span>, <span class="st">"blue"</span>), <span class="at">n =</span> <span class="dv">20</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output-display">
+<div>
+<figure class="figure"><p><img src="A9-Corpus_files/figure-html/unnamed-chunk-41-1.png" class="img-fluid figure-img" style="width:95.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+</section><section id="task-4-lexical-disperssion-plot" class="level3" data-number="1.14.4"><h3 data-number="1.14.4" class="anchored" data-anchor-id="task-4-lexical-disperssion-plot">
+<span class="header-section-number">1.14.4</span> Task 4 lexical disperssion plot</h3>
+<div class="question">
+<p>Create a lexical dispersion plot comparing where the word “Brexit” and “economy” appears in the labour, conservative and liberal democrat policy</p>
 </div>
 <div class="cell">
 <details class="code-fold"><summary>Answer</summary><div class="sourceCode cell-code" id="cb70"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb70-1"><a href="#cb70-1"></a><span class="fu">library</span>(quanteda.textplots)</span>
@@ -1800,61 +1833,19 @@ Liberal_democrat   0.9825760 0.9772731
 <span id="cb70-12"><a href="#cb70-12"></a></span>
 <span id="cb70-13"><a href="#cb70-13"></a><span class="co"># Subset to labour and conservative</span></span>
 <span id="cb70-14"><a href="#cb70-14"></a></span>
-<span id="cb70-15"><a href="#cb70-15"></a>con_lab_manifesto <span class="ot">&lt;-</span> <span class="fu">corpus_subset</span>(manifesto_corpus, party <span class="sc">==</span> <span class="st">"conservative"</span> <span class="sc">|</span> party <span class="sc">==</span> <span class="st">"labour"</span>)</span>
-<span id="cb70-16"><a href="#cb70-16"></a></span>
-<span id="cb70-17"><a href="#cb70-17"></a><span class="co"># Remove punctuation and stopwords</span></span>
-<span id="cb70-18"><a href="#cb70-18"></a><span class="co"># group by party</span></span>
-<span id="cb70-19"><a href="#cb70-19"></a></span>
-<span id="cb70-20"><a href="#cb70-20"></a>dfmat_manifesto <span class="ot">&lt;-</span> <span class="fu">tokens</span>(con_lab_manifesto, <span class="at">remove_punct =</span> <span class="cn">TRUE</span>, </span>
-<span id="cb70-21"><a href="#cb70-21"></a>                          <span class="at">remove_numbers =</span> <span class="cn">TRUE</span>, <span class="at">remove_symbols =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb70-22"><a href="#cb70-22"></a>  <span class="fu">tokens_remove</span>(<span class="fu">stopwords</span>(<span class="st">"english"</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb70-23"><a href="#cb70-23"></a>  <span class="fu">dfm</span>() </span>
-<span id="cb70-24"><a href="#cb70-24"></a></span>
-<span id="cb70-25"><a href="#cb70-25"></a><span class="co"># Perform keyness analysis</span></span>
-<span id="cb70-26"><a href="#cb70-26"></a>keyness_stat <span class="ot">&lt;-</span> <span class="fu">textstat_keyness</span>(dfmat_manifesto, <span class="at">target =</span> <span class="st">"lab_manifesto.txt"</span>, <span class="at">measure =</span> <span class="st">"lr"</span>)</span>
-<span id="cb70-27"><a href="#cb70-27"></a></span>
-<span id="cb70-28"><a href="#cb70-28"></a><span class="co"># Plot the keyness analysis</span></span>
-<span id="cb70-29"><a href="#cb70-29"></a><span class="fu">textplot_keyness</span>(keyness_stat, <span class="at">color =</span> <span class="fu">c</span>(<span class="st">"blue"</span>, <span class="st">"red"</span>), <span class="at">n =</span> <span class="dv">20</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb70-15"><a href="#cb70-15"></a>con_lab_lib_manifesto <span class="ot">&lt;-</span> <span class="fu">corpus_subset</span>(manifesto_corpus, party <span class="sc">==</span> <span class="st">"conservative"</span> <span class="sc">|</span> party <span class="sc">==</span> <span class="st">"labour"</span> <span class="sc">|</span></span>
+<span id="cb70-16"><a href="#cb70-16"></a>                                     party <span class="sc">==</span> <span class="st">"liberal_democrat"</span>)</span>
+<span id="cb70-17"><a href="#cb70-17"></a></span>
+<span id="cb70-18"><a href="#cb70-18"></a>con_lab_lib_manifesto_tokens <span class="ot">&lt;-</span> <span class="fu">tokens</span>(con_lab_lib_manifesto, <span class="at">remove_punct =</span> <span class="cn">TRUE</span>, </span>
+<span id="cb70-19"><a href="#cb70-19"></a>                          <span class="at">remove_numbers =</span> <span class="cn">TRUE</span>, <span class="at">remove_symbols =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb70-20"><a href="#cb70-20"></a>  <span class="fu">tokens_remove</span>(<span class="fu">stopwords</span>(<span class="st">"en"</span>))</span>
+<span id="cb70-21"><a href="#cb70-21"></a>                </span>
+<span id="cb70-22"><a href="#cb70-22"></a><span class="fu">textplot_xray</span>(</span>
+<span id="cb70-23"><a href="#cb70-23"></a><span class="fu">kwic</span>(con_lab_lib_manifesto_tokens, <span class="at">pattern =</span> <span class="st">"brexit"</span>),</span>
+<span id="cb70-24"><a href="#cb70-24"></a><span class="fu">kwic</span>(con_lab_lib_manifesto_tokens, <span class="at">pattern =</span> <span class="st">"economy"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div class="cell-output-display">
 <div>
-<figure class="figure"><p><img src="A9-Corpus_files/figure-html/unnamed-chunk-40-1.png" class="img-fluid figure-img" style="width:95.0%"></p>
-</figure>
-</div>
-</div>
-</div>
-</section><section id="task-4-lexical-disperssion-plot" class="level3" data-number="1.13.4"><h3 data-number="1.13.4" class="anchored" data-anchor-id="task-4-lexical-disperssion-plot">
-<span class="header-section-number">1.13.4</span> Task 4 lexical disperssion plot</h3>
-<div class="question">
-<p>Create a lexical dispersion plot comparing where the word “Brexit” and “economy” appears in the labour, conservative and liberal democrat policy</p>
-</div>
-<div class="cell">
-<details class="code-fold"><summary>Answer</summary><div class="sourceCode cell-code" id="cb71"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb71-1"><a href="#cb71-1"></a><span class="fu">library</span>(quanteda.textplots)</span>
-<span id="cb71-2"><a href="#cb71-2"></a></span>
-<span id="cb71-3"><a href="#cb71-3"></a></span>
-<span id="cb71-4"><a href="#cb71-4"></a><span class="co"># Create a corpus</span></span>
-<span id="cb71-5"><a href="#cb71-5"></a></span>
-<span id="cb71-6"><a href="#cb71-6"></a>manifesto_corpus <span class="ot">&lt;-</span> <span class="fu">corpus</span>(manifesto_text)</span>
-<span id="cb71-7"><a href="#cb71-7"></a></span>
-<span id="cb71-8"><a href="#cb71-8"></a><span class="co"># Label the manifestos</span></span>
-<span id="cb71-9"><a href="#cb71-9"></a></span>
-<span id="cb71-10"><a href="#cb71-10"></a><span class="fu">docvars</span>(manifesto_corpus, <span class="st">"party"</span>) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"conservative"</span>, <span class="st">"DUP"</span>, <span class="st">"green"</span>, <span class="st">"labour"</span>, <span class="st">"liberal_democrat"</span>, <span class="st">"Plaid_cymru"</span>, <span class="st">"SNP"</span>)</span>
-<span id="cb71-11"><a href="#cb71-11"></a></span>
-<span id="cb71-12"><a href="#cb71-12"></a></span>
-<span id="cb71-13"><a href="#cb71-13"></a><span class="co"># Subset to labour and conservative</span></span>
-<span id="cb71-14"><a href="#cb71-14"></a></span>
-<span id="cb71-15"><a href="#cb71-15"></a>con_lab_lib_manifesto <span class="ot">&lt;-</span> <span class="fu">corpus_subset</span>(manifesto_corpus, party <span class="sc">==</span> <span class="st">"conservative"</span> <span class="sc">|</span> party <span class="sc">==</span> <span class="st">"labour"</span> <span class="sc">|</span></span>
-<span id="cb71-16"><a href="#cb71-16"></a>                                     party <span class="sc">==</span> <span class="st">"liberal_democrat"</span>)</span>
-<span id="cb71-17"><a href="#cb71-17"></a></span>
-<span id="cb71-18"><a href="#cb71-18"></a>con_lab_lib_manifesto_tokens <span class="ot">&lt;-</span> <span class="fu">tokens</span>(con_lab_lib_manifesto, <span class="at">remove_punct =</span> <span class="cn">TRUE</span>, </span>
-<span id="cb71-19"><a href="#cb71-19"></a>                          <span class="at">remove_numbers =</span> <span class="cn">TRUE</span>, <span class="at">remove_symbols =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb71-20"><a href="#cb71-20"></a>  <span class="fu">tokens_remove</span>(<span class="fu">stopwords</span>(<span class="st">"en"</span>))</span>
-<span id="cb71-21"><a href="#cb71-21"></a>                </span>
-<span id="cb71-22"><a href="#cb71-22"></a><span class="fu">textplot_xray</span>(</span>
-<span id="cb71-23"><a href="#cb71-23"></a><span class="fu">kwic</span>(con_lab_lib_manifesto_tokens, <span class="at">pattern =</span> <span class="st">"brexit"</span>),</span>
-<span id="cb71-24"><a href="#cb71-24"></a><span class="fu">kwic</span>(con_lab_lib_manifesto_tokens, <span class="at">pattern =</span> <span class="st">"economy"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details><div class="cell-output-display">
-<div>
-<figure class="figure"><p><img src="A9-Corpus_files/figure-html/unnamed-chunk-41-1.png" class="img-fluid figure-img" style="width:95.0%"></p>
+<figure class="figure"><p><img src="A9-Corpus_files/figure-html/unnamed-chunk-42-1.png" class="img-fluid figure-img" style="width:95.0%"></p>
 </figure>
 </div>
 </div>
@@ -1864,9 +1855,9 @@ Liberal_democrat   0.9825760 0.9772731
 <p>We have created a large corpus of the text of Ofsted reports, by scrapping all Ofsted reports from the Ofsted website. You can download a subset of the corpus, for London schools, as a parquet file from <a href="https://emckclac-my.sharepoint.com/:u:/g/personal/k1926273_kcl_ac_uk/EZtdmlFzmOJEo2TnLiOjJrQBMBBqUpuVG1ZZmycum0dgpQ?e=VEV0mE">here</a>.</p>
 <p>To load the corpus into R, you can use the <code>read_parquet</code> function from the <code>arrow</code> package.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb72"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb72-1"><a href="#cb72-1"></a><span class="fu">library</span>(arrow)</span>
-<span id="cb72-2"><a href="#cb72-2"></a><span class="co"># Read in the Ofsted reports corpus</span></span>
-<span id="cb72-3"><a href="#cb72-3"></a>london_ofsted_reports <span class="ot">&lt;-</span> <span class="fu">read_parquet</span>(<span class="st">"&lt;path to ofsted_reports.parquet&gt;"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb71"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb71-1"><a href="#cb71-1"></a><span class="fu">library</span>(arrow)</span>
+<span id="cb71-2"><a href="#cb71-2"></a><span class="co"># Read in the Ofsted reports corpus</span></span>
+<span id="cb71-3"><a href="#cb71-3"></a>london_ofsted_reports <span class="ot">&lt;-</span> <span class="fu">read_parquet</span>(<span class="st">"&lt;path to ofsted_reports.parquet&gt;"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>The corpus contains the text of all Lonson Ofsted reports from 2010 to 2023. The variables in the data frame are:</p>
 <table class="caption-top table">
@@ -1962,32 +1953,32 @@ Liberal_democrat   0.9825760 0.9772731
 <p>Choose your group of keywords to plot. To create the plot, we have broken the task down into a n number of steps. First, use the <code>tokens()</code> function to tokenise the <code>london_ofsted_corpus</code>.</p>
 </div>
 <div class="cell">
-<details class="code-fold"><summary>Answer</summary><div class="sourceCode cell-code" id="cb73"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb73-1"><a href="#cb73-1"></a><span class="co"># create a corpus object from the ofsted reports</span></span>
-<span id="cb73-2"><a href="#cb73-2"></a></span>
-<span id="cb73-3"><a href="#cb73-3"></a>london_ofsted_corpus <span class="ot">&lt;-</span> <span class="fu">corpus</span>(london_ofsted_reports)</span>
-<span id="cb73-4"><a href="#cb73-4"></a></span>
-<span id="cb73-5"><a href="#cb73-5"></a><span class="co"># tokenise the corupus removing stop words, numbers, symbols and </span></span>
-<span id="cb73-6"><a href="#cb73-6"></a><span class="co"># punctuation</span></span>
-<span id="cb73-7"><a href="#cb73-7"></a><span class="co"># this will be slow as the corpus is large!</span></span>
-<span id="cb73-8"><a href="#cb73-8"></a>tokens_clean <span class="ot">&lt;-</span> <span class="fu">tokens</span>(london_ofsted_corpus,</span>
-<span id="cb73-9"><a href="#cb73-9"></a>                       <span class="at">remove_punct =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb73-10"><a href="#cb73-10"></a>                       <span class="at">remove_numbers =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb73-11"><a href="#cb73-11"></a>                       <span class="at">remove_symbols =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb73-12"><a href="#cb73-12"></a>   <span class="fu">tokens_tolower</span>() <span class="sc">%&gt;%</span> <span class="co"># convert to lower case</span></span>
-<span id="cb73-13"><a href="#cb73-13"></a>  <span class="fu">tokens_remove</span>(<span class="fu">stopwords</span>(<span class="st">"en"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<details class="code-fold"><summary>Answer</summary><div class="sourceCode cell-code" id="cb72"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb72-1"><a href="#cb72-1"></a><span class="co"># create a corpus object from the ofsted reports</span></span>
+<span id="cb72-2"><a href="#cb72-2"></a></span>
+<span id="cb72-3"><a href="#cb72-3"></a>london_ofsted_corpus <span class="ot">&lt;-</span> <span class="fu">corpus</span>(london_ofsted_reports)</span>
+<span id="cb72-4"><a href="#cb72-4"></a></span>
+<span id="cb72-5"><a href="#cb72-5"></a><span class="co"># tokenise the corupus removing stop words, numbers, symbols and </span></span>
+<span id="cb72-6"><a href="#cb72-6"></a><span class="co"># punctuation</span></span>
+<span id="cb72-7"><a href="#cb72-7"></a><span class="co"># this will be slow as the corpus is large!</span></span>
+<span id="cb72-8"><a href="#cb72-8"></a>tokens_clean <span class="ot">&lt;-</span> <span class="fu">tokens</span>(london_ofsted_corpus,</span>
+<span id="cb72-9"><a href="#cb72-9"></a>                       <span class="at">remove_punct =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb72-10"><a href="#cb72-10"></a>                       <span class="at">remove_numbers =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb72-11"><a href="#cb72-11"></a>                       <span class="at">remove_symbols =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb72-12"><a href="#cb72-12"></a>   <span class="fu">tokens_tolower</span>() <span class="sc">%&gt;%</span> <span class="co"># convert to lower case</span></span>
+<span id="cb72-13"><a href="#cb72-13"></a>  <span class="fu">tokens_remove</span>(<span class="fu">stopwords</span>(<span class="st">"en"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <div class="question">
 <p>Next, to be able to search for two word phrases use the <code>phrase</code> and <code>tokens_compound</code> functions to search the cleaned tokens data for the policy names of interest</p>
 </div>
 <div class="cell">
-<details class="code-fold"><summary>Answer</summary><div class="sourceCode cell-code" id="cb74"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb74-1"><a href="#cb74-1"></a><span class="co"># Convert keywords to tokens for compound matching - this means the search is</span></span>
-<span id="cb74-2"><a href="#cb74-2"></a><span class="co"># for the whole phrase, not the individual words</span></span>
-<span id="cb74-3"><a href="#cb74-3"></a><span class="co"># Create a pattern where multi-word terms use the phrase operator</span></span>
-<span id="cb74-4"><a href="#cb74-4"></a>keywords_phrases <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">phrase</span>(<span class="st">"brain gym"</span>), <span class="fu">phrase</span>(<span class="st">"learning styles"</span>), <span class="st">"mastery"</span>)</span>
-<span id="cb74-5"><a href="#cb74-5"></a></span>
-<span id="cb74-6"><a href="#cb74-6"></a><span class="co"># Compound multi-word keywords into single tokens and search</span></span>
-<span id="cb74-7"><a href="#cb74-7"></a>tokens_compounded <span class="ot">&lt;-</span> <span class="fu">tokens_compound</span>(tokens_clean, <span class="at">pattern =</span> keywords_phrases)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<details class="code-fold"><summary>Answer</summary><div class="sourceCode cell-code" id="cb73"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb73-1"><a href="#cb73-1"></a><span class="co"># Convert keywords to tokens for compound matching - this means the search is</span></span>
+<span id="cb73-2"><a href="#cb73-2"></a><span class="co"># for the whole phrase, not the individual words</span></span>
+<span id="cb73-3"><a href="#cb73-3"></a><span class="co"># Create a pattern where multi-word terms use the phrase operator</span></span>
+<span id="cb73-4"><a href="#cb73-4"></a>keywords_phrases <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">phrase</span>(<span class="st">"brain gym"</span>), <span class="fu">phrase</span>(<span class="st">"learning styles"</span>), <span class="st">"mastery"</span>)</span>
+<span id="cb73-5"><a href="#cb73-5"></a></span>
+<span id="cb73-6"><a href="#cb73-6"></a><span class="co"># Compound multi-word keywords into single tokens and search</span></span>
+<span id="cb73-7"><a href="#cb73-7"></a>tokens_compounded <span class="ot">&lt;-</span> <span class="fu">tokens_compound</span>(tokens_clean, <span class="at">pattern =</span> keywords_phrases)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <div class="question">
@@ -2005,11 +1996,11 @@ Tip
 <div class="callout-body-container callout-body">
 <p>When plotting data, long form data frames are preferred over wide forms. The difference is illustrated below. In a wide form data frame, each invidiual or school is a row and may have multiple columns of data:</p>
 <div class="cell">
-<details class="code-fold"><summary>Answer</summary><div class="sourceCode cell-code" id="cb75"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb75-1"><a href="#cb75-1"></a>wide_form <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">student =</span> <span class="fu">c</span>(<span class="st">"A"</span>, <span class="st">"B"</span>, <span class="st">"C"</span>, <span class="st">"D"</span>, <span class="st">"E"</span>, <span class="st">"F"</span>),</span>
-<span id="cb75-2"><a href="#cb75-2"></a>                        <span class="at">math =</span> <span class="fu">c</span>(<span class="dv">81</span>, <span class="dv">56</span>, <span class="dv">43</span>, <span class="dv">56</span>, <span class="dv">78</span>, <span class="dv">92</span>),</span>
-<span id="cb75-3"><a href="#cb75-3"></a>                        <span class="at">english =</span> <span class="fu">c</span>(<span class="dv">54</span>, <span class="dv">32</span>, <span class="dv">78</span>, <span class="dv">91</span>, <span class="dv">33</span>, <span class="dv">67</span>))</span>
-<span id="cb75-4"><a href="#cb75-4"></a></span>
-<span id="cb75-5"><a href="#cb75-5"></a>wide_form</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<details class="code-fold"><summary>Answer</summary><div class="sourceCode cell-code" id="cb74"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb74-1"><a href="#cb74-1"></a>wide_form <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">student =</span> <span class="fu">c</span>(<span class="st">"A"</span>, <span class="st">"B"</span>, <span class="st">"C"</span>, <span class="st">"D"</span>, <span class="st">"E"</span>, <span class="st">"F"</span>),</span>
+<span id="cb74-2"><a href="#cb74-2"></a>                        <span class="at">math =</span> <span class="fu">c</span>(<span class="dv">81</span>, <span class="dv">56</span>, <span class="dv">43</span>, <span class="dv">56</span>, <span class="dv">78</span>, <span class="dv">92</span>),</span>
+<span id="cb74-3"><a href="#cb74-3"></a>                        <span class="at">english =</span> <span class="fu">c</span>(<span class="dv">54</span>, <span class="dv">32</span>, <span class="dv">78</span>, <span class="dv">91</span>, <span class="dv">33</span>, <span class="dv">67</span>))</span>
+<span id="cb74-4"><a href="#cb74-4"></a></span>
+<span id="cb74-5"><a href="#cb74-5"></a>wide_form</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div class="cell-output cell-output-stdout">
 <pre><code>  student math english
 1       A   81      54
@@ -2022,10 +2013,10 @@ Tip
 </div>
 <p>In long form, there is a single column for numeric data and each individual or school has multiple entries:</p>
 <div class="cell">
-<details class="code-fold"><summary>Answer</summary><div class="sourceCode cell-code" id="cb77"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb77-1"><a href="#cb77-1"></a>long_form <span class="ot">&lt;-</span> <span class="fu">pivot_longer</span>(wide_form, <span class="at">cols =</span> <span class="fu">c</span>(math, english),</span>
-<span id="cb77-2"><a href="#cb77-2"></a>                          <span class="at">names_to =</span> <span class="st">"subject"</span>, <span class="at">values_to =</span> <span class="st">"scores"</span>)</span>
-<span id="cb77-3"><a href="#cb77-3"></a></span>
-<span id="cb77-4"><a href="#cb77-4"></a>long_form</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<details class="code-fold"><summary>Answer</summary><div class="sourceCode cell-code" id="cb76"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb76-1"><a href="#cb76-1"></a>long_form <span class="ot">&lt;-</span> <span class="fu">pivot_longer</span>(wide_form, <span class="at">cols =</span> <span class="fu">c</span>(math, english),</span>
+<span id="cb76-2"><a href="#cb76-2"></a>                          <span class="at">names_to =</span> <span class="st">"subject"</span>, <span class="at">values_to =</span> <span class="st">"scores"</span>)</span>
+<span id="cb76-3"><a href="#cb76-3"></a></span>
+<span id="cb76-4"><a href="#cb76-4"></a>long_form</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 12 × 3
    student subject scores
@@ -2048,44 +2039,44 @@ Tip
 </div>
 </div>
 <div class="cell">
-<details class="code-fold"><summary>Answer</summary><div class="sourceCode cell-code" id="cb79"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb79-1"><a href="#cb79-1"></a><span class="co"># Create dfm grouped by year</span></span>
-<span id="cb79-2"><a href="#cb79-2"></a>ofsted_dfm <span class="ot">&lt;-</span> <span class="fu">dfm</span>(tokens_compounded) <span class="sc">%&gt;%</span></span>
-<span id="cb79-3"><a href="#cb79-3"></a>  <span class="fu">dfm_group</span>(<span class="at">groups =</span> <span class="fu">docvars</span>(london_ofsted_corpus, <span class="st">"year"</span>))</span>
-<span id="cb79-4"><a href="#cb79-4"></a></span>
-<span id="cb79-5"><a href="#cb79-5"></a><span class="co">#After compounding, we need to select the compounded tokens</span></span>
-<span id="cb79-6"><a href="#cb79-6"></a><span class="co"># which now have underscores</span></span>
-<span id="cb79-7"><a href="#cb79-7"></a>keywords_compounded <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"brain_gym"</span>, <span class="st">"learning_styles"</span>, <span class="st">"mastery"</span>)</span>
-<span id="cb79-8"><a href="#cb79-8"></a></span>
-<span id="cb79-9"><a href="#cb79-9"></a><span class="co"># Select keyword phrases in dfm</span></span>
-<span id="cb79-10"><a href="#cb79-10"></a>dfm_keywords <span class="ot">&lt;-</span> <span class="fu">dfm_select</span>(ofsted_dfm, <span class="at">pattern =</span> keywords_compounded)</span>
-<span id="cb79-11"><a href="#cb79-11"></a></span>
-<span id="cb79-12"><a href="#cb79-12"></a><span class="co"># Convert to data frame</span></span>
-<span id="cb79-13"><a href="#cb79-13"></a>freqs_df <span class="ot">&lt;-</span> <span class="fu">convert</span>(dfm_keywords, <span class="at">to =</span> <span class="st">"data.frame"</span>)</span>
-<span id="cb79-14"><a href="#cb79-14"></a><span class="co"># convert row names with years to columns</span></span>
-<span id="cb79-15"><a href="#cb79-15"></a>freqs_df<span class="sc">$</span>year <span class="ot">&lt;-</span> <span class="fu">rownames</span>(freqs_df)</span>
-<span id="cb79-16"><a href="#cb79-16"></a></span>
-<span id="cb79-17"><a href="#cb79-17"></a><span class="co"># Pivot for plotting</span></span>
-<span id="cb79-18"><a href="#cb79-18"></a>freqs_long <span class="ot">&lt;-</span> freqs_df <span class="sc">%&gt;%</span></span>
-<span id="cb79-19"><a href="#cb79-19"></a>  <span class="fu">select</span>(<span class="sc">-</span>year) <span class="sc">%&gt;%</span></span>
-<span id="cb79-20"><a href="#cb79-20"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="sc">-</span>doc_id, <span class="at">names_to =</span> <span class="st">"keyword"</span>, <span class="at">values_to =</span> <span class="st">"frequency"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<details class="code-fold"><summary>Answer</summary><div class="sourceCode cell-code" id="cb78"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb78-1"><a href="#cb78-1"></a><span class="co"># Create dfm grouped by year</span></span>
+<span id="cb78-2"><a href="#cb78-2"></a>ofsted_dfm <span class="ot">&lt;-</span> <span class="fu">dfm</span>(tokens_compounded) <span class="sc">%&gt;%</span></span>
+<span id="cb78-3"><a href="#cb78-3"></a>  <span class="fu">dfm_group</span>(<span class="at">groups =</span> <span class="fu">docvars</span>(london_ofsted_corpus, <span class="st">"year"</span>))</span>
+<span id="cb78-4"><a href="#cb78-4"></a></span>
+<span id="cb78-5"><a href="#cb78-5"></a><span class="co">#After compounding, we need to select the compounded tokens</span></span>
+<span id="cb78-6"><a href="#cb78-6"></a><span class="co"># which now have underscores</span></span>
+<span id="cb78-7"><a href="#cb78-7"></a>keywords_compounded <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"brain_gym"</span>, <span class="st">"learning_styles"</span>, <span class="st">"mastery"</span>)</span>
+<span id="cb78-8"><a href="#cb78-8"></a></span>
+<span id="cb78-9"><a href="#cb78-9"></a><span class="co"># Select keyword phrases in dfm</span></span>
+<span id="cb78-10"><a href="#cb78-10"></a>dfm_keywords <span class="ot">&lt;-</span> <span class="fu">dfm_select</span>(ofsted_dfm, <span class="at">pattern =</span> keywords_compounded)</span>
+<span id="cb78-11"><a href="#cb78-11"></a></span>
+<span id="cb78-12"><a href="#cb78-12"></a><span class="co"># Convert to data frame</span></span>
+<span id="cb78-13"><a href="#cb78-13"></a>freqs_df <span class="ot">&lt;-</span> <span class="fu">convert</span>(dfm_keywords, <span class="at">to =</span> <span class="st">"data.frame"</span>)</span>
+<span id="cb78-14"><a href="#cb78-14"></a><span class="co"># convert row names with years to columns</span></span>
+<span id="cb78-15"><a href="#cb78-15"></a>freqs_df<span class="sc">$</span>year <span class="ot">&lt;-</span> <span class="fu">rownames</span>(freqs_df)</span>
+<span id="cb78-16"><a href="#cb78-16"></a></span>
+<span id="cb78-17"><a href="#cb78-17"></a><span class="co"># Pivot for plotting</span></span>
+<span id="cb78-18"><a href="#cb78-18"></a>freqs_long <span class="ot">&lt;-</span> freqs_df <span class="sc">%&gt;%</span></span>
+<span id="cb78-19"><a href="#cb78-19"></a>  <span class="fu">select</span>(<span class="sc">-</span>year) <span class="sc">%&gt;%</span></span>
+<span id="cb78-20"><a href="#cb78-20"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="sc">-</span>doc_id, <span class="at">names_to =</span> <span class="st">"keyword"</span>, <span class="at">values_to =</span> <span class="st">"frequency"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <div class="question">
 <p>Finally, plot your data as a line chart - you may want to facet the chart to give separate plots for each key word</p>
 </div>
 <div class="cell">
-<details class="code-fold"><summary>Answer</summary><div class="sourceCode cell-code" id="cb80"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb80-1"><a href="#cb80-1"></a><span class="co">#  Plot</span></span>
-<span id="cb80-2"><a href="#cb80-2"></a><span class="fu">ggplot</span>(freqs_long, <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">as.numeric</span>(doc_id), <span class="at">y =</span> frequency, <span class="at">color =</span> keyword)) <span class="sc">+</span></span>
-<span id="cb80-3"><a href="#cb80-3"></a>  <span class="fu">geom_line</span>(<span class="at">linewidth =</span> <span class="fl">1.2</span>) <span class="sc">+</span></span>
-<span id="cb80-4"><a href="#cb80-4"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb80-5"><a href="#cb80-5"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Keyword Frequency Over Time in London Ofsted Reports"</span>,</span>
-<span id="cb80-6"><a href="#cb80-6"></a>       <span class="at">x =</span> <span class="st">"Year"</span>, <span class="at">y =</span> <span class="st">"Frequency"</span>) <span class="sc">+</span></span>
-<span id="cb80-7"><a href="#cb80-7"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
-<span id="cb80-8"><a href="#cb80-8"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"top"</span>) <span class="sc">+</span></span>
-<span id="cb80-9"><a href="#cb80-9"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>keyword, <span class="at">scales =</span> <span class="st">"free_y"</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<details class="code-fold"><summary>Answer</summary><div class="sourceCode cell-code" id="cb79"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb79-1"><a href="#cb79-1"></a><span class="co">#  Plot</span></span>
+<span id="cb79-2"><a href="#cb79-2"></a><span class="fu">ggplot</span>(freqs_long, <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">as.numeric</span>(doc_id), <span class="at">y =</span> frequency, <span class="at">color =</span> keyword)) <span class="sc">+</span></span>
+<span id="cb79-3"><a href="#cb79-3"></a>  <span class="fu">geom_line</span>(<span class="at">linewidth =</span> <span class="fl">1.2</span>) <span class="sc">+</span></span>
+<span id="cb79-4"><a href="#cb79-4"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb79-5"><a href="#cb79-5"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Keyword Frequency Over Time in London Ofsted Reports"</span>,</span>
+<span id="cb79-6"><a href="#cb79-6"></a>       <span class="at">x =</span> <span class="st">"Year"</span>, <span class="at">y =</span> <span class="st">"Frequency"</span>) <span class="sc">+</span></span>
+<span id="cb79-7"><a href="#cb79-7"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb79-8"><a href="#cb79-8"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"top"</span>) <span class="sc">+</span></span>
+<span id="cb79-9"><a href="#cb79-9"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>keyword, <span class="at">scales =</span> <span class="st">"free_y"</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div class="cell-output-display">
 <div>
-<figure class="figure"><p><img src="A9-Corpus_files/figure-html/unnamed-chunk-48-1.png" class="img-fluid figure-img" style="width:95.0%"></p>
+<figure class="figure"><p><img src="A9-Corpus_files/figure-html/unnamed-chunk-49-1.png" class="img-fluid figure-img" style="width:95.0%"></p>
 </figure>
 </div>
 </div>
@@ -2174,8 +2165,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   });
   clipboard.on('success', onCopySuccess);
   if (window.document.getElementById('quarto-embedded-source-code-modal')) {
-    // For code content inside modals, clipBoardJS needs to be initialized with a container option
-    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
     const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
       text: getTextToCopy,
       container: window.document.getElementById('quarto-embedded-source-code-modal')
@@ -2286,7 +2275,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       if (window.Quarto?.typesetMath) {
         window.Quarto.typesetMath(note);
       }
-      // TODO in 1.5, we should make sure this works without a callout special case
       if (note.classList.contains("callout")) {
         return note.outerHTML;
       } else {

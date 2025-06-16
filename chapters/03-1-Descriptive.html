@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.5.57">
+<meta name="generator" content="quarto-1.6.42">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -89,10 +89,10 @@ div.csl-indent {
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-2f5df379a58b258e96c21c0638c20c03.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-868b9742d7bde9f1698ef1c41a43f714.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -211,6 +211,18 @@ div.csl-indent {
   <div class="sidebar-item-container"> 
   <a href="../chapters/03-1-Descriptive.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Descriptive Statistics</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/03-2-ChisqPISA.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Hypothesis testing and Chi-square tests</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/03-3-T-testsPISA.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">T-tests</span></a>
   </div>
 </li>
       </ul>
@@ -586,9 +598,6 @@ $ST251Q01JA
 $ST251Q06JA
 [1] "How many of these items are there at your [home]: Musical instruments (e.g. guitar, piano, [country-specific example])"
 
-$ST251Q07JA
-[1] "How many of these items are there at your [home]: Works of art (e.g. paintings, sculptures, [country-specific example])"
-
 $ST253Q01JA
 [1] "How many [digital devices] with screens are there in your [home]?"
 
@@ -661,7 +670,10 @@ $ST355Q03JA
 $FL150Q02TA
 [1] "Have you learned to manage money in a course: At school as part of another subject or course"
 
- [ reached getOption("max.print") -- omitted 43 entries ]</code></pre>
+$IC172Q01JA
+[1] "Agree/disagree: There are enough [digital resources] for every student at my school."
+
+ [ reached getOption("max.print") -- omitted 41 entries ]</code></pre>
 </div>
 </div>
 <p>Alternatively, you can read a complete list of the items in PISA here: <a href="https://docs.google.com/spreadsheets/d/1POM1kimLFIk88AZtWnTKMiTBFDwaWHTZ?rtpof=true&amp;usp=drive_fs">PISA 2022 student survey item descriptors</a></p>
@@ -1556,8 +1568,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   });
   clipboard.on('success', onCopySuccess);
   if (window.document.getElementById('quarto-embedded-source-code-modal')) {
-    // For code content inside modals, clipBoardJS needs to be initialized with a container option
-    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
     const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
       text: getTextToCopy,
       container: window.document.getElementById('quarto-embedded-source-code-modal')
@@ -1668,7 +1678,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       if (window.Quarto?.typesetMath) {
         window.Quarto.typesetMath(note);
       }
-      // TODO in 1.5, we should make sure this works without a callout special case
       if (note.classList.contains("callout")) {
         return note.outerHTML;
       } else {
